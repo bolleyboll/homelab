@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  redis:
+    image: redis:7.2.4
+    container_name: redis
+    hostname: pi
+    restart: always
+    command:
+      - --loglevel warning
+    volumes:
+      - /home/pi/vol-mount/redis-data:/data:Z
+
+  postgresql:
+    image: postgres:16.1
+    container_name: postgresql
+    hostname: pi
+    restart: always
+    environment:
+      - DB_USER=root
+      - DB_PASS=password
+      - POSTGRES_PASSWORD=password
+      - DB_NAME=home_production
+      - DB_EXTENSION=pg_trgm,btree_gist
+    volumes:
+      - /home/pi/vol-mount/postgresql-data:/var/lib/postgresql:Z
+
+  gitlab:
+    image: gitlab/gitlab-ce:16.8.0-ce.0
+    restart: unless-stopped
+    container_name: gitlab
+    hostname: pi
+    env_file:
+      - ./config/gitlab/config.env
+    ports:
+      - 8081:80
+      - 8443:443
+      - 8022:22
+    volumes:
+      - ./config/gitlab/gitlab.rb:/etc/gitlab/gitlab.rb
+    depends_on:
+      - postgresql
+      - redis
