@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  bind:
+    image: internetsystemsconsortium/bind9:9.18
+    container_name: bind
+    hostname: pi
