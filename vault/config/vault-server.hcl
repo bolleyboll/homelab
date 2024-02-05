@@ -10,5 +10,5 @@ listener "tcp" {
 }
 
 storage "file" {
-  path = "/vault/file"
+  path = "/vault/files"
 }
