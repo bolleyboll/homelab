@@ -3,10 +3,10 @@ services:
   jenkins:
     image: jenkins/jenkins:2.443-jdk17
     container_name: jenkins
-    hostname: pi
     restart: unless-stopped
     ports:
       - 8080:8080
       - 50000:50000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./vol-mount/jenkins/jenkinsAdminPassword:/var/jenkins_home/secrets/
