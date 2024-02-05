@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   jenkins:
-    image: jenkins/jenkins:2.442-jdk17
+    image: jenkins/jenkins:2.443-jdk17
     container_name: jenkins
     hostname: pi
     restart: unless-stopped
