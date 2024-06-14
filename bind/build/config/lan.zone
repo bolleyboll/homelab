@@ -12,5 +12,5 @@ localhost     IN  A     127.0.0.1
 
 ; Records
 pi    IN    A     192.168.0.100
-pi    IN    A     192.168.0.101
-*     IN    CNAME tk
+traefik    IN    A     172.22.0.2
+*     IN    CNAME traefik.lan.

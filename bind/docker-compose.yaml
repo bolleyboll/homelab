@@ -2,6 +2,7 @@
 services:
   bind9:
     container_name: bind9
+    hostname: pi
     build:
       context: ./build/
       dockerfile: Dockerfile
