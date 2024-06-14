@@ -1,11 +1,12 @@
 version: "3.8"
 services:
   traefik:
-    image: traefik:v2.10
+    image: traefik:v3.0
     container_name: traefik
     hostname: pi
+    network_mode: host
     command:
-      - "--log.level=WARN"
+      - "--log.level=INFO"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=true"
@@ -24,5 +25,5 @@ services:
     container_name: "simple-service"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.lan`)"
       - "traefik.http.routers.whoami.entrypoints=web"
