@@ -6,11 +6,10 @@ services:
     build:
       context: ./build/
       dockerfile: Dockerfile
-    image: internetsystemsconsortium/bind9:latest
+    network_mode: host
     environment:
       - BIND9_USER=root
       - TZ=Asia/Kolkata
-    network_mode: host
     # volumes:
     #   - ./log/:/var/log/:rw
     restart: always
