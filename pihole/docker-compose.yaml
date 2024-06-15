@@ -1,35 +1,33 @@
-version: "3.8"
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    hostname: pi
+    image: pihole/pihole:2024.05.0
     restart: unless-stopped
     environment:
       TZ: "Asia/Kolkata"
-      FTLCONF_LOCAL_IPV4: "192.168.0.100" # static IP I bound in my router to the RBPi's Mac
-      PIHOLE_DNS_: "9.9.9.9;149.112.112.112"
-      DNSMASQ_LISTENING: "all"
-      PIHOLE_INTERFACE: wlan0
-      QUERY_LOGGING: true
-      INSTALL_WEB_SERVER: true
-      INSTALL_WEB_INTERFACE: true
-      LIGHTTPD_ENABLED: true
-      CACHE_SIZE: 10000
-      DNS_FQDN_REQUIRED: true
-      DNS_BOGUS_PRIV: true
-      WEBPASSWORD: 94f296d69a26c984571b28d8d6b8f05
-      BLOCKING_ENABLED: true
-      TEMPERATUREUNIT: C
-      DNSSEC: false
-      REV_SERVER: false
-      PIHOLE_DNS_1: 127.0.0.1#5335
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      WEB_PORT: 8081
+      FTLCONF_LOCAL_IPV4: "127.0.0.1"
+      WEBPASSWORD: password
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "1080:80/tcp"
-    # Volumes store your data between container upgrades
-    volumes:
-      - "/home/pi/vol-mount/etc-pihole:/etc/pihole"
-      - "/home/pi/vol-mount/etc-dnsmasq.d:/etc/dnsmasq.d"
+      - "5353:53/tcp"
+      - "5353:53/udp"
+      - "8081:80/tcp"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.service=pihole-http"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.lan`)"
+      - "traefik.http.services.pihole-http.loadbalancer.server.port=8081"
+      - "traefik.http.routers.pihole.entrypoints=web"
+      - "traefik.http.routers.piholedns.service=pihole-dns"
+      - "traefik.http.routers.piholedns.rule=Host(`pihole-dns.lan`)"
+      - "traefik.http.services.pihole-dns.loadbalancer.server.port=5353"
+      - "traefik.http.routers.pihole-dns.entrypoints=web"
+    # volumes:
+    #   - "/home/pi/vol-mount/etc-pihole:/etc/pihole"
+    #   - "/home/pi/vol-mount/etc-dnsmasq.d:/etc/dnsmasq.d"
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+
+networks:
+  ingress:
+    external: true
