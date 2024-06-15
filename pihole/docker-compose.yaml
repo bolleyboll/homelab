@@ -1,8 +1,9 @@
 services:
   pihole:
+    image: pihole/pihole:latest
+    pull_policy: always
     container_name: pihole
     hostname: pi
-    image: pihole/pihole:2024.05.0
     restart: unless-stopped
     env_file:
       - ./env/pihole.env
