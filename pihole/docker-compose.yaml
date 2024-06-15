@@ -4,15 +4,12 @@ services:
     hostname: pi
     image: pihole/pihole:2024.05.0
     restart: unless-stopped
-    environment:
-      TZ: "Asia/Kolkata"
-      WEB_PORT: 8081
-      FTLCONF_LOCAL_IPV4: "127.0.0.1"
-      WEBPASSWORD: password
+    env_file:
+      - ./env/pihole.env
     ports:
       - "5353:53/tcp"
       - "5353:53/udp"
-      - "8081:80/tcp"
+      - "8081:8081/tcp"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pihole.service=pihole-http"
