@@ -10,16 +10,16 @@ services:
     ports:
       - "5353:53/tcp"
       - "5353:53/udp"
-      - "8081:8081/tcp"
+      - "8081:80/tcp"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pihole.service=pihole-http"
       - "traefik.http.routers.pihole.rule=Host(`pihole.lan`)"
-      - "traefik.http.services.pihole-http.loadbalancer.server.port=8081"
+      - "traefik.http.services.pihole-http.loadbalancer.server.port=80"
       - "traefik.http.routers.pihole.entrypoints=web"
       - "traefik.http.routers.piholedns.service=pihole-dns"
       - "traefik.http.routers.piholedns.rule=Host(`pihole-dns.lan`)"
-      - "traefik.http.services.pihole-dns.loadbalancer.server.port=5353"
+      - "traefik.http.services.pihole-dns.loadbalancer.server.port=53"
       - "traefik.http.routers.pihole-dns.entrypoints=web"
     # volumes:
     #   - "/home/pi/vol-mount/etc-pihole:/etc/pihole"
