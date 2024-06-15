@@ -38,3 +38,7 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`whoami.lan`)"
       - "traefik.http.services.whoami.loadbalancer.server.port=81"
       - "traefik.http.routers.whoami.entrypoints=web"
+
+networks:
+  ingress:
+    external: true
