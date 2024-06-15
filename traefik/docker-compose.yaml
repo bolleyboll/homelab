@@ -18,8 +18,9 @@ services:
       - "8080:8080"
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.traefik.service=traefik"
       - "traefik.http.routers.traefik.rule=Host(`traefik.lan`)"
-      - "traefik.http.services.traefik-traefik.loadbalancer.server.port=8080"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
       - "traefik.http.routers.traefik.entrypoints=web"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -33,6 +34,7 @@ services:
       - "--port=81"
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.whoami.service=whoami"
       - "traefik.http.routers.whoami.rule=Host(`whoami.lan`)"
-      - "traefik.http.services.whoami-traefik.loadbalancer.server.port=81"
+      - "traefik.http.services.whoami.loadbalancer.server.port=81"
       - "traefik.http.routers.whoami.entrypoints=web"
