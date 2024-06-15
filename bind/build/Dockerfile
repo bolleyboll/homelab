@@ -1,5 +1,4 @@
 FROM ubuntu:focal
-MAINTAINER Aman Gupta <aman.iv0012@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
