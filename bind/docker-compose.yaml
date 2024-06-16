@@ -1,21 +1,34 @@
 ---
 services:
   bind9:
+    image: internetsystemsconsortium/bind9:latest
     container_name: bind9
     hostname: pi
     build:
       context: ./build/
       dockerfile: Dockerfile
-    network_mode: host
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    networks:
+      - homelab
     environment:
       - BIND9_USER=root
       - TZ=Asia/Kolkata
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.bind.service=bind"
-      - "traefik.http.routers.bind.rule=Host(`dns.lan`)"
-      - "traefik.http.services.bind.loadbalancer.server.port=53"
-      - "traefik.http.routers.bind.entrypoints=web"
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.bind.service=bind"
+        - "traefik.http.routers.bind.rule=Host(`dns.lan`)"
+        - "traefik.http.services.bind.loadbalancer.server.port=53"
+        - "traefik.http.routers.bind.entrypoints=web"
     # volumes:
     #   - ./log/:/var/log/:rw
     restart: always
+
+networks:
+  homelab:
+    external: true
