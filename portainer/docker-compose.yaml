@@ -1,0 +1,40 @@
+---
+services:
+  portainer:
+    image: portainer/portainer-ce:2.20.3
+    container_name: portainer
+    hostname: pi
+    restart: always
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    networks:
+      - homelab
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.portainer.service=portainer"
+        - "traefik.http.routers.portainer.rule=Host(`portainer.lan`)"
+        - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+        - "traefik.http.routers.portainer.entrypoints=web"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  agent:
+    image: portainer/agent:2.20.3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - homelab
+    deploy:
+      mode: global
+
+networks:
+  homelab:
+    external: true
+
+volumes:
+  portainer_data:
