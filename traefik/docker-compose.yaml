@@ -3,25 +3,34 @@ services:
     image: traefik:v3.0
     container_name: traefik
     hostname: pi
-    network_mode: host
     command:
-      - "--log.level=WARN"
+      - "--log.level=INFO"
+      - "--accesslog=true"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=true"
+      - "--providers.swarm=true"
+      - "--providers.swarm.network=homelab"
+      - "--providers.swarm.exposedbydefault=true"
+      - "--providers.swarm.endpoint=unix:///var/run/docker.sock"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
-      - "--accesslog=true"
     ports:
       - "80:80"
       - "443:443"
       - "8080:8080"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.service=traefik"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.lan`)"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
-      - "traefik.http.routers.traefik.entrypoints=web"
+    networks:
+      - homelab
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.traefik.service=traefik"
+        - "traefik.http.routers.traefik.rule=Host(`traefik.lan`)"
+        - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+        - "traefik.http.routers.traefik.entrypoints=web"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
@@ -29,16 +38,16 @@ services:
     image: "traefik/whoami"
     container_name: "simple-service"
     hostname: pi
-    network_mode: host
-    command:
-      - "--port=81"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.service=whoami"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.lan`)"
-      - "traefik.http.services.whoami.loadbalancer.server.port=81"
-      - "traefik.http.routers.whoami.entrypoints=web"
+    networks:
+      - homelab
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.whoami.service=whoami"
+        - "traefik.http.routers.whoami.rule=Host(`whoami.lan`)"
+        - "traefik.http.services.whoami.loadbalancer.server.port=80"
+        - "traefik.http.routers.whoami.entrypoints=web"
 
 networks:
-  ingress:
+  homelab:
     external: true
