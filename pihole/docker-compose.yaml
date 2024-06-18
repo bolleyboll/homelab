@@ -7,12 +7,12 @@ services:
     env_file:
       - ./env/pihole.env
     environment:
-      FTLCONF_LOCAL_IPV4: ${FTLCONF_LOCAL_IPV4}
-      TZ: ${TZ}
-      WEBPASSWORD: ${WEBPASSWORD}
-      DNSMASQ_LISTENING: ${DNSMASQ_LISTENING}
-      PIHOLE_DNS_: ${PIHOLE_DNS_}
-      TEMPERATUREUNIT: ${TEMPERATUREUNIT}
+      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - TZ=${TZ}
+      - WEBPASSWORD=${WEBPASSWORD}
+      - DNSMASQ_LISTENING=${DNSMASQ_LISTENING}
+      - PIHOLE_DNS_=${PIHOLE_DNS_}
+      - TEMPERATUREUNIT=${TEMPERATUREUNIT}
     ports:
       - "5353:53/tcp"
       - "5353:53/udp"
