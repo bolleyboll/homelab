@@ -20,7 +20,6 @@
 	"fiscalYearStartMonth": 0,
 	"gnetId": 14282,
 	"graphTooltip": 0,
-	"id": 3,
 	"links": [],
 	"panels": [
 	  {
@@ -645,8 +644,7 @@
 			  "mode": "absolute",
 			  "steps": [
 				{
-				  "color": "green",
-				  "value": null
+				  "color": "green"
 				},
 				{
 				  "color": "red",
@@ -782,7 +780,7 @@
 		{
 		  "allValue": ".*",
 		  "current": {
-			"selected": true,
+			"selected": false,
 			"text": "All",
 			"value": "$__all"
 		  },
@@ -844,7 +842,7 @@
 	  ]
 	},
 	"time": {
-	  "from": "now-6h",
+	  "from": "now-7d",
 	  "to": "now"
 	},
 	"timeRangeUpdatedDuringEditOrView": false,

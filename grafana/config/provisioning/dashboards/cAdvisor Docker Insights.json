@@ -20,7 +20,6 @@
 	"fiscalYearStartMonth": 0,
 	"gnetId": 19908,
 	"graphTooltip": 0,
-	"id": 4,
 	"links": [],
 	"liveNow": false,
 	"panels": [
@@ -942,12 +941,15 @@
 	],
 	"refresh": "5s",
 	"schemaVersion": 39,
-	"tags": [],
+	"tags": [
+	  "docker",
+	  "cadvisor"
+	],
 	"templating": {
 	  "list": []
 	},
 	"time": {
-	  "from": "now-3h",
+	  "from": "now-7d",
 	  "to": "now"
 	},
 	"timeRangeUpdatedDuringEditOrView": false,
@@ -955,6 +957,6 @@
 	"timezone": "",
 	"title": "cAdvisor Docker Insights",
 	"uid": "ae3c41d7-cea5-4cca-a918-5708706b4d1a",
-	"version": 2,
+	"version": 1,
 	"weekStart": ""
   }
