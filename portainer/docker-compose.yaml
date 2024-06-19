@@ -22,6 +22,7 @@ services:
         - "traefik.http.routers.portainer.entrypoints=web"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /home/bolleyboll/volmount/portainer:/data
   
   agent:
     image: portainer/agent:2.20.3
