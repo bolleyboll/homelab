@@ -1,14 +1,29 @@
 version: "3.8"
 services:
   grafana:
-    image: grafana/grafana:10.3.1
+    image: grafana/grafana:11.0.0
     container_name: grafana
     hostname: pi
     restart: unless-stopped
-    env_file:
-      - ./config/grafana/config.env
-    ports:
-      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=${GF_USERS_ALLOW_SIGN_UP}
+    networks:
+      - homelab
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.grafana.service=grafana"
+        - "traefik.http.routers.grafana.rule=Host(`charts.lan`)"
+        - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+        - "traefik.http.routers.grafana.entrypoints=web"
     volumes:
-      - ./config/grafana/provisioning/:/etc/grafana/provisioning/
-      - /home/pi/vol-mount/grafana_data:/var/lib/grafana
+      - ./config/provisioning/:/etc/grafana/provisioning/
+
+networks:
+  homelab:
+    external: true
