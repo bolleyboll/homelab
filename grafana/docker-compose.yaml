@@ -22,7 +22,7 @@ services:
         - "traefik.http.services.grafana.loadbalancer.server.port=3000"
         - "traefik.http.routers.grafana.entrypoints=web"
     volumes:
-      - ./config/provisioning/:/etc/grafana/provisioning/
+      - ./config/:/etc/grafana/provisioning/
 
 networks:
   homelab:
