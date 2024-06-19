@@ -1,11 +1,20 @@
 version: "3.8"
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:1.23.11
+    image: louislam/uptime-kuma:1.23.13
     container_name: uptime-kuma
     hostname: pi
     restart: always
-    ports:
-      - 3001:3001
-    volumes:
-      - ./uptime-kuma:/app/data
+    networks:
+      - homelab
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.uptime.service=uptime"
+        - "traefik.http.routers.uptime.rule=Host(`uptime.lan`)"
+        - "traefik.http.services.uptime.loadbalancer.server.port=3001"
+        - "traefik.http.routers.uptime.entrypoints=web"
+
+networks:
+  homelab:
+    external: true
