@@ -13,5 +13,5 @@ docker build ./build/ -t internetsystemsconsortium/bind9:latest
 Run the following command to deploy Bind9 to your swarm.
 
 ```bash
-docker stack deploy -c ./docker-compose.yml bind
+docker stack deploy -c ./docker-compose.yaml bind
 ```

@@ -7,5 +7,5 @@ Portainer is a lightweight management UI which allows you to easily manage your 
 Run the following command to deploy Portainer to your swarm.
 
 ```bash
-docker stack deploy -c ./docker-compose.yml portainer
+docker stack deploy -c ./docker-compose.yaml portainer
 ```

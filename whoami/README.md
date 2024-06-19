@@ -7,5 +7,5 @@ WhoAmI is a simple web server that returns the IP address of the client making t
 Run the following command to deploy WhoAmI to your swarm.
 
 ```bash
-docker stack deploy -c ./docker-compose.yml whoami
+docker stack deploy -c ./docker-compose.yaml whoami
 ```
