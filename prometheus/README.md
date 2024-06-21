@@ -7,5 +7,5 @@ Prometheus is a monitoring and alerting toolkit.
 Run the following command to deploy Prometheus to your swarm.
 
 ```bash
-docker stack deploy -c ./docker-compose.yaml prometheus
+docker stack deploy -c ./prometheus/docker-compose.yaml prometheus
 ```

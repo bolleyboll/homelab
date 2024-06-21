@@ -7,11 +7,11 @@ The Alertmanager handles alerts sent by client applications such as the Promethe
 Edit the Config Template
 
 ```bash
-cp ./config/config.yaml.template ./config/config.yaml
+cp ./alertmanager/config/config.yaml.template ./alertmanager/config/config.yaml
 ```
 
 Run the following command to deploy Immich to your swarm.
 
 ```bash
-docker stack deploy -c ./docker-compose.yaml alertmanager
+docker stack deploy -c ./alertmanager/docker-compose.yaml alertmanager
 ```

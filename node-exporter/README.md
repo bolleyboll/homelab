@@ -7,5 +7,5 @@ Exporter for machine metrics.
 Run the following command to deploy Node Exporter to your swarm.
 
 ```bash
-docker stack deploy -c ./docker-compose.yaml node-exporter
+docker stack deploy -c ./node-exporter/docker-compose.yaml node-exporter
 ```

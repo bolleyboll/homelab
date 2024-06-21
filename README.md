@@ -29,7 +29,7 @@ docker network create --driver=overlay homelab
 ### Create Bind9 Image
 
 ```bash
-docker build .bind/build/ -t internetsystemsconsortium/bind9:latest
+docker build ./bind/build/ -t internetsystemsconsortium/bind9:latest
 ```
 
 ### Deploy Nessesary Services
@@ -51,6 +51,7 @@ docker stack deploy -c ./<service>/docker-compose.yaml <service_name>_
 - [Bind9](./bind/README.md)
 - [Traefik](./traefik/README.md)
 - [PiHole](./pihole/README.md)
+- [WhoAmI](./whoami/README.md)
 - [Portainer](./portainer/README.md)
 - [Immich](./immich/README.md)
 - [Prometheus](./prometheus/README.md)

@@ -7,11 +7,11 @@ The open and composable observability and data visualization platform. Visualize
 Edit the ENV Template
 
 ```bash
-cp ./env/grafana.env.template ./env/grafana.env
+cp ./grafana/env/grafana.env.template ./grafana/env/grafana.env
 ```
 
 Run the following command to deploy Grafana to your swarm.
 
 ```bash
-export $(cat ./env/grafana.env) > /dev/null 2>&1; docker stack deploy -c ./docker-compose.yaml grafana
+export $(cat ./grafana/env/grafana.env) > /dev/null 2>&1; docker stack deploy -c ./grafana/docker-compose.yaml grafana
 ```
