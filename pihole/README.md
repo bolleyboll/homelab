@@ -13,5 +13,5 @@ cp ./pihole/env/pihole.env.template ./pihole/env/pihole.env
 Run the following command to deploy Pihole to your swarm.
 
 ```bash
-export $(cat ./pihole/env/pihole.env) > /dev/null 2>&1; docker stack deploy -c ./pihole/docker-compose.yaml pihole
+export $(cat ./pihole/env/pihole.env) > /dev/null 2>&1; docker stack deploy -c ./pihole/compose.yaml pihole
 ```

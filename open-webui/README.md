@@ -7,5 +7,5 @@ User-friendly WebUI for LLMs.
 Run the following command to deploy open-webui to your swarm.
 
 ```bash
-docker stack deploy -c ./open-webui/docker-compose.yaml open-webui
+docker stack deploy -c ./open-webui/compose.yaml open-webui
 ```

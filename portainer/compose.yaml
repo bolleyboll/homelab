@@ -21,7 +21,6 @@ services:
         - "traefik.http.services.portainer.loadbalancer.server.port=9000"
         - "traefik.http.routers.portainer.entrypoints=web"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - /home/bolleyboll/volmount/portainer:/data
   
   agent:

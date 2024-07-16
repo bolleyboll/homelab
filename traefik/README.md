@@ -7,5 +7,5 @@ Traefik is a modern HTTP reverse proxy and load balancer that makes deploying mi
 Run the following command to deploy Traefik to your swarm.
 
 ```bash
-docker stack deploy -c ./traefik/docker-compose.yaml traefik
+docker stack deploy -c ./traefik/compose.yaml traefik
 ```
