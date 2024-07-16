@@ -10,7 +10,7 @@ Edit the Config Template
 cp ./alertmanager/config/config.yaml.template ./alertmanager/config/config.yaml
 ```
 
-Run the following command to deploy Immich to your swarm.
+Run the following command to deploy Alertmanager to your swarm.
 
 ```bash
 docker stack deploy -c ./alertmanager/docker-compose.yaml alertmanager
