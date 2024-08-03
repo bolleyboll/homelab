@@ -25,6 +25,9 @@ services:
         - "traefik.http.routers.bind.rule=Host(`dns.lan`)"
         - "traefik.http.services.bind.loadbalancer.server.port=53"
         - "traefik.http.routers.bind.entrypoints=web"
+        - "traefik.http.routers.bind-stats.rule=Host(`dns-stats.lan`)"
+        - "traefik.http.services.bind-stats.loadbalancer.server.port=8053"
+        - "traefik.http.routers.bind-stats.entrypoints=web"
     # volumes:
     #   - ./log/:/var/log/:rw
     restart: always
