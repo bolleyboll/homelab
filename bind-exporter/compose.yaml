@@ -6,6 +6,7 @@ services:
     hostname: pi
     restart: always
     command:
+      - "--web.listen-address=:80"
       - "--bind.stats-url=http://dns-stats.lan"
     networks:
       - homelab
