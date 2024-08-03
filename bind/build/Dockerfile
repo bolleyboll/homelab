@@ -31,6 +31,6 @@ RUN mkdir -p /run/named && chown bind:bind /run/named && chmod 755 /run/named
 
 VOLUME ["/etc/bind", "/var/cache/bind", "/var/lib/bind", "/var/log"]
 
-EXPOSE 53/udp 53/tcp 953/tcp
+EXPOSE 53/udp 53/tcp 953/tcp 8053/tcp
 
 CMD ["/usr/sbin/named", "-f", "-d", "3", "-c", "/etc/bind/named.conf", "-u", "bind"]
