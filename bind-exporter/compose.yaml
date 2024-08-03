@@ -1,0 +1,21 @@
+---
+services:
+  bind-exporter:
+    image: prometheuscommunity/bind-exporter:v0.7.0
+    container_name: bind-exporter
+    hostname: pi
+    restart: always
+    command:
+      - "--bind.stats-url http://dns-stats.lan"
+    networks:
+      - homelab
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "prometheus-job=bind-exporter"
+
+networks:
+  homelab:
+    external: true
