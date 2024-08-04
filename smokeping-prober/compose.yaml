@@ -1,0 +1,21 @@
+---
+services:
+  smokeping-prober:
+    image: quay.io/superq/smokeping-prober:v0.8.1
+    container_name: smokeping-prober
+    hostname: pi
+    restart: always
+    command:
+      - "--web.listen-address=:80"
+    networks:
+      - homelab
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "prometheus-job=smokeping-prober"
+
+networks:
+  homelab:
+    external: true
