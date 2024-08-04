@@ -7,7 +7,7 @@ services:
     restart: always
     command:
       - "--web.listen-address=:80"
-      - "--bind.stats-url=http://dns-stats.lan"
+      - "--bind.stats-url=bind9:8053"
     networks:
       - homelab
     deploy:
