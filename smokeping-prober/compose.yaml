@@ -7,6 +7,7 @@ services:
     restart: always
     command:
       - "--web.listen-address=:80"
+      - "--config.file=/etc/config.yaml"
     networks:
       - homelab
     deploy:
@@ -15,6 +16,8 @@ services:
           - node.role == manager
       labels:
         - "prometheus-job=smokeping-prober"
+    volumes:
+      - ./config/:/etc/
 
 networks:
   homelab:
