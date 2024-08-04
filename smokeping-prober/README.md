@@ -1,11 +1,11 @@
-# [Bind Exporter](https://github.com/prometheus/node_exporter)
+# [Smokeping Prober](https://github.com/SuperQ/smokeping_prober)
 
-Exporter for Bind Statistics.
+Exporter for Smokeping Statistics.
 
 ## Deployment
 
-Run the following command to deploy Node Exporter to your swarm.
+Run the following command to deploy Smokeping Prober to your swarm.
 
 ```bash
-docker stack deploy -c ./bind-exporter/compose.yaml bind-exporter
+docker stack deploy -c ./smokeping-prober/compose.yaml smokeping-prober
 ```
