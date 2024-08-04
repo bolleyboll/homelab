@@ -16,7 +16,7 @@ services:
           - node.role == manager
       labels:
         - "prometheus-job=bind-exporter"
-        - "io.portainer.accesscontrol.public=true"
+        - "io.portainer.accesscontrol.public"
 
 networks:
   homelab:
