@@ -1,3 +1,4 @@
 *.env
 alertmanager/config/*.yaml
-authelia/data/*
+authelia/secrets
+authelia/config

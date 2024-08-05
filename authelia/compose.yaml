@@ -24,7 +24,7 @@ services:
         - "traefik.http.routers.authelia.entrypoints=web"
     volumes:
       - ./config/:/config
-      - ./data/secrets/:/secrets
+      - ./secrets/:/secrets
 
 networks:
   homelab:

@@ -1,6 +1,0 @@
----
-access_control:
-  default_policy: deny
-  rules:
-    - domain: '*.lan'
-      policy: one_factor
