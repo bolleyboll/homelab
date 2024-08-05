@@ -1,0 +1,32 @@
+---
+services:
+  postgres-16:
+    image: postgres:16.3
+    container_name: postgres
+    hostname: pi
+    restart: always
+    networks:
+      - homelab
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.postgres-16.service=postgres-16"
+        - "traefik.http.routers.postgres-16.rule=Host(`postgres-16.lan`)"
+        - "traefik.http.services.postgres-16.loadbalancer.server.port=5432"
+        - "traefik.http.routers.postgres-16.entrypoints=web"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+networks:
+  homelab:
+    external: true
+
+volumes:
+  pgdata:
