@@ -1,7 +1,7 @@
 ---
 services:
   adminer:
-    image: adminer:4.8.1-fastcgi
+    image: adminer:4.8.1
     container_name: adminer
     hostname: pi
     restart: always
@@ -12,10 +12,9 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.adminer.service=adminer"
         - "traefik.http.routers.adminer.rule=Host(`adminer.lan`)"
-        - "traefik.http.services.adminer.loadbalancer.server.port=9000"
+        - "traefik.http.services.adminer.loadbalancer.server.port=8080"
         - "traefik.http.routers.adminer.entrypoints=web"
 
 networks:
   homelab:
     external: true
-
