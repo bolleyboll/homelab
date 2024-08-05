@@ -12,7 +12,7 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.adminer.service=adminer"
         - "traefik.http.routers.adminer.rule=Host(`adminer.lan`)"
-        - "traefik.http.services.adminer.loadbalancer.server.port=8080"
+        - "traefik.http.services.adminer.loadbalancer.server.port=9000"
         - "traefik.http.routers.adminer.entrypoints=web"
 
 networks:
