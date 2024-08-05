@@ -26,7 +26,6 @@
 	"fiscalYearStartMonth": 0,
 	"gnetId": 18004,
 	"graphTooltip": 0,
-	"id": 7,
 	"links": [],
 	"liveNow": false,
 	"panels": [
@@ -557,7 +556,7 @@
 	  ]
 	},
 	"time": {
-	  "from": "now-15m",
+	  "from": "now-7d",
 	  "to": "now"
 	},
 	"timepicker": {
