@@ -12,8 +12,10 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.redis-7.service=redis-7"
         - "traefik.http.routers.redis-7.rule=Host(`redis-7.lan`)"
-        - "traefik.http.services.redis-7.loadbalancer.server.port=5432"
+        - "traefik.http.services.redis-7.loadbalancer.server.port=6379"
         - "traefik.http.routers.redis-7.entrypoints=web"
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
 
 networks:
   homelab:
