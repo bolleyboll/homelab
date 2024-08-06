@@ -18,7 +18,7 @@ services:
         - "traefik.http.routers.authelia.service=authelia"
         - "traefik.http.routers.authelia.rule=Host(`authelia.lan`)"
         - "traefik.http.services.authelia.loadbalancer.server.port=9091"
-        - "traefik.http.routers.authelia.entrypoints=web"
+        - "traefik.http.routers.authelia.entrypoints=websecure"
     volumes:
       - ./config/:/config/
       - ./secrets/:/secrets/
