@@ -8,6 +8,10 @@ services:
     networks:
       - homelab
     environment:
+      - PGID=1000
+      - PUID=1000
+      - TZ=Asia/Kolkata
+      - AUTHELIA_LOG_LEVEL=info
       - AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE='/secrets/JWT_SECRET'
       - AUTHELIA_SESSION_SECRET_FILE='/secrets/SESSION_SECRET'
       - AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE='/secrets/STORAGE_PASSWORD'
@@ -23,8 +27,8 @@ services:
         - "traefik.http.services.authelia.loadbalancer.server.port=9091"
         - "traefik.http.routers.authelia.entrypoints=web"
     volumes:
-      - ./config/:/config
-      - ./secrets/:/secrets
+      - ./config/:/config/
+      - ./secrets/:/secrets/
 
 networks:
   homelab:
