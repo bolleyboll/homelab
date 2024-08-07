@@ -1,0 +1,28 @@
+---
+services:
+  homer:
+    image: b4bz/homer:v24.05.1
+    container_name: homer
+    hostname: pi
+    restart: unless-stopped
+    networks:
+      - homelab
+    environment:
+      - INIT_ASSETS=0
+      - TZ=Asia/Kolkata
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.homer.service=homer"
+        - "traefik.http.routers.homer.rule=Host(`init.lan`)"
+        - "traefik.http.services.homer.loadbalancer.server.port=8080"
+        - "traefik.http.routers.homer.entrypoints=web"
+    volumes:
+      - ./config/:/www/assets/
+    
+networks:
+  homelab:
+    external: true

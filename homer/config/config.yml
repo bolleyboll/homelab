@@ -1,0 +1,103 @@
+---
+title: "Odyssey"
+subtitle: "Homer's"
+documentTitle: "Sing a Song!"
+logo: "assets/tools/logo.png"
+
+header: true
+footer: "Powered by Homer"
+
+columns: "3"
+
+connectivityCheck: true
+
+proxy:
+  useCredentials: false
+
+defaults:
+  layout: columns
+  colorTheme: dark
+
+services:
+  - name: "Networking Shenanigans"
+    icon: "fas fa-network-wired"
+    items:
+      - name: "Router"
+        logo: "assets/tools/tplink.png"
+        subtitle: "Router Web UI"
+        tag: "router"
+        tagstyle: "is-success"
+        url: "http://router.lan/"
+        target: "_blank"
+      - name: "Traefik"
+        logo: "assets/tools/traefik.png"
+        subtitle: "Traefik Proxy"
+        tag: "proxy"
+        url: "http://traefik.lan/"
+        target: "_blank"
+      - name: "Pi-hole"
+        type: "PiHole"
+        logo: "assets/tools/pihole.png"
+        subtitle: "Pihole Adblocker"
+        tag: "adblock"
+        tagstyle: "is-success"
+        url: "http://pihole.lan/admin/"
+        target: "_blank"
+  - name: "Gods of the Cloud"
+    icon: "fas fa-lock"
+    items:
+      - name: "Portainer"
+        logo: "assets/tools/portainer.png"
+        subtitle: "Container Management"
+        tag: "container"
+        url: "http://portainer.lan/"
+        target: "_blank"
+  - name: "Applications"
+    icon: "fas fa-terminal"
+    items:
+      - name: "Adminer"
+        logo: "assets/tools/adminer.png"
+        subtitle: "Database UI"
+        tag: "db"
+        url: "http://adminer.lan/"
+        target: "_blank"
+      - name: "GPT"
+        logo: "assets/tools/openwebui.png"
+        subtitle: "ChatGPT"
+        tag: "ai"
+        url: "http://gpt.lan/"
+        target: "_blank"
+      - name: "Grafana"
+        logo: "assets/tools/grafana.png"
+        subtitle: "Graphing Tool"
+        tag: "dashboards"
+        url: "http://charts.lan/"
+        target: "_blank"
+      - name: "Uptime Kuma"
+        logo: "assets/tools/uptimekuma.png"
+        subtitle: "Uptime Monitor"
+        tag: "uptime"
+        url: "http://uptime.lan/"
+        target: "_blank"
+      - name: "Who Am I"
+        logo: "assets/tools/whoami.png"
+        subtitle: "WhoAmI"
+        tag: "debug"
+        url: "http://whoami.lan/"
+        target: "_blank"
+  - name: "Metrics & Alerting"
+    icon: "fas fa-bar-chart"
+    items:
+      - name: "Prometheus"
+        logo: "assets/tools/prometheus.png"
+        subtitle: "Metrics Server"
+        tag: "metrics"
+        tagstyle: "is-success"
+        url: "http://prometheus.lan/"
+        target: "_blank"
+      - name: "Alertmanager"
+        logo: "assets/tools/alertmanager.png"
+        subtitle: "Alerting UI"
+        tag: "alerting"
+        url: "http://alertmanager.lan/"
+        target: "_blank"
