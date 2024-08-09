@@ -1,0 +1,33 @@
+---
+services:
+  semaphore:
+    image: semaphoreui/semaphore:v2.10.22
+    container_name: semaphore
+    hostname: pi
+    restart: always
+    networks:
+      - homelab
+    environment:
+      - SEMAPHORE_DB_DIALECT=${SEMAPHORE_DB_DIALECT}
+      - SEMAPHORE_DB_HOST=${SEMAPHORE_DB_HOST}
+      - SEMAPHORE_DB_NAME=${SEMAPHORE_DB_NAME}
+      - SEMAPHORE_DB_USER=${SEMAPHORE_DB_USER}
+      - SEMAPHORE_DB_PASS=${SEMAPHORE_DB_PASS}
+      - SEMAPHORE_ADMIN=${SEMAPHORE_ADMIN}
+      - SEMAPHORE_ADMIN_PASSWORD=${SEMAPHORE_ADMIN_PASSWORD}
+      - SEMAPHORE_ADMIN_NAME=${SEMAPHORE_ADMIN_NAME}
+      - SEMAPHORE_ADMIN_EMAIL=${SEMAPHORE_ADMIN_EMAIL}
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.semaphore.service=semaphore"
+        - "traefik.http.routers.semaphore.rule=Host(`semaphore.lan`)"
+        - "traefik.http.services.semaphore.loadbalancer.server.port=3000"
+        - "traefik.http.routers.semaphore.entrypoints=web"
+    # volumes:
+    #   - /path/to/data/home:/etc/semaphore # config.json location
+    #   - /path/to/data/lib:/var/lib/semaphore # database.boltdb location (Not required if using mysql or postgres)
+
+networks:
+  homelab:
+    external: true
