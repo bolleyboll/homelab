@@ -16,6 +16,9 @@ services:
       timeout: 5s
       retries: 5
     deploy:
+      placement:
+        constraints:
+          - node.role == manager
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.mariadb-11.service=mariadb-11"
