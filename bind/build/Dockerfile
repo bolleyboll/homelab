@@ -8,7 +8,7 @@ ARG DEB_VERSION=1:9.18.28-1+ubuntu22.04.1+deb.sury.org+1
 # Install add-apt-repository command
 RUN apt-get -qqqy update
 RUN apt-get -qqqy dist-upgrade
-RUN apt-get -qqqy install --no-install-recommends apt-utils software-properties-common dctrl-tools gpg-agent
+RUN apt-get -qqqy install --no-install-recommends apt-utils software-properties-common dctrl-tools gpg-agent dnsutils
 
 # Add the BIND 9 APT Repository
 RUN add-apt-repository -y ppa:isc/bind-esv
@@ -32,5 +32,7 @@ RUN mkdir -p /run/named && chown bind:bind /run/named && chmod 755 /run/named
 VOLUME ["/etc/bind", "/var/cache/bind", "/var/lib/bind", "/var/log"]
 
 EXPOSE 53/udp 53/tcp 8053/tcp
+
+HEALTHCHECK CMD dig +norecurse +short +retry=0 @127.0.0.1 pi5.lan || exit 1
 
 CMD ["/usr/sbin/named", "-f", "-d", "3", "-c", "/etc/bind/named.conf", "-u", "bind"]
