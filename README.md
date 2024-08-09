@@ -35,15 +35,15 @@ docker build ./bind/build/ -t internetsystemsconsortium/bind9:latest
 ### Deploy Nessesary Services
 
 ```bash
-docker stack deploy -c ./bind/docker-compose.yaml bind
-docker stack deploy -c ./traefik/docker-compose.yaml traefik
-export $(cat ./pihole/env/pihole.env) > /dev/null 2>&1; docker stack deploy -c docker-compose.yaml pihole
+docker stack deploy -c ./bind/compose.yaml bind
+docker stack deploy -c ./traefik/compose.yaml traefik
+export $(cat ./pihole/env/pihole.env) > /dev/null 2>&1; docker stack deploy -c compose.yaml pihole
 ```
 
 ### Deploy Services
 
 ```bash
-docker stack deploy -c ./<service>/docker-compose.yaml <service_name>_
+docker stack deploy -c ./<service>/compose.yaml <service_name>_
 ```
 
 ## Guide to Deploying Services
