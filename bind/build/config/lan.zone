@@ -11,9 +11,9 @@ $TTL 86400
 localhost     IN  A     127.0.0.1
 
 ; Records
-pi5    IN    A     192.168.0.100
-pi3    IN    A     192.168.0.101
-router    IN    A     192.168.0.1
+pi5    IN    A     192.168.2.100
+pi3    IN    A     192.168.2.101
+router    IN    A     192.168.2.1
 
 ; Traefik Wildcard
 traefik    IN    CNAME     pi5.lan.

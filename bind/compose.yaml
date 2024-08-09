@@ -4,6 +4,7 @@ services:
     image: internetsystemsconsortium/bind9:latest
     container_name: bind9
     hostname: pi
+    restart: always
     build:
       context: ./build/
       dockerfile: Dockerfile
@@ -29,9 +30,6 @@ services:
         - "traefik.http.routers.bind-stats.rule=Host(`dns-stats.lan`)"
         - "traefik.http.services.bind-stats.loadbalancer.server.port=8053"
         - "traefik.http.routers.bind-stats.entrypoints=web"
-    # volumes:
-    #   - ./log/:/var/log/:rw
-    restart: always
 
 networks:
   homelab:
