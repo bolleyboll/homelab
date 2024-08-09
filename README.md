@@ -37,7 +37,7 @@ docker build ./bind/build/ -t internetsystemsconsortium/bind9:latest
 ```bash
 docker stack deploy -c ./bind/compose.yaml bind
 docker stack deploy -c ./traefik/compose.yaml traefik
-export $(cat ./pihole/env/pihole.env) > /dev/null 2>&1; docker stack deploy -c compose.yaml pihole
+export $(cat ./pihole/env/pihole.env) > /dev/null 2>&1; docker stack deploy -c ./pihole/compose.yaml pihole
 ```
 
 ### Deploy Services
