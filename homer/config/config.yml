@@ -94,7 +94,7 @@ services:
       - name: "Smokeping"
         logo: "assets/tools/grafana.png"
         subtitle: "Smpokeping Prober Metrics"
-        tag: "debug"
+        tag: "dashboards"
         url: "http://charts.lan/d/isupaSmok/smokeping?orgId=1&refresh=5s"
         target: "_blank"
   - name: "Metrics & Alerting"
