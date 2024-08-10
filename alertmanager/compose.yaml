@@ -10,6 +10,11 @@ services:
       - "--storage.path=/alertmanager"
     networks:
       - homelab
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:9093/-/ready || exit 1"]
+      interval: 30s
+      timeout: 3s
+      retries: 0
     deploy:
       labels:
         - "traefik.enable=true"
