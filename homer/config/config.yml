@@ -59,7 +59,7 @@ services:
         url: "http://whoami.lan/"
         target: "_blank"
   - name: "Dashboards"
-    icon: "fas fa-newspaper-o"
+    icon: "fa fa-newspaper-o"
     items:
       - name: "Bind Dashboard"
         logo: "assets/tools/grafana.png"
