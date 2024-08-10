@@ -770,6 +770,7 @@
 		"type": "table"
 	  }
 	],
+	"refresh": "5s",
 	"schemaVersion": 39,
 	"tags": [
 	  "cadvisor",
@@ -845,7 +846,6 @@
 	  "from": "now-7d",
 	  "to": "now"
 	},
-	"timeRangeUpdatedDuringEditOrView": false,
 	"timepicker": {},
 	"timezone": "",
 	"title": "cAdvisor",
