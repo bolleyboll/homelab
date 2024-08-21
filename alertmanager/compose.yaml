@@ -16,6 +16,9 @@ services:
       timeout: 3s
       retries: 0
     deploy:
+      placement:
+        constraints:
+          - node.role == worker
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.alertmanager.service=alertmanager"

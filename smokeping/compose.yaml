@@ -12,6 +12,9 @@ services:
     networks:
       - homelab
     deploy:
+      placement:
+        constraints:
+          - node.role == manager
       labels:
       - "traefik.enable=true"
       - "traefik.http.routers.smokeping.rule=Host(`smokeping.lan`)"

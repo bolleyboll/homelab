@@ -8,6 +8,9 @@ services:
     networks:
       - homelab
     deploy:
+      placement:
+        constraints:
+          - node.role == worker
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.adminer.service=adminer"
