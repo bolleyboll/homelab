@@ -29,7 +29,7 @@ services:
         url: "http://adminer.lan/"
         target: "_blank"
       - name: "Smokeping"
-        logo: "assets/tools/openwebui.png"
+        logo: "assets/tools/smokeping.png"
         subtitle: "Smokeping UI"
         tag: "network"
         url: "http://smokeping.lan/"
