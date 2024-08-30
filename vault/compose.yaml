@@ -6,7 +6,7 @@ services:
     hostname: pi
     restart: always
     environment:
-      VAULT_SKIP_VERIFY: true
+      - VAULT_SKIP_VERIFY=true
     command:
       - "server"
     cap_add:
