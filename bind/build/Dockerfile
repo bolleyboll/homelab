@@ -118,7 +118,9 @@ RUN apk --no-cache del \
 
 VOLUME ["/etc/bind", "/var/cache/bind", "/var/lib/bind", "/var/log"]
 
-EXPOSE 53/udp 53/tcp 953/tcp 853/tcp 443/tcp
+EXPOSE 53/udp 53/tcp 953/tcp 853/tcp 443/tcp 8053/tcp
+
+HEALTHCHECK CMD dig +norecurse +short +retry=0 @127.0.0.1 pi5.lan || exit 1
 
 ENTRYPOINT ["/usr/sbin/named", "-u", "bind"]
 CMD ["-f", "-d", "3", "-c", "/etc/bind/named.conf", "-L", "/var/log/bind/default.log"]
