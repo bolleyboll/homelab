@@ -1,7 +1,7 @@
 ---
 services:
   mariadb-11:
-    image: mariadb:11.5.2-ubi9
+    image: mariadb:11.4.2-ubi9
     container_name: mariadb
     hostname: pi
     restart: always
