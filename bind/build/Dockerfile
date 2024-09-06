@@ -79,8 +79,7 @@ COPY config /etc/bind/
 
 # Create default configuration file
 RUN mkdir -p /etc/bind && chown bind:bind /etc/bind/ && chmod 755 /etc/bind
-COPY named.conf /etc/bind
-RUN chown root:bind /etc/bind/named.conf && chmod 644 /etc/bind/named.conf
+RUN chown bind:bind /etc/bind/named.conf && chmod 644 /etc/bind/named.conf
 
 # Create working directory
 RUN mkdir -p /var/cache/bind && chown bind:bind /var/cache/bind && chmod 755 /var/cache/bind
