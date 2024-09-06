@@ -1,38 +1,125 @@
-FROM ubuntu:jammy
+FROM alpine:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
 
-ARG DEB_VERSION=1:9.18.28-1+ubuntu22.04.1+deb.sury.org+1
+ARG BIND9_VERSION=9.18.29
+ARG BIND9_CHECKSUM=c39ce5d09a8cb10108116fa533445de9f7fdfe0063e8d7c4c46ba1fd20d7bf6d
 
-# Install add-apt-repository command
-RUN apt-get -qqqy update
-RUN apt-get -qqqy dist-upgrade
-RUN apt-get -qqqy install --no-install-recommends apt-utils software-properties-common dctrl-tools gpg-agent dnsutils
+RUN apk --no-cache update
+RUN apk --no-cache upgrade
 
-# Add the BIND 9 APT Repository
-RUN add-apt-repository -y ppa:isc/bind-esv
+RUN apk --no-cache add \
+        autoconf \
+        automake \
+		bind-tools \
+        build-base \
+        fstrm \
+        fstrm-dev \
+        jemalloc \
+        jemalloc-dev \
+        json-c \
+        json-c-dev \
+        krb5-dev \
+        krb5-libs \
+        libcap-dev \
+        libcap2 \
+        libidn2 \
+        libidn2-dev \
+        libmaxminddb-dev \
+        libmaxminddb-libs \
+        libtool \
+        libuv \
+        libuv-dbg \
+        libuv-dev \
+        libxml2 \
+        libxml2-dbg \
+        libxml2-dev \
+        libxslt \
+        lmdb \
+        lmdb-dev \
+        make \
+        musl-dbg \
+        nghttp2-dev \
+        nghttp2-libs \
+        openssl-dbg \
+        openssl-dev \
+        procps \
+		protobuf-c \
+        protobuf-c-dev \
+        tzdata
 
-# Install BIND 9
-RUN apt-get -qqqy update
-RUN apt-get -qqqy dist-upgrade
-RUN apt-get -qqqy install bind9=$DEB_VERSION bind9utils=$DEB_VERSION
+RUN mkdir -p /usr/src
+ADD https://downloads.isc.org/isc/bind9/${BIND9_VERSION}/bind-${BIND9_VERSION}.tar.xz /usr/src
+RUN cd /usr/src && \
+    ( echo "${BIND9_CHECKSUM}  bind-${BIND9_VERSION}.tar.xz" | sha256sum -c - ) && \
+    tar -xJf bind-${BIND9_VERSION}.tar.xz && \
+    cd /usr/src/bind-${BIND9_VERSION} && \
+    ./configure --prefix /usr \
+                --sysconfdir=/etc/bind \
+                --localstatedir=/ \
+                --enable-shared \
+                --disable-static \
+                --with-gssapi \
+                --with-libidn2 \
+                --with-json-c \
+                --with-lmdb=/usr \
+                --with-gnu-ld \
+                --with-maxminddb \
+                --enable-dnstap && \
+    make -j && \
+    make install && \
+    rm -rf /usr/src
 
-# Now remove the pkexec that got pulled as dependency to software-properties-common
-RUN apt-get --purge -y autoremove policykit-1
+# Create user and group
+RUN addgroup -S bind && adduser -S -H -h /var/cache/bind -G bind bind
 
+# Copy configuration files
 COPY config /etc/bind/
 
+# Create default configuration file
 RUN mkdir -p /etc/bind && chown bind:bind /etc/bind/ && chmod 755 /etc/bind
+COPY named.conf /etc/bind
+RUN chown root:bind /etc/bind/named.conf && chmod 644 /etc/bind/named.conf
+
+# Create working directory
 RUN mkdir -p /var/cache/bind && chown bind:bind /var/cache/bind && chmod 755 /var/cache/bind
+
+# Create directory to store secondary zones
 RUN mkdir -p /var/lib/bind && chown bind:bind /var/lib/bind && chmod 755 /var/lib/bind
+
+# Create log directory
 RUN mkdir -p /var/log/bind && chown bind:bind /var/log/bind && chmod 755 /var/log/bind
+
+# Create PID directory
 RUN mkdir -p /run/named && chown bind:bind /run/named && chmod 755 /run/named
+
+# Remove development packages
+RUN apk --no-cache del \
+        autoconf \
+        automake \
+        build-base \
+        fstrm-dev \
+        gnutls-utils \
+        jemalloc-dev \
+        json-c-dev \
+        krb5-dev \
+        libcap-dev \
+        libidn2-dev \
+        libmaxminddb-dev \
+        libtool \
+        libuv-dev \
+        libxml2-dev \
+        libxslt \
+        lmdb-dev \
+        make \
+        nghttp2-dev \
+        openssl-dev \
+        protobuf-c-dev
 
 VOLUME ["/etc/bind", "/var/cache/bind", "/var/lib/bind", "/var/log"]
 
-EXPOSE 53/udp 53/tcp 8053/tcp
+EXPOSE 53/udp 53/tcp 953/tcp 853/tcp 443/tcp
 
-HEALTHCHECK CMD dig +norecurse +short +retry=0 @127.0.0.1 pi5.lan || exit 1
-
-CMD ["/usr/sbin/named", "-f", "-d", "3", "-c", "/etc/bind/named.conf", "-u", "bind"]
+ENTRYPOINT ["/usr/sbin/named", "-u", "bind"]
+CMD ["-f", "-d", "3", "-c", "/etc/bind/named.conf", "-L", "/var/log/bind/default.log"]
