@@ -10,66 +10,66 @@ RUN apk --no-cache update
 RUN apk --no-cache upgrade
 
 RUN apk --no-cache add \
-        autoconf \
-        automake \
+		autoconf \
+		automake \
 		bind-tools \
-        build-base \
-        fstrm \
-        fstrm-dev \
-        jemalloc \
-        jemalloc-dev \
-        json-c \
-        json-c-dev \
-        krb5-dev \
-        krb5-libs \
-        libcap-dev \
-        libcap2 \
-        libidn2 \
-        libidn2-dev \
-        libmaxminddb-dev \
-        libmaxminddb-libs \
-        libtool \
-        libuv \
-        libuv-dbg \
-        libuv-dev \
-        libxml2 \
-        libxml2-dbg \
-        libxml2-dev \
-        libxslt \
-        lmdb \
-        lmdb-dev \
-        make \
-        musl-dbg \
-        nghttp2-dev \
-        nghttp2-libs \
-        openssl-dbg \
-        openssl-dev \
-        procps \
+		build-base \
+		fstrm \
+		fstrm-dev \
+		jemalloc \
+		jemalloc-dev \
+		json-c \
+		json-c-dev \
+		krb5-dev \
+		krb5-libs \
+		libcap-dev \
+		libcap2 \
+		libidn2 \
+		libidn2-dev \
+		libmaxminddb-dev \
+		libmaxminddb-libs \
+		libtool \
+		libuv \
+		libuv-dbg \
+		libuv-dev \
+		libxml2 \
+		libxml2-dbg \
+		libxml2-dev \
+		libxslt \
+		lmdb \
+		lmdb-dev \
+		make \
+		musl-dbg \
+		nghttp2-dev \
+		nghttp2-libs \
+		openssl-dbg \
+		openssl-dev \
+		procps \
 		protobuf-c \
-        protobuf-c-dev \
-        tzdata
+		protobuf-c-dev \
+		tzdata
 
 RUN mkdir -p /usr/src
 ADD https://downloads.isc.org/isc/bind9/${BIND9_VERSION}/bind-${BIND9_VERSION}.tar.xz /usr/src
 RUN cd /usr/src && \
-    ( echo "${BIND9_CHECKSUM}  bind-${BIND9_VERSION}.tar.xz" | sha256sum -c - ) && \
-    tar -xJf bind-${BIND9_VERSION}.tar.xz && \
-    cd /usr/src/bind-${BIND9_VERSION} && \
-    ./configure --prefix /usr \
-                --sysconfdir=/etc/bind \
-                --localstatedir=/ \
-                --enable-shared \
-                --disable-static \
-                --with-gssapi \
-                --with-libidn2 \
-                --with-json-c \
-                --with-lmdb=/usr \
-                --with-gnu-ld \
-                --with-maxminddb \
-                --enable-dnstap && \
-    make -j && \
-    make install && \
-    rm -rf /usr/src
+	( echo "${BIND9_CHECKSUM}  bind-${BIND9_VERSION}.tar.xz" | sha256sum -c - ) && \
+	tar -xJf bind-${BIND9_VERSION}.tar.xz && \
+	cd /usr/src/bind-${BIND9_VERSION} && \
+	./configure --prefix /usr \
+				--sysconfdir=/etc/bind \
+				--localstatedir=/ \
+				--enable-shared \
+				--disable-static \
+				--with-gssapi \
+				--with-libidn2 \
+				--with-json-c \
+				--with-lmdb=/usr \
+				--with-gnu-ld \
+				--with-maxminddb \
+				--enable-dnstap && \
+	make -j && \
+	make install && \
+	rm -rf /usr/src
 
 # Create user and group
 RUN addgroup -S bind && adduser -S -H -h /var/cache/bind -G bind bind
@@ -95,26 +95,26 @@ RUN mkdir -p /run/named && chown bind:bind /run/named && chmod 755 /run/named
 
 # Remove development packages
 RUN apk --no-cache del \
-        autoconf \
-        automake \
-        build-base \
-        fstrm-dev \
-        gnutls-utils \
-        jemalloc-dev \
-        json-c-dev \
-        krb5-dev \
-        libcap-dev \
-        libidn2-dev \
-        libmaxminddb-dev \
-        libtool \
-        libuv-dev \
-        libxml2-dev \
-        libxslt \
-        lmdb-dev \
-        make \
-        nghttp2-dev \
-        openssl-dev \
-        protobuf-c-dev
+		autoconf \
+		automake \
+		build-base \
+		fstrm-dev \
+		gnutls-utils \
+		jemalloc-dev \
+		json-c-dev \
+		krb5-dev \
+		libcap-dev \
+		libidn2-dev \
+		libmaxminddb-dev \
+		libtool \
+		libuv-dev \
+		libxml2-dev \
+		libxslt \
+		lmdb-dev \
+		make \
+		nghttp2-dev \
+		openssl-dev \
+		protobuf-c-dev
 
 VOLUME ["/etc/bind", "/var/cache/bind", "/var/lib/bind", "/var/log"]
 
