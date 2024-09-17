@@ -8,7 +8,7 @@ processors:
 extensions:
   health_check: {}
 exporters:
-  otlp:
+  otlp/jaeger:
     endpoint: jaeger:4317
     tls:
       insecure: true
