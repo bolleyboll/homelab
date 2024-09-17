@@ -53,3 +53,7 @@ scrape_configs:
       # Use the prometheus-job Swarm label as Prometheus job label.
       - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
         target_label: job
+
+  - job_name: 'traefik'
+    static_configs:
+    - targets: ['localhost:8080']
