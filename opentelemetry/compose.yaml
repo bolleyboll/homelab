@@ -1,0 +1,48 @@
+---
+services:
+  opentelemetry-collector:
+    image: otel/opentelemetry-collector-contrib:0.109.0
+    container_name: opentelemetry-collector
+    hostname: pi
+    restart: always
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    networks:
+      - homelab
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.prometheus.service=prometheus"
+        - "traefik.http.routers.prometheus.rule=Host(`prometheus.lan`)"
+        - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+        - "traefik.http.routers.prometheus.entrypoints=web"
+    volumes:
+      - ./config/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.61.0
+    container_name: jaeger
+    hostname: pi
+    restart: always
+    networks:
+      - homelab
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.jaeger.service=jaeger"
+        - "traefik.http.routers.jaeger.rule=Host(`jaeger.lan`)"
+        - "traefik.http.services.jaeger.loadbalancer.server.port=16686"
+        - "traefik.http.routers.jaeger.entrypoints=web"
+
+networks:
+  homelab:
+    external: true
