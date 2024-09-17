@@ -30,6 +30,8 @@ services:
     restart: always
     networks:
       - homelab
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
     deploy:
       mode: replicated
       replicas: 1
