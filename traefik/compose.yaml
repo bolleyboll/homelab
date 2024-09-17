@@ -13,6 +13,8 @@ services:
       - "--providers.swarm.endpoint=unix:///var/run/docker.sock"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--metrics.prometheus=true"
+      - "--tracing=true"
     ports:
       - "80:80"
       - "443:443"
@@ -29,6 +31,7 @@ services:
         - "traefik.http.routers.traefik.rule=Host(`traefik.lan`)"
         - "traefik.http.services.traefik.loadbalancer.server.port=8080"
         - "traefik.http.routers.traefik.entrypoints=web"
+        - "prometheus-job=traefik"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
