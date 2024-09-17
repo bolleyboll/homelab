@@ -16,10 +16,10 @@ services:
           - node.role == manager
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.prometheus.service=prometheus"
-        - "traefik.http.routers.prometheus.rule=Host(`prometheus.lan`)"
-        - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
-        - "traefik.http.routers.prometheus.entrypoints=web"
+        - "traefik.http.routers.opentelemetry.service=opentelemetry"
+        - "traefik.http.routers.opentelemetry.rule=Host(`opentelemetry.lan`)"
+        - "traefik.http.services.opentelemetry.loadbalancer.server.port=55679"
+        - "traefik.http.routers.opentelemetry.entrypoints=web"
     volumes:
       - ./config/otel-collector-config.yaml:/etc/otel-collector-config.yaml
 
