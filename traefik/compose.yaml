@@ -32,6 +32,7 @@ services:
         - "traefik.http.services.traefik.loadbalancer.server.port=8080"
         - "traefik.http.routers.traefik.entrypoints=web"
         - "prometheus-job=traefik"
+        - "prometheus-port=8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
