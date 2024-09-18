@@ -12,8 +12,10 @@ exporters:
     endpoint: jaeger:4317
     tls:
       insecure: true
+  debug:
+    verbosity: detailed
 service:
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [otlp/jaeger]
+      exporters: [otlp/jaeger, debug]
