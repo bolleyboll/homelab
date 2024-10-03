@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: traefik:v3.1.3
+    image: traefik:v3.1.5
     container_name: traefik
     hostname: pi
     command:
