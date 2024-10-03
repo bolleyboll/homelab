@@ -9,13 +9,12 @@ services:
       - homelab
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-      - MARIADB_AUTO_UPGRADE=1
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       start_period: 10s
       interval: 10s
       timeout: 5s
-      retries: 50
+      retries: 5
     deploy:
       placement:
         constraints:
