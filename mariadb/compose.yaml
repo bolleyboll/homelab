@@ -1,16 +1,16 @@
 ---
 services:
   mariadb-11:
-    image: mariadb:11.4.2-ubi9
+    image: mariadb:11.5.2
     container_name: mariadb
     hostname: pi
     restart: always
     networks:
       - homelab
     environment:
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-      - MARIADB_MYSQL_LOCALHOST_GRANTS="all"
       - MARIADB_MYSQL_LOCALHOST_USER=1
+      - MARIADB_MYSQL_LOCALHOST_GRANTS="all"
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       start_period: 10s
