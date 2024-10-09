@@ -756,7 +756,7 @@ gitlab_rails['initial_root_password'] = "cGFzc3dvcmQK"
 ### GitLab database settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/database.html
 ###! **Only needed if you use an external database.**
-gitlab_rails['db_adapter'] = "postgres"
+gitlab_rails['db_adapter'] = "postgres-17"
 # gitlab_rails['db_encoding'] = "unicode"
 # gitlab_rails['db_collation'] = nil
 # gitlab_rails['db_database'] = "gitlabhq_production"
@@ -804,7 +804,7 @@ gitlab_rails['db_password'] = "password"
 ###! Docs: https://docs.gitlab.com/omnibus/settings/redis.html
 
 #### Redis TCP connection
-gitlab_rails['redis_host'] = "redis"
+gitlab_rails['redis_host'] = "redis-7"
 gitlab_rails['redis_port'] = 6379
 # gitlab_rails['redis_ssl'] = false
 # gitlab_rails['redis_password'] = nil
