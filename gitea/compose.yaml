@@ -1,7 +1,7 @@
 ---
 services:
   gitea:
-    image: gitea/gitea:1.22.2
+    image: gitea/gitea:1.22.3
     container_name: gitea
     hostname: pi
     restart: unless-stopped
@@ -15,12 +15,12 @@ services:
       - GITEA__database__PASSWD=${GITEA__database__PASSWD}
     networks:
       - homelab
-    healthcheck:
-      test: curl -fSs 127.0.0.1:3000/api/v1/health || exit 1
-      start_period: 60s
-      interval: 5s
-      timeout: 10s
-      retries: 3
+    # healthcheck:
+    #   test: curl -fSs 127.0.0.1:3000/api/v1/health || exit 1
+    #   start_period: 60s
+    #   interval: 5s
+    #   timeout: 10s
+    #   retries: 3
     deploy:
       mode: replicated
       replicas: 1
