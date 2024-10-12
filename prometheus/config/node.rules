@@ -255,7 +255,7 @@ groups:
       annotations:
         summary: Host EDAC Correctable Errors detected (instance {{ $labels.instance }})
         description: |
-          Description: Host {{ $labels.instance }} has had {{ printf \"%.0f\" $value }} correctable memory errors reported by EDAC in the last 5 minutes.
+          Description: Host {{ $labels.instance }} has had {{ printf '%.0f' $value }} correctable memory errors reported by EDAC in the last 5 minutes.
           Instance: {{ $labels.instance }}
 
     - alert: HostEdacUncorrectableErrorsDetected
