@@ -266,7 +266,7 @@ groups:
       annotations:
         summary: Host EDAC Uncorrectable Errors detected (instance {{ $labels.instance }})
         description: |
-          Description: Host {{ $labels.instance }} has had {{ printf \"%.0f\" $value }} uncorrectable memory errors reported by EDAC in the last 5 minutes.
+          Description: Host {{ $labels.instance }} has had {{ printf "%.0f" $value }} uncorrectable memory errors reported by EDAC in the last 5 minutes.
           Instance: {{ $labels.instance }}
 
     - alert: HostNetworkReceiveErrors
@@ -277,7 +277,7 @@ groups:
       annotations:
         summary: Host Network Receive Errors (instance {{ $labels.instance }})
         description: |
-          Description: Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf \"%.0f\" $value }} receive errors in the last two minutes.
+          Description: Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf "%.0f" $value }} receive errors in the last two minutes.
           Instance: {{ $labels.instance }}
           Device: {{ $labels.device }}
 
@@ -288,7 +288,9 @@ groups:
         severity: warning
       annotations:
         summary: Host Network Transmit Errors (instance {{ $labels.instance }})
-        description: "Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf \"%.0f\" $value }} transmit errors in the last two minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        description: |
+          Description: Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf "%.0f" $value }} transmit errors in the last two minutes.
+          Instance: {{ $labels.instance }}
 
     - alert: HostNetworkInterfaceSaturated
       expr: '((rate(node_network_receive_bytes_total{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"}[1m]) + rate(node_network_transmit_bytes_total{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"}[1m])) / node_network_speed_bytes{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"} > 0.8 < 10000) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
@@ -298,7 +300,7 @@ groups:
       annotations:
         summary: Host Network Interface Saturated (instance {{ $labels.instance }})
         description: |
-          Description: The network interface \"{{ $labels.device }}\" on \"{{ $labels.instance }}\" is getting overloaded.
+          Description: The network interface {{ $labels.device }} on {{ $labels.instance }} is getting overloaded.
           Instance: {{ $labels.instance }}
           Network Interface: {{ $labels.device }}
 
@@ -310,7 +312,7 @@ groups:
       annotations:
         summary: Host Network Bond Degraded (instance {{ $labels.instance }})
         description: |
-          Description: Bond \"{{ $labels.device }}\" degraded on \"{{ $labels.instance }}\".
+          Description: Bond {{ $labels.device }} degraded on {{ $labels.instance }}.
           Instance: {{ $labels.instance }}
           Bond: {{ $labels.device }}
 
