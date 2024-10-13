@@ -38,10 +38,33 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
+  gitea-runner:
+    image: gitea/act_runner:0.2.11
+    container_name: gitea-runner
+    hostname: pi
+    restart: unless-stopped
+    environment:
+      - GITEA_INSTANCE_URL=${GITEA_INSTANCE_URL}
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${GITEA_RUNNER_REGISTRATION_TOKEN}
+      - GITEA_RUNNER_NAME=${GITEA_RUNNER_NAME}
+    networks:
+      - homelab
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - gitearunnerdata:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
 networks:
   homelab:
     external: true
 
 volumes:
   giteadata:
-  gitealogs:
+  gitearunnerdata:
