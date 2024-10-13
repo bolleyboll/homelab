@@ -7,7 +7,7 @@ groups:
       labels:
         severity: warning
       annotations:
-        summary: Container absent (instance {{ $labels.instance }})
+        summary: Container Absent at {{ $labels.instance }}
         description: |
           Description: "A container has been absent for 5 mins"
           Instance: "{{ $labels.instance }}"
@@ -17,13 +17,20 @@ groups:
       expr: sum(rate(container_cpu_usage_seconds_total{container_label_com_docker_swarm_task_name=~".+"}[1m])) BY (container_label_com_docker_swarm_task_name, container_label_com_docker_swarm_node_id) * 100 > 50
       for: 1m
       annotations:
-        summary: CPU alert for Swarm task '{{ $labels.container_label_com_docker_swarm_task_name }}' on '{{ $labels.container_label_com_docker_swarm_node_id }}'
-        description: '{{ $labels.container_label_com_docker_swarm_task_name }} on ''{{ $labels.container_label_com_docker_swarm_node_id }}'' CPU usage is at {{ humanize $value}}%.'
+        summary: High CPU Usage on Container
+        description: |
+          Description: "High CPU Usage on Container"
+          Container: "{{ $labels.container_label_com_docker_swarm_task_name }}"
+          CPU Usage: "{{ humanize $value}}%"
 
     - alert: TaskHighMemory
       expr: sum(container_memory_rss{container_label_com_docker_swarm_task_name=~".+"})
         BY (container_label_com_docker_swarm_task_name, container_label_com_docker_swarm_node_id) > 1e+09
       for: 1m
       annotations:
-        summary: Memory alert for Swarm task '{{ $labels.container_label_com_docker_swarm_task_name }}' on '{{ $labels.container_label_com_docker_swarm_node_id }}'
+        summary: High Memory Usage on Container
         description: '{{ $labels.container_label_com_docker_swarm_task_name }} on ''{{ $labels.container_label_com_docker_swarm_node_id }}'' memory usage is {{ humanize $value}}.'
+        description: |
+          Description: "High Memory Usage on Container"
+          Container: "{{ $labels.container_label_com_docker_swarm_task_name }}"
+          Memory Usage: "{{ humanize $value}}"

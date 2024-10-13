@@ -110,6 +110,7 @@ groups:
         description: |
           Description: Device error with the filesystem
           Instance: {{ $labels.instance }}
+          Device: {{ $labels.device }}
           Mountpoint: {{ $labels.mountpoint }}
 
     - alert: HostInodesWillFillIn24Hours
