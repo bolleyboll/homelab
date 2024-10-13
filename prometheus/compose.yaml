@@ -14,6 +14,11 @@ services:
       - "--web.console.templates=/usr/share/prometheus/consoles"
     networks:
       - homelab
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:9090/-/healthy || exit 1"]
+      interval: 30s
+      timeout: 3s
+      retries: 0
     deploy:
       mode: replicated
       replicas: 1
