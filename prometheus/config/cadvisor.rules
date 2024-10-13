@@ -29,7 +29,6 @@ groups:
       for: 1m
       annotations:
         summary: High Memory Usage on Container
-        description: '{{ $labels.container_label_com_docker_swarm_task_name }} on ''{{ $labels.container_label_com_docker_swarm_node_id }}'' memory usage is {{ humanize $value}}.'
         description: |
           Description: "High Memory Usage on Container"
           Container: "{{ $labels.container_label_com_docker_swarm_task_name }}"
