@@ -14,12 +14,12 @@ services:
       - IPC_LOCK
     networks:
       - homelab
-    healthcheck:
-      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:8200/v1/sys/health?standbyok=true || exit 1"]
-      start_period: 5m
-      interval: 30s
-      timeout: 5s
-      retries: 3
+    # healthcheck:
+    #   test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:8200/v1/sys/health?standbyok=true || exit 1"]
+    #   start_period: 15m
+    #   interval: 30s
+    #   timeout: 5s
+    #   retries: 3
     deploy:
       mode: replicated
       replicas: 1
