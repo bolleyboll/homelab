@@ -1,7 +1,7 @@
 ---
 services:
   semaphore:
-    image: semaphoreui/semaphore:v2.10.30
+    image: semaphoreui/semaphore:v2.10.32
     container_name: semaphore
     hostname: pi
     restart: always
