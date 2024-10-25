@@ -3,7 +3,7 @@ services:
   authelia:
     container_name: 'authelia'
     hostname: pi
-    image: authelia/authelia:4.38.10
+    image: authelia/authelia:4.38.16
     restart: 'unless-stopped'
     networks:
       - homelab
