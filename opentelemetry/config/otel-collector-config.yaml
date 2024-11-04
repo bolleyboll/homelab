@@ -4,17 +4,22 @@ receivers:
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
+
 processors:
-extensions:
-  health_check: {}
+
 exporters:
   otlp/jaeger:
     endpoint: jaeger:4317
-    tls:
-      insecure: true
   debug:
     verbosity: detailed
+
+extensions:
+  health_check:
+  pprof:
+  zpages:
+
 service:
+  extensions: [health_check, pprof, zpages]
   pipelines:
     traces:
       receivers: [otlp]
