@@ -10,6 +10,8 @@ processors:
 exporters:
   otlp/jaeger:
     endpoint: jaeger:4317
+    tls:
+      insecure: true
   debug:
     verbosity: detailed
 
