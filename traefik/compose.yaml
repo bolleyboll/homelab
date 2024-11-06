@@ -14,8 +14,6 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--metrics.prometheus=true"
-      - "--tracing=true"
-      - "--tracing.addinternals"
       - "--tracing.otlp=true"
       - "--tracing.otlp.grpc=true"
       - "--tracing.otlp.grpc.insecure=true"
