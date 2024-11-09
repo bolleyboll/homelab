@@ -5,3 +5,5 @@ receivers:
   - name: discord
     discord_configs:
     - webhook_url: <REDACTED>
+      title: 'HomeLab Alerts'
+      message: '{{ range .Alerts }}{{ .Annotations.summary }}{{ printf "\n" }}Status: {{ .Status | toUpper }}{{ printf "\n" }}{{ .Annotations.description }}{{ printf "\n" }}{{ end }}'
