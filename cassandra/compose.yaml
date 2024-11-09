@@ -1,0 +1,29 @@
+---
+services:
+  cassandra1:
+    image: cassandra:5.0.2
+    container_name: cassandra1
+    hostname: pi
+    networks:
+      - homelab
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    environment:
+      CASSANDRA_CLUSTER_NAME: HomeLabCLuster
+      CASSANDRA_DC: HomeLab
+      CASSANDRA_RACK: Rack1
+      CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+      CASSANDRA_NUM_TOKENS: 128
+    volumes:
+      - cassandradata1:/var/lib/cassandra
+
+networks:
+  homelab:
+    external: true
+
+volumes:
+  cassandradata1:
