@@ -53,6 +53,12 @@ scrape_configs:
       # Use the prometheus-job Swarm label as Prometheus job label.
       - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
         target_label: job
+      # Use the prometheus-port Swarm label in Prometheus address label.
+      - source_labels: [ __address__, __meta_dockerswarm_service_label_prometheus_port]
+        separator: ';'
+        regex: (.*):(.*);(.*)
+        replacement: ${1}:${3}
+        target_label: __address__
 
   - job_name: 'traefik'
     static_configs:
