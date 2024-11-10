@@ -15,6 +15,8 @@ services:
         constraints:
           - node.role == manager
       labels:
+        - "prometheus-job=opentelemetry"
+        - "prometheus-port=8889"
         - "traefik.enable=true"
         - "traefik.http.routers.opentelemetry.service=opentelemetry"
         - "traefik.http.routers.opentelemetry.rule=Host(`opentelemetry.lan`)"
@@ -28,10 +30,14 @@ services:
     container_name: jaeger
     hostname: pi
     restart: always
+    command:
+      - "--prometheus.server-url="
     networks:
       - homelab
     environment:
       - COLLECTOR_OTLP_ENABLED=true
+      - METRICS_STORAGE_TYPE=prometheus
+      - PROMETHEUS_SERVER_URL=http://prometheus:9090
     deploy:
       mode: replicated
       replicas: 1

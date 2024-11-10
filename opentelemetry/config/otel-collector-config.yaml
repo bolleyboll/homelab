@@ -13,7 +13,9 @@ exporters:
     tls:
       insecure: true
   debug:
-    verbosity: detailed
+    verbosity: basic
+  prometheus:
+    endpoint: 0.0.0.0:8889
 
 extensions:
   health_check:
@@ -26,3 +28,6 @@ service:
     traces:
       receivers: [otlp]
       exporters: [otlp/jaeger, debug]
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus]
