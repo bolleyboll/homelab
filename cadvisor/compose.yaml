@@ -6,7 +6,6 @@ services:
     hostname: pi
     restart: always
     command:
-      - "--port=80"
       - "logtostderr"
       - "-v=4"
       - "-docker_only"
@@ -21,6 +20,7 @@ services:
       mode: global
       labels:
         - "prometheus-job=cadvisor"
+        - "prometheus-port=8080"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
