@@ -6,7 +6,6 @@ services:
     hostname: pi
     restart: always
     command:
-      - "--web.listen-address=:80"
       - "--config.file=/etc/smokeping-prober/config.yaml"
     networks:
       - homelab
@@ -16,6 +15,7 @@ services:
           - node.role == manager
       labels:
         - "prometheus-job=smokeping-prober"
+        - "prometheus-port=9374"
     volumes:
       - ./config/:/etc/smokeping-prober/
 
