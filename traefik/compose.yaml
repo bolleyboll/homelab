@@ -35,6 +35,8 @@ services:
         constraints:
           - node.role == manager
       labels:
+        - "prometheus-job=traefik"
+        - "prometheus-port=8080"
         - "traefik.enable=true"
         - "traefik.http.routers.traefik.service=traefik"
         - "traefik.http.routers.traefik.rule=Host(`traefik.lan`)"
