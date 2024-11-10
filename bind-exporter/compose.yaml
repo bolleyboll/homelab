@@ -6,7 +6,6 @@ services:
     hostname: pi
     restart: always
     command:
-      - "--web.listen-address=:80"
       - "--bind.stats-url=http://bind9:8053"
     networks:
       - homelab
@@ -16,6 +15,7 @@ services:
           - node.role == manager
       labels:
         - "prometheus-job=bind-exporter"
+        - "prometheus-port=9119"
 
 networks:
   homelab:
