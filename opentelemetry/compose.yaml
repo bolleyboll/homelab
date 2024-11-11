@@ -16,7 +16,7 @@ services:
           - node.role == manager
       labels:
         - "prometheus-job=opentelemetry"
-        - "prometheus-port=8889"
+        - "prometheus-port=8888;8889"
         - "traefik.enable=true"
         - "traefik.http.routers.opentelemetry.service=opentelemetry"
         - "traefik.http.routers.opentelemetry.rule=Host(`opentelemetry.lan`)"
