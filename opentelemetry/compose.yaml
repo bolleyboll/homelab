@@ -31,7 +31,7 @@ services:
     hostname: pi
     restart: always
     command:
-      - "--prometheus.server-url="
+      - "--memory.max-traces=50000"
     networks:
       - homelab
     environment:
