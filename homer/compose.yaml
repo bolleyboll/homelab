@@ -1,7 +1,7 @@
 ---
 services:
   homer:
-    image: b4bz/homer:v24.10.1
+    image: b4bz/homer:v24.11.5
     container_name: homer
     hostname: pi
     restart: unless-stopped
@@ -22,7 +22,7 @@ services:
         - "traefik.http.routers.homer.entrypoints=web"
     volumes:
       - ./config/:/www/assets/
-    
+
 networks:
   homelab:
     external: true
