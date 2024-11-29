@@ -1,0 +1,14 @@
+groups:
+- name: Bind
+  rules:
+    - alert: BindServiceDown
+      expr: 'up{job="bind-exporter"} == 0'
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: Bind Service Down at {{ $labels.instance }}
+        description: |
+          Description: "Bind Service Down for 5 mins"
+          Instance: "{{ $labels.instance }}"
+          Container: "{{ $labels.container_label_com_docker_stack_namespace }}"
