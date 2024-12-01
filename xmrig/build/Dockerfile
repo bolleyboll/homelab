@@ -1,8 +1,10 @@
+ARG XMRIG_VERSION=6.22.2
+
 FROM alpine:3.20.3 as builder
 
 ENV LC_ALL C.UTF-8
 
-ARG XMRIG_VERSION=6.22.2
+ARG XMRIG_VERSION
 
 RUN apk --no-cache update
 RUN apk --no-cache upgrade
@@ -28,15 +30,16 @@ RUN cd /opt/xmrig && \
 COPY code/donate.h /opt/xmrig/xmrig-${XMRIG_VERSION}/src/donate.h
 
 RUN cd /opt/xmrig/xmrig-${XMRIG_VERSION}/ && \
-	mkdir build && \
-	cd scripts && ./build_deps.sh && \
-	cd ../build && \
+	mkdir build && cd scripts && \
+	./build_deps.sh && cd ../build && \
 	cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON && \
 	make -j$(nproc)
 
 FROM alpine:3.20.3
 
 ENV LC_ALL C.UTF-8
+
+ARG XMRIG_VERSION
 
 RUN apk --no-cache update
 
