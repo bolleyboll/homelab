@@ -1,7 +1,7 @@
 ---
 services:
   postgres-17:
-    image: postgres:17.0
+    image: postgres:17.2
     container_name: postgres
     hostname: pi
     restart: always
