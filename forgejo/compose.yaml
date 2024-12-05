@@ -1,11 +1,11 @@
 ---
 services:
-  docker-in-docker:
+  dind:
     image: docker:27.3.1-dind
     container_name: 'dind'
     hostname: pi
     restart: 'unless-stopped'
-    privileged: 'true'
+    privileged: true
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     networks:
       - homelab
@@ -57,7 +57,7 @@ services:
     restart: unless-stopped
     user: 1001:1001
     environment:
-      - DOCKER_HOST=tcp://docker-in-docker:2375
+      - DOCKER_HOST=tcp://dind:2375
     networks:
       - homelab
     deploy:
