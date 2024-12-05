@@ -55,7 +55,7 @@ services:
           - node.role == worker
     volumes:
       - forgejorunnerdata:/data
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:rw
 
 networks:
   homelab:
