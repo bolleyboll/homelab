@@ -1,17 +1,5 @@
 ---
 services:
-  dind:
-    image: docker:27.3.1-dind
-    container_name: 'dind'
-    hostname: pi
-    restart: 'unless-stopped'
-    privileged: true
-    command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
-    networks:
-      - homelab
-    deploy:
-      mode: global
-
   forgejo:
     image: codeberg.org/forgejo/forgejo:9.0.2
     container_name: forgejo
@@ -55,9 +43,8 @@ services:
     container_name: forgejo-runner
     hostname: pi
     restart: unless-stopped
-    user: 1001:1001
-    environment:
-      - DOCKER_HOST=tcp://dind:2375
+    user: 1000:1000
+    command: '/bin/sh -c "sleep 5; forgejo-runner daemon"'
     networks:
       - homelab
     deploy:
@@ -68,6 +55,7 @@ services:
           - node.role == worker
     volumes:
       - forgejorunnerdata:/data
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   homelab:
