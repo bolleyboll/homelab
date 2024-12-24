@@ -1,7 +1,7 @@
 ---
 services:
   vault:
-    image: hashicorp/vault:1.18.2
+    image: hashicorp/vault:1.18.3
     container_name: vault
     hostname: pi
     restart: always
