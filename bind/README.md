@@ -7,7 +7,7 @@ Bind is a DNS server software suite consisting of an implementation of the Domai
 Build the Image
 
 ```bash
-docker build ./bind/build/ -t internetsystemsconsortium/bind9:latest
+docker buildx build ./bind/build/ -t internetsystemsconsortium/bind9:latest
 ```
 
 Run the following command to deploy Bind9 to your swarm.
