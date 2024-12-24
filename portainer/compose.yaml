@@ -21,7 +21,7 @@ services:
         - "traefik.http.services.portainer.loadbalancer.server.port=9000"
         - "traefik.http.routers.portainer.entrypoints=web"
     volumes:
-      - /home/bolleyboll/volmount/portainer:/data
+      - portainer_data:/data
 
   agent:
     image: portainer/agent:2.21.5
