@@ -2,7 +2,7 @@
 services:
   whoami:
     image: traefik/whoami:v1.10.3
-    container_name: "simple-service"
+    container_name: whoami
     hostname: pi
     networks:
       - homelab
