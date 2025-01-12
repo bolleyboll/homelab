@@ -1,0 +1,21 @@
+---
+services:
+  tempo:
+    image: grafana/tempo:2.6.1
+    container_name: tempo
+    hostname: pi
+    networks:
+      - homelab
+    # healthcheck:
+    #   test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:80/ || exit 1"]
+    #   interval: 30s
+    #   timeout: 5s
+    #   retries: 3
+    deploy:
+      placement:
+        constraints:
+          - node.role == worker
+
+networks:
+  homelab:
+    external: true
