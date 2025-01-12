@@ -4,6 +4,9 @@ services:
     image: grafana/tempo:2.6.1
     container_name: tempo
     hostname: pi
+    restart: always
+    command:
+      - "-config.file=/etc/tempo/config.yaml"
     networks:
       - homelab
     # healthcheck:
@@ -12,9 +15,13 @@ services:
     #   timeout: 5s
     #   retries: 3
     deploy:
+      mode: replicated
+      replicas: 1
       placement:
         constraints:
           - node.role == worker
+    volumes:
+      - ./config/:/etc/tempo/
 
 networks:
   homelab:
