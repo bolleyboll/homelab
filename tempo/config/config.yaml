@@ -24,7 +24,7 @@ cache:
   caches:
     - roles:
         - frontend-search
-      memcached:
+      redis:
         host: redis-7:6379
 
 compactor:
