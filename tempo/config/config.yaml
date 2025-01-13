@@ -29,7 +29,7 @@ cache:
 
 compactor:
   compaction:
-    block_retention: 1w # configure total trace retention here
+    block_retention: 168h # configure total trace retention here
 
 metrics_generator:
   registry:
