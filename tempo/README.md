@@ -4,7 +4,7 @@ Tempo is cost-efficient and only requires an object storage to operate. Tempo is
 
 ## Deployment
 
-Run the following command to deploy IT Tools to your swarm.
+Run the following command to deploy Tempo to your swarm.
 
 ```bash
 docker stack deploy -c ./tempo/compose.yaml tempo
