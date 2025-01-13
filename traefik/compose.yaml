@@ -17,7 +17,7 @@ services:
       - "--tracing.otlp=true"
       - "--tracing.otlp.grpc=true"
       - "--tracing.otlp.grpc.insecure=true"
-      - "--tracing.otlp.grpc.endpoint=opentelemetry-collector:4317"
+      - "--tracing.otlp.grpc.endpoint=alloy:4317"
     ports:
       - "80:80"
       - "443:443"
