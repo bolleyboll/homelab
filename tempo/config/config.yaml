@@ -25,7 +25,7 @@ cache:
     - roles:
         - frontend-search
       redis:
-        host: redis-7:6379
+        endpoint: redis-7:6379
 
 compactor:
   compaction:
