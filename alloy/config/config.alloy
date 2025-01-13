@@ -26,7 +26,3 @@ otelcol.exporter.otlphttp "traces" {
         endpoint = "http://tempo:4318"
     }
 }
-
-livedebugging {
-  enabled = true
-}
