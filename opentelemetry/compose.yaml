@@ -1,7 +1,7 @@
 ---
 services:
   opentelemetry-collector:
-    image: otel/opentelemetry-collector-contrib:0.117.0
+    image: otel/opentelemetry-collector-contrib:0.118.0
     container_name: opentelemetry-collector
     hostname: pi
     restart: always
