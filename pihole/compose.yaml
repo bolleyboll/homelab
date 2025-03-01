@@ -1,6 +1,6 @@
 services:
   pihole:
-    image: pihole/pihole:2025.02.4
+    image: pihole/pihole:2025.02.7
     container_name: pihole
     hostname: pi
     restart: unless-stopped
