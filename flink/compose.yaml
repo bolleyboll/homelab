@@ -14,7 +14,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == manager
+          - node.role == worker
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.flink.service=flink"
