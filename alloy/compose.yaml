@@ -1,7 +1,7 @@
 ---
 services:
   alloy:
-    image: grafana/alloy:v1.6.1
+    image: grafana/alloy:v1.7.1
     container_name: alloy
     hostname: pi
     restart: always
