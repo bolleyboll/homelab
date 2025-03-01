@@ -4,12 +4,6 @@ Authelia is a 2FA & SSO authentication server which is dedicated to the security
 
 ## Deployment
 
-Build the Image
-
-```bash
-docker build ./authelia/build/ -t authelia/authelia:latest
-```
-
 Run the following command to deploy Authelia to your swarm.
 
 ```bash
