@@ -38,7 +38,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == worker
+          - node.role == manager
 
 networks:
   homelab:
