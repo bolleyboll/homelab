@@ -11,6 +11,8 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
+        rest.profiling.enabled: true
+        metrics.reporter.prom.factory.class: org.apache.flink.metrics.prometheus.PrometheusReporterFactory
     deploy:
       placement:
         constraints:
@@ -21,6 +23,8 @@ services:
         - "traefik.http.routers.flink.rule=Host(`flink.lan`)"
         - "traefik.http.services.flink.loadbalancer.server.port=8081"
         - "traefik.http.routers.flink.entrypoints=web"
+        - "prometheus-job=flink-jobmanager"
+        - "prometheus-port=9249"
 
   taskmanager:
     image: flink:1.20.1
@@ -35,10 +39,14 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 5
+        metrics.reporter.prom.factory.class: org.apache.flink.metrics.prometheus.PrometheusReporterFactory
     deploy:
       placement:
         constraints:
           - node.role == manager
+      labels:
+        - "prometheus-job=flink-taskmanager"
+        - "prometheus-port=9249"
 
 networks:
   homelab:
