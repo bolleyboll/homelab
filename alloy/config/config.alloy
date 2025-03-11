@@ -1,3 +1,17 @@
+livedebugging {
+  enabled = true
+}
+
+discovery.dockerswarm "swarm" {
+  host = "unix:///var/run/docker.sock"
+  role = "tasks"
+
+  filter {
+    name = "desired-state"
+    values = ["running", "accepted"]
+  }
+}
+
 otelcol.receiver.otlp "default" {
   http {}
   grpc {}
@@ -22,7 +36,7 @@ otelcol.exporter.otlphttp "metrics" {
 }
 
 otelcol.exporter.otlphttp "traces" {
-    client {
-        endpoint = "http://tempo:4318"
-    }
+  client {
+    endpoint = "http://tempo:4318"
+  }
 }

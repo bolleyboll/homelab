@@ -22,7 +22,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.role == worker
+          - node.role == manager
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.alloy.service=alloy"
@@ -31,6 +31,7 @@ services:
         - "traefik.http.routers.alloy.entrypoints=web"
     volumes:
       - ./config/:/etc/alloy/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 networks:
   homelab:
