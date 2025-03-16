@@ -1,0 +1,30 @@
+---
+rpi5:
+  hosts:
+    pi5.lan:
+      ansible_host: 192.168.69.13
+      ansible_user: debian
+
+rpi3:
+  hosts:
+    pi3.lan:
+      ansible_host: 192.168.69.15
+      ansible_user: debian
+
+homelab:
+  children:
+    rpi5:
+    rpi3:
+
+master:
+  children:
+    rpi5:
+
+worker:
+  children:
+    rpi3:
+
+k3s:
+  children:
+    master:
+    worker:

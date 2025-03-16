@@ -1,0 +1,29 @@
+---
+- name: Install k3s Necessary Packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - iptables-persistent
+      - python3-yaml
+    state: present
+
+- name: Include tasks for k3s master
+  ansible.builtin.include_tasks: install_k3s_master.yml
+  when: inventory_hostname in groups['master']
+
+- name: Install Helm Diff
+  kubernetes.core.helm_plugin:
+    plugin_path: "https://github.com/databus23/helm-diff"
+    state: present
+
+- ansible.builtin.include_tasks: install_helm_cilium.yml
+  when: inventory_hostname in groups['master']
+
+- ansible.builtin.include_tasks: install_helm_longhorn.yml
+  when: inventory_hostname in groups['master']
+
+- ansible.builtin.include_tasks: install_k3s_worker.yml
+  when: inventory_hostname in groups['worker']
+
+- ansible.builtin.include_tasks: install_helm_argocd.yml
+  when: inventory_hostname in groups['master']

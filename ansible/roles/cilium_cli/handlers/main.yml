@@ -1,0 +1,10 @@
+---
+- name: Cleanup temporary files
+  ansible.builtin.file:
+    path: "/tmp/cilium-linux-{{ cli_arch }}.tar.gz"
+    state: absent
+
+- name: Cleanup checksum file
+  ansible.builtin.file:
+    path: "/tmp/cilium-linux-{{ cli_arch }}.tar.gz.sha256sum"
+    state: absent

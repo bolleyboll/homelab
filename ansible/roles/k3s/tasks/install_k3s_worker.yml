@@ -1,0 +1,6 @@
+---
+- name: Install k3s worker
+  ansible.builtin.shell: |
+    curl -sfL https://get.k3s.io | sh -s - agent --server https://{{ hostvars[groups['master'][0]]['ansible_host'] }}:6443 --token {{ vault_k3s_token }}
+  args:
+    creates: /etc/rancher/k3s/k3s.yaml
