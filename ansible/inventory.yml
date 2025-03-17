@@ -2,14 +2,14 @@
 rpi5:
   hosts:
     pi5.lan:
-      ansible_host: 192.168.69.13
-      ansible_user: debian
+      ansible_host: 192.168.2.100
+      ansible_user: bolleyboll
 
 rpi3:
   hosts:
     pi3.lan:
-      ansible_host: 192.168.69.15
-      ansible_user: debian
+      ansible_host: 192.168.2.101
+      ansible_user: bolleyboll
 
 homelab:
   children:

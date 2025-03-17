@@ -1,5 +1,6 @@
 ---
 - name: Ensure GNU Stow is installed
+  become: true
   ansible.builtin.package:
     name: stow
     state: present

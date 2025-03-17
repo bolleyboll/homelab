@@ -1,11 +1,4 @@
 ---
-- name: Install Longhorn Necessary Packages
-  become: true
-  ansible.builtin.package:
-    name:
-      - open-iscsi
-    state: present
-
 - name: Add Longhorn Helm repo
   kubernetes.core.helm_repository:
     name: longhorn

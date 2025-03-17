@@ -28,6 +28,8 @@
           - neofetch
           - fzf
           - zoxide
+          - lm-sensors
+          - open-iscsi
         state: present
 
 - name: Manage dotfiles using GNU Stow
