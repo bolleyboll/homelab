@@ -52,3 +52,10 @@
       - docker-compose-plugin
     state: present
   become: true
+
+- name: Add bolleyboll user to the Docker group
+  ansible.builtin.user:
+    name: "bolleyboll"
+    groups: docker
+    append: true
+  become: true
