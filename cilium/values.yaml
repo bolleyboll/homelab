@@ -1,0 +1,9 @@
+k8sServiceHost: "192.168.2.100"
+k8sServicePort: 6443
+kubeProxyReplacement: true
+envoy:
+  enabled: true
+  image:
+    repository: "docker.io/freshlyjuiced/cilium-envoy"
+    tag: "latest-arm64"
+    useDigest: false
