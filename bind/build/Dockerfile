@@ -3,6 +3,9 @@ FROM alpine:latest
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
 
+ARG UID=53
+ARG GID=53
+
 ARG BIND9_VERSION=9.18.34
 ARG BIND9_CHECKSUM=c3bddf093317a2cab873ff64dbed33cdaf6ee394ff7964309053d0c84d200502
 
@@ -72,7 +75,7 @@ RUN cd /usr/src && \
 	rm -rf /usr/src
 
 # Create user and group
-RUN addgroup -S bind && adduser -S -H -h /var/cache/bind -G bind bind
+RUN addgroup -S -g ${GID} bind && adduser -S -u ${UID} -H -h /var/cache/bind -G bind bind
 
 # Copy configuration files
 COPY config /etc/bind/
