@@ -68,7 +68,7 @@
     - k3s
 
 - name: Install Dockerd
-  hosts: rpi5
+  hosts: homelab
   become: true
   roles:
     - dockerd
