@@ -22,8 +22,9 @@
 - ansible.builtin.include_tasks: install_helm_longhorn.yml
   when: inventory_hostname in groups['master']
 
-- ansible.builtin.include_tasks: install_k3s_worker.yml
-  when: inventory_hostname in groups['worker']
+# RPi3 can't handle the worker load
+# - ansible.builtin.include_tasks: install_k3s_worker.yml
+#   when: inventory_hostname in groups['worker']
 
 - ansible.builtin.include_tasks: install_helm_argocd.yml
   when: inventory_hostname in groups['master']
