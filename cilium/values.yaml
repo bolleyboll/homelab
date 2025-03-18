@@ -7,3 +7,7 @@ operator:
   replicas: 1
 ingressController:
   enabled: true
+l2announcements:
+  enabled: true
+externalIPs:
+  enabled: true
