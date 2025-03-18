@@ -22,6 +22,10 @@ hubble:
     enabled: true
   ui:
     enabled: true
+    ingress:
+      enabled: true
+      hosts:
+        - hubble-ui.k8s.lan
 
 l2announcements:
   enabled: true
