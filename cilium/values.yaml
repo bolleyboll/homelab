@@ -7,6 +7,8 @@ operator:
   replicas: 1
 ingressController:
   enabled: true
+  service:
+    loadBalancerIP: 192.168.2.250
 l2announcements:
   enabled: true
 externalIPs:
