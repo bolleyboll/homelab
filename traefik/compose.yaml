@@ -32,7 +32,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == worker
+          - node.role == manager
       labels:
         - "prometheus-job=traefik"
         - "prometheus-port=8080"
