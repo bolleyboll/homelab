@@ -3,3 +3,5 @@ k8sServicePort: 6443
 kubeProxyReplacement: true
 envoy:
   enabled: true
+operator:
+  replicas: 1
