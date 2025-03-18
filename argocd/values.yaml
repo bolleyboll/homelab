@@ -1,0 +1,22 @@
+configs:
+  cm:
+    exec.enabled: true
+    admin.enabled: false
+    kustomize.buildOptions: "--load-restrictor LoadRestrictionsNone"
+  rbac:
+    policy.default: "role:admin"
+  repositories:
+    bitnami-helm-repo:
+      url: "https://charts.bitnami.com/bitnami"
+      name: bitnami
+      type: helm
+    cm-logging-k8s-files-repo:
+      url: "https://github.com/bolleyboll/homelab.git"
+      name: homelab
+      type: git
+
+controller:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true

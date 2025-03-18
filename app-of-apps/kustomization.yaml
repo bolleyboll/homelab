@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # NOTE: The path is relative to "app-of-apps/kustomization.yaml"
+  # Project of Projects
+  - ../argo-apps/app-of-projects/app-of-projects.yaml
+  # App of Apps
+  - ../argo-apps/app-of-apps/app-of-apps.yaml
+  # ArgoCD
+  - ../argo-apps/argocd/argocd.yaml
+  # Cilium
+  - ../argo-apps/cilium/cilium.yaml
