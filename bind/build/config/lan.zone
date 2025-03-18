@@ -16,5 +16,5 @@ pi3    IN    A     192.168.2.101
 router    IN    A     192.168.2.1
 
 ; Traefik Wildcard
-traefik    IN    CNAME     pi3.lan.
+traefik    IN    CNAME     pi5.lan.
 *     IN    CNAME traefik.lan.
