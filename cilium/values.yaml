@@ -8,7 +8,7 @@ envoy:
 
 operator:
   replicas: 1
-  rollOutPods: true
+  # rollOutPods: true
 
 ingressController:
   enabled: true
