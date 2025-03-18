@@ -19,7 +19,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == worker
+          - node.role == manager
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.bind.service=bind"
