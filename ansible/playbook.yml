@@ -30,6 +30,7 @@
           - zoxide
           - lm-sensors
           - open-iscsi
+          - kustomize
         state: present
 
 - name: Manage dotfiles using GNU Stow
