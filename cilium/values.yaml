@@ -25,6 +25,7 @@ hubble:
     enabled: true
     ingress:
       enabled: true
+      className: "cilium"
       hosts:
         - hubble-ui.k8s.lan
 
