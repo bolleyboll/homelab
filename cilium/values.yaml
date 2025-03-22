@@ -14,9 +14,7 @@ ingressController:
   enabled: true
   default: true
   service:
-    loadBalancerIP: 192.168.2.251
-    insecureNodePort: null
-    secureNodePort: null
+    externalTrafficPolicy: Local
 
 hubble:
   relay:
