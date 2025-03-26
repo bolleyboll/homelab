@@ -40,7 +40,11 @@
     group: root
     mode: "0644"
   register: repo_added
-  notify: Update-Package-Cache
+
+- name: Update-Package-Cache
+  ansible.builtin.package:
+    update_cache: true
+  become: true
 
 - name: Install Helm using APT
   ansible.builtin.package:
