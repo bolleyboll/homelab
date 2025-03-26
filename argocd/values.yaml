@@ -1,15 +1,11 @@
 ---
 configs:
   cm:
-    exec:
-      enabled: true
-    admin:
-      enabled: true
-    kustomize:
-      buildOptions: "--load-restrictor LoadRestrictionsNone --enable-helm"
+    exec.enabled: true
+    admin.enabled: true
+    kustomize.buildOptions: "--load-restrictor LoadRestrictionsNone --enable-helm"
   rbac:
-    policy:
-      default: "role:admin"
+    policy.default: "role:admin"
   repositories:
     bitnami-helm-repo:
       url: "https://charts.bitnami.com/bitnami"
