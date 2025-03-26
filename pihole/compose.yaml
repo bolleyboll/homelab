@@ -1,6 +1,6 @@
 services:
   pihole:
-    image: pihole/pihole:2025.02.7
+    image: pihole/pihole:2025.03.0
     container_name: pihole
     hostname: pi
     restart: unless-stopped
@@ -21,7 +21,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == worker
+          - node.role == manager
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.pihole.service=pihole-http"
