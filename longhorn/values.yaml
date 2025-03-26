@@ -1,0 +1,7 @@
+longhornUI:
+  replicas: 1
+
+ingress:
+  enabled: true
+  ingressClassName: "cilium"
+  host: "longhorn.k8s.lan"
