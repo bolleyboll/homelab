@@ -5,8 +5,7 @@ sources:
 provider: rfc2136
 rfc2136:
   host: "192.168.2.100"
-  zones:
-    - "k8s.lan"
+  zone: "k8s.lan"
   tsigKeyName: "externaldns"
   tsigSecretAlg: hmac-sha256
   tsigSecret: "I13edEEt7kbt5GnlPvKsUpG1NayEGgWlI7XrMaYN9/I="
