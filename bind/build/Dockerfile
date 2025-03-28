@@ -1,7 +1,7 @@
 FROM alpine:latest
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV LC_ALL C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LC_ALL=C.UTF-8
 
 ARG UID=53
 ARG GID=53
