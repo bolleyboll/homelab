@@ -1,3 +1,8 @@
+---
+sources:
+  - service
+  - ingress
+provider: rfc2136
 rfc2136:
   host: "192.168.2.100"
   zones:
