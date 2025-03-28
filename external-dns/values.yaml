@@ -10,3 +10,4 @@ rfc2136:
   tsigKeyName: "externaldns"
   tsigSecretAlg: hmac-sha256
   tsigSecret: "I13edEEt7kbt5GnlPvKsUpG1NayEGgWlI7XrMaYN9/I="
+registry: "noop"
