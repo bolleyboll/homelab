@@ -4,4 +4,4 @@ longhornUI:
 ingress:
   enabled: true
   ingressClassName: "cilium"
-  host: "longhorn.k8s.lan"
+  host: "longhorn.kube"
