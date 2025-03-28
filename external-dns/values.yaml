@@ -6,5 +6,8 @@ provider: rfc2136
 rfc2136:
   host: "192.168.2.100"
   zone:
-    - "k8s.lan"
-# registry: "noop"
+    - "kube"
+  tsigKeyName: "externaldns-key"
+  tsigSecretAlg: hmac-sha256
+  tsigSecret: "I13edEEt7kbt5GnlPvKsUpG1NayEGgWlI7XrMaYN9/I="
+  rfc3645Enabled: true
