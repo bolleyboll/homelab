@@ -1,4 +1,5 @@
 ---
+logLevel: debug
 sources:
   - service
   - ingress
