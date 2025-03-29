@@ -1,4 +1,3 @@
-$TTL 86400
 @     IN SOA  localhost. kubeadmin.localhost. (
                 2024061400      ; Serial
                 10800           ; Refresh after 3 hours
