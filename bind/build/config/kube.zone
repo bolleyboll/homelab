@@ -7,4 +7,4 @@ kube         IN SOA  kube. root.kube. (
                                 60         ; minimum (1 minute)
                                 )
                         NS      ns.kube.
-ns                      A       127.0.0.1
+ns                      A       192.168.2.250
