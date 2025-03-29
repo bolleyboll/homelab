@@ -1,0 +1,9 @@
+$TTL 86400
+@     IN SOA  localhost. admin.localhost. (
+                2024061401      ; Serial
+                10800           ; Refresh after 3 hours
+                3600            ; Retry after 1 hour
+                604800          ; Expire (1 week)
+                60              ; Negative expiry time
+                )
+      IN NS           localhost.
