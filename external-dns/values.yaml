@@ -1,5 +1,5 @@
 ---
-logLevel: panic
+logLevel: trace
 sources:
   - service
   - ingress
