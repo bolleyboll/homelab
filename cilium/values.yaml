@@ -36,3 +36,5 @@ bgpControlPlane:
 
 externalIPs:
   enabled: true
+
+l7Proxy: true
