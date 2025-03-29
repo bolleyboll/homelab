@@ -14,7 +14,7 @@ ingressController:
   enabled: true
   default: true
   service:
-    externalTrafficPolicy: Local
+    externalTrafficPolicy: Cluster
 
 hubble:
   relay:
