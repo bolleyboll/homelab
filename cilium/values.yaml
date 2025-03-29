@@ -13,7 +13,7 @@ operator:
 ingressController:
   enabled: true
   default: true
-  loadbalancerMode: shared
+  loadbalancerMode: dedicated
   enforceHttps: false
   service:
     externalTrafficPolicy: Cluster
