@@ -8,7 +8,7 @@ rfc2136:
   host: "192.168.2.100"
   zones:
     - lan
-    # - kube.lan
+    - kube.lan
   tsigKeyName: rfc2136_tsig_secret
   tsigSecretAlg: hmac-sha256
   tsigSecret: "I13edEEt7kbt5GnlPvKsUpG1NayEGgWlI7XrMaYN9/I="
