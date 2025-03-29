@@ -1,5 +1,5 @@
 ---
-logLevel: debug
+logLevel: panic
 sources:
   - service
   - ingress
