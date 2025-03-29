@@ -14,8 +14,7 @@ ingressController:
   enabled: true
   default: true
   loadbalancerMode: shared
-  service:
-    externalTrafficPolicy: Cluster
+  enforceHttps: false
 
 hubble:
   relay:
