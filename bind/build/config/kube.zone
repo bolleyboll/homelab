@@ -1,10 +1,10 @@
-$TTL 60 ; 1 minute
-kube         IN SOA  kube. root.kube. (
-                                16         ; serial
-                                60         ; refresh (1 minute)
-                                60         ; retry (1 minute)
-                                60         ; expire (1 minute)
-                                60         ; minimum (1 minute)
-                                )
-                        NS      ns.kube.
-ns                      A       192.168.2.250
+$TTL 86400
+@     IN SOA  localhost. kubeadmin.localhost. (
+                2024061400      ; Serial
+                10800           ; Refresh after 3 hours
+                3600            ; Retry after 1 hour
+                604800          ; Expire (1 week)
+                60              ; Negative expiry time
+                )
+      IN NS           localhost.
+ns    A     192.168.2.250
