@@ -21,3 +21,12 @@ controller:
     enabled: true
     serviceMonitor:
       enabled: true
+
+global:
+  domain: "argocd.kube"
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "cilium"
+    pathType: ImplementationSpecific
