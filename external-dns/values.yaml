@@ -1,5 +1,5 @@
 ---
-logLevel: trace
+logLevel: debug
 sources:
   - service
   - ingress
@@ -7,6 +7,7 @@ provider: rfc2136
 rfc2136:
   host: "192.168.2.100"
   zones:
-    - lan
+    - kube
+  tsigKeyName: rfc2136_tsig_secret
   tsigSecretAlg: hmac-sha256
   tsigSecret: "I13edEEt7kbt5GnlPvKsUpG1NayEGgWlI7XrMaYN9/I="
