@@ -31,6 +31,7 @@
           - lm-sensors
           - open-iscsi
           - netcat-traditional
+          - jq
         state: present
 
 - name: Manage dotfiles using GNU Stow
