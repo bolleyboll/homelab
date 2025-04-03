@@ -19,16 +19,13 @@ hubble:
       enabled: true
       className: "nginx"
       hosts:
-        - hubble-ui.kube
+        - hubble.kube
 
 l2announcements:
   enabled: true
 
-l2podAnnouncements:
-  enabled: true
-  interface: "wlan0"
-
-devices: "wlan0"
+# Commenting it out to enable Cilium to work over VPN
+# devices: "wlan0"
 
 bgpControlPlane:
   enabled: true
