@@ -1,0 +1,31 @@
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPAdvertisement
+metadata:
+  name: bgp-advertisements
+  labels:
+    advertise: bgp
+spec:
+  advertisements:
+    - advertisementType: "Service"
+      service:
+        addresses:
+          # - ExternalIP
+          - LoadBalancerIP
+      selector:
+        matchExpressions:
+          - { key: bgp, operator: In, values: [public] }
+      attributes:
+        communities:
+          standard: ["64512"]
+    # - advertisementType: "Service"
+    #   service:
+    #     addresses:
+    #       # - ExternalIP
+    #       - LoadBalancerIP
+    #   selector:
+    #     matchExpressions:
+    #       - { key: bgp, operator: In, values: [private] }
+    #   attributes:
+    #     communities:
+    #       standard: ["64512"]
