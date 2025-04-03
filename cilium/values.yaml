@@ -28,6 +28,8 @@ l2podAnnouncements:
   enabled: true
   interface: "wlan0"
 
+devices: "wlan0"
+
 bgpControlPlane:
   enabled: true
 
