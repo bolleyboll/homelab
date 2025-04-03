@@ -3,5 +3,5 @@ longhornUI:
 
 ingress:
   enabled: true
-  ingressClassName: "cilium"
+  ingressClassName: "nginx"
   host: "longhorn.kube"

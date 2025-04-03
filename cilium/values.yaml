@@ -10,14 +10,6 @@ operator:
   replicas: 1
   rollOutPods: true
 
-ingressController:
-  enabled: true
-  default: true
-  loadbalancerMode: dedicated
-  enforceHttps: false
-  service:
-    externalTrafficPolicy: Cluster
-
 hubble:
   relay:
     enabled: true
@@ -25,7 +17,7 @@ hubble:
     enabled: true
     ingress:
       enabled: true
-      className: "cilium"
+      className: "nginx"
       hosts:
         - hubble-ui.kube
 

@@ -28,5 +28,5 @@ global:
 server:
   ingress:
     enabled: true
-    ingressClassName: "cilium"
+    ingressClassName: "nginx"
     pathType: ImplementationSpecific
