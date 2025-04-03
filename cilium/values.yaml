@@ -24,6 +24,10 @@ hubble:
 l2announcements:
   enabled: true
 
+l2podAnnouncements:
+  enabled: true
+  interface: "wlan0"
+
 bgpControlPlane:
   enabled: true
 
