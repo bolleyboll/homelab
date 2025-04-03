@@ -9,6 +9,3 @@ spec:
   blocks:
     - start: "192.168.2.250"
       stop: "192.168.2.254"
-  serviceSelector:
-    matchExpressions:
-      - { key: bgp, operator: In, values: [public] }
