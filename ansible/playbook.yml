@@ -32,6 +32,7 @@
           - open-iscsi
           - netcat-traditional
           - jq
+          - net-tools
         state: present
 
 - name: Manage dotfiles using GNU Stow
