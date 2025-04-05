@@ -17,4 +17,4 @@ resources:
   # Nginx Ingress
   - ../argo-apps/ingress-nginx/ingress-nginx.yaml
   # MetalLB
-  # - ../argo-apps/metallb/metallb.yaml
+  - ../argo-apps/metallb/metallb.yaml
