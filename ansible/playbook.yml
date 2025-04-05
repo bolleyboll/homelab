@@ -35,6 +35,7 @@
           - net-tools
           - arping
           - tcpdump
+          - tree
         state: present
 
 - name: Manage dotfiles using GNU Stow

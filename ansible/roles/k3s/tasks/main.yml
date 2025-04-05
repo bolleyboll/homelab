@@ -7,24 +7,27 @@
       - python3-yaml
     state: present
 
-- name: Include tasks for k3s master
+- name: Install k3s Master Node
   ansible.builtin.include_tasks: install_k3s_master.yml
   when: inventory_hostname in groups['master']
 
-- name: Install Helm Diff
+- name: Install Helm Diff Plugin
   kubernetes.core.helm_plugin:
     plugin_path: "https://github.com/databus23/helm-diff"
     state: present
 
-- ansible.builtin.include_tasks: install_helm_cilium.yml
+- name: Install Cilium
+  ansible.builtin.include_tasks: install_helm_cilium.yml
   when: inventory_hostname in groups['master']
 
-- ansible.builtin.include_tasks: install_helm_longhorn.yml
+- name: Install Longhorn
+  ansible.builtin.include_tasks: install_helm_longhorn.yml
   when: inventory_hostname in groups['master']
 
 # RPi3 can't handle the worker load
 # - ansible.builtin.include_tasks: install_k3s_worker.yml
 #   when: inventory_hostname in groups['worker']
 
-- ansible.builtin.include_tasks: install_helm_argocd.yml
+- name: Install ArgoCD
+  ansible.builtin.include_tasks: install_helm_argocd.yml
   when: inventory_hostname in groups['master']

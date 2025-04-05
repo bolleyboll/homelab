@@ -1,10 +1,10 @@
 ---
-- name: Restart k3s
+- name: Restart k3s Service
   ansible.builtin.service:
     name: k3s
     state: restarted
 
-- name: Restart k3s-agent
+- name: Restart k3s-agent Service
   ansible.builtin.service:
     name: k3s-agent
     state: restarted

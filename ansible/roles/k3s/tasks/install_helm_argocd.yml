@@ -1,15 +1,31 @@
 ---
-- name: Add ArgoCD Helm repo
+- name: Check if ArgoCD Helm Release Exists
+  kubernetes.core.helm_info:
+    release_name: argocd
+    release_namespace: "{{ k3s_argocd_namespace }}"
+  register: argocd_release_info
+  failed_when: false
+  environment:
+    KUBECONFIG: /etc/rancher/k3s/k3s.yaml
+
+- name: Add ArgoCD Helm Repository
   kubernetes.core.helm_repository:
     name: argo
     repo_url: https://argoproj.github.io/argo-helm
+    force_update: true
+  when: argocd_release_info.status.chart is not defined
 
 - name: Install ArgoCD
   kubernetes.core.helm:
     name: argocd
     chart_ref: argo/argo-cd
-    release_namespace: "{{ argocd_namespace }}"
+    release_namespace: "{{ k3s_argocd_namespace }}"
     create_namespace: true
-    chart_version: "{{ argocd_version }}"
+    chart_version: "{{ k3s_argocd_version }}"
+    values:
+      configs:
+        cm:
+          kustomize.buildOptions: "--load-restrictor LoadRestrictionsNone --enable-helm"
+  when: argocd_release_info.status.chart is not defined
   environment:
     KUBECONFIG: /etc/rancher/k3s/k3s.yaml

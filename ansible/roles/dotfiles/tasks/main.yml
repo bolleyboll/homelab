@@ -1,11 +1,11 @@
 ---
-- name: Ensure GNU Stow is installed
+- name: Ensure GNU Stow is Installed
   become: true
   ansible.builtin.package:
     name: stow
     state: present
 
-- name: Clone dotfiles repository
+- name: Clone dotfiles Git Repository
   ansible.builtin.git:
     repo: "{{ dotfiles_repo }}"
     dest: "{{ dotfiles_dest }}"
@@ -16,12 +16,12 @@
     cmd: "stow -d {{ dotfiles_dest }} -t {{ ansible_env.HOME }} ."
   register: stow_result
 
-- name: Ensure zsh is installed
+- name: Ensure ZSH is Installed
   ansible.builtin.package:
     name: zsh
     state: present
 
-- name: Change default shell to zsh
+- name: Change default shell to ZSH
   become: true
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"

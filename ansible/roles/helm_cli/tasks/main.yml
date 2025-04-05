@@ -1,5 +1,5 @@
 ---
-- name: Ensure dependencies are installed
+- name: Ensure Helm CLI Dependencies are Installed
   ansible.builtin.package:
     name:
       - apt-transport-https
@@ -8,12 +8,12 @@
     state: present
     update_cache: true
 
-- name: Detect system architecture
+- name: Detect System Architecture
   ansible.builtin.command: dpkg --print-architecture
   register: arch_result
   changed_when: false
 
-- name: Check if Helm GPG key exists
+- name: Check if Helm GPG key Exists
   ansible.builtin.stat:
     path: /usr/share/keyrings/helm.gpg
   register: helm_gpg_key
@@ -32,7 +32,7 @@
     creates: /usr/share/keyrings/helm.gpg
   when: not helm_gpg_key.stat.exists
 
-- name: Add Helm repository
+- name: Add Helm APT Repository
   ansible.builtin.template:
     src: helm-stable-debian.list.j2
     dest: /etc/apt/sources.list.d/helm-stable-debian.list
@@ -46,7 +46,7 @@
     update_cache: true
   become: true
 
-- name: Install Helm using APT
+- name: Install Helm CLI using APT
   ansible.builtin.package:
     name: helm
     state: present
