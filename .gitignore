@@ -7,3 +7,4 @@ vault/config/vault-server.hcl
 orig.yaml
 .ansible/
 .vscode/
+.DS_Store
