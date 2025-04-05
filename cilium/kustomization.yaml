@@ -5,9 +5,6 @@ kind: Kustomization
 resources:
   - ip-pool.yaml
   - l2-advertisement.yaml
-#   - cilium-bgp.yaml
-#   - cilium-peer.yaml
-#   - bgp-advertisements.yaml
 
 helmCharts:
   - name: cilium
