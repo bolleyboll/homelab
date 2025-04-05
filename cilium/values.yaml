@@ -21,8 +21,8 @@ hubble:
       hosts:
         - hubble.kube
 
-# l2announcements:
-#   enabled: true
+l2announcements:
+  enabled: true
 
 # Commenting it out to enable Cilium to work over VPN
 # devices: "wlan0"
@@ -30,7 +30,7 @@ hubble:
 # bgpControlPlane:
 #   enabled: true
 
-# externalIPs:
-#   enabled: true
+externalIPs:
+  enabled: true
 
 # l7Proxy: true

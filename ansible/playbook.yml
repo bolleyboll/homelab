@@ -33,6 +33,8 @@
           - netcat-traditional
           - jq
           - net-tools
+          - arping
+          - tcpdump
         state: present
 
 - name: Manage dotfiles using GNU Stow
