@@ -1,0 +1,11 @@
+---
+app:
+  settings:
+    global:
+      clusterName: "Homelab"
+  ingress:
+    enabled: true
+    hosts:
+      - dashboard.kube
+    ingressClassName: nginx
+    pathType: ImplementationSpecific

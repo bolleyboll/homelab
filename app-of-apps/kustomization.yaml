@@ -22,3 +22,5 @@ resources:
   - ../argo-apps/kube-prometheus-stack/kube-prometheus-stack.yaml
   # OpenCost
   - ../argo-apps/opencost/opencost.yaml
+  # Kubernetes Dashboard
+  - ../argo-apps/kubernetes-dashboard/kubernetes-dashboard.yaml
