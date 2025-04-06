@@ -2,29 +2,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubernetes-dashboard
+  name: headlamp
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    name: kubernetes-dashboard
+    name: headlamp
 spec:
   project: core
   sources:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
       ref: myRepo
-    - repoURL: "https://kubernetes.github.io/dashboard"
-      targetRevision: 7.11.1
-      chart: kubernetes-dashboard
+    - repoURL: "https://kubernetes-sigs.github.io/headlamp/"
+      targetRevision: 0.30.1
+      chart: headlamp
       helm:
-        releaseName: kubernetes-dashboard
+        releaseName: headlamp
         valueFiles:
-          - $myRepo/kubernetes-dashboard/values.yaml
+          - $myRepo/headlamp/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: kubernetes-dashboard
+    namespace: headlamp
 
   syncPolicy:
     automated:
