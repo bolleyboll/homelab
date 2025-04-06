@@ -1,0 +1,12 @@
+---
+clusterName: "homelab"
+
+plugins:
+  enabled: true
+
+ui:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - host: opencost.kube

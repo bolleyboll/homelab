@@ -1,0 +1,47 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opencost
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: opencost
+spec:
+  project: core
+  sources:
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      ref: myRepo
+    - repoURL: "https://opencost.github.io/opencost-helm-chart/"
+      targetRevision: 2.0.1
+      chart: opencost
+      helm:
+        releaseName: opencost
+        valueFiles:
+          - $myRepo/opencost/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: opencost
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Prune=true
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  revisionHistoryLimit: 3

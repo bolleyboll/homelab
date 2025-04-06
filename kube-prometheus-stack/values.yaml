@@ -1,0 +1,28 @@
+---
+crds:
+  upgradeJob:
+    enabled: true
+
+alertmanager:
+  ingress:
+    enabled: true
+    hosts:
+      - alertmanager.kube
+
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+      - grafana.kube
+
+kubeProxy:
+  enabled: false
+
+nodeExporter:
+  enabled: false
+
+prometheus:
+  ingress:
+    enabled: true
+    hosts:
+      - prometheus.kube

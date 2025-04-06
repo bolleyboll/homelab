@@ -18,3 +18,7 @@ resources:
   - ../argo-apps/ingress-nginx/ingress-nginx.yaml
   # MetalLB
   - ../argo-apps/metallb/metallb.yaml
+  # Kube Prometheus Stack
+  - ../argo-apps/kube-prometheus-stack/kube-prometheus-stack.yaml
+  # OpenCost
+  - ../argo-apps/opencost/opencost.yaml
