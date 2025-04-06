@@ -6,12 +6,14 @@ crds:
 alertmanager:
   ingress:
     enabled: true
+    ingressClassName: "nginx"
     hosts:
       - alertmanager.kube
 
 grafana:
   ingress:
     enabled: true
+    ingressClassName: "nginx"
     hosts:
       - grafana.kube
 
@@ -24,5 +26,6 @@ nodeExporter:
 prometheus:
   ingress:
     enabled: true
+    ingressClassName: "nginx"
     hosts:
       - prometheus.kube
