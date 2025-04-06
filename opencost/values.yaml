@@ -13,3 +13,10 @@ opencost:
         - host: opencost.kube
           paths:
             - /
+  customPricing:
+    enabled: true
+    costModel:
+      description: India Pricing
+      CPU: 1.25
+      RAM: 0.50
+      storage: 0.25
