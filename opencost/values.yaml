@@ -11,3 +11,4 @@ opencost:
       ingressClassName: "nginx"
       hosts:
         - host: opencost.kube
+          path: /
