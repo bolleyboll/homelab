@@ -24,5 +24,9 @@ opencost:
       CPU: 1.25
       RAM: 0.50
       storage: 0.25
+      GPU: 0.95
+      zoneNetworkEgress: 0.01
+      regionNetworkEgress: 0.01
+      internetNetworkEgress: 0.12
   carbonCost:
     enabled: true
