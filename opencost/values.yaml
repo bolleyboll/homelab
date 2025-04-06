@@ -13,6 +13,12 @@ opencost:
         - host: opencost.kube
           paths:
             - /
+  prometheus:
+    internal:
+      enabled: true
+      serviceName: kube-prometheus-stack-prometheus
+      namespaceName: monitoring
+      port: 9090
   customPricing:
     enabled: true
     costModel:
@@ -20,3 +26,5 @@ opencost:
       CPU: 1.25
       RAM: 0.50
       storage: 0.25
+  carbonCost:
+    enabled: true
