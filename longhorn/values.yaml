@@ -5,3 +5,6 @@ ingress:
   enabled: true
   ingressClassName: "nginx"
   host: "longhorn.kube"
+
+persistence:
+  defaultClassReplicaCount: 1
