@@ -24,3 +24,5 @@ resources:
   - ../argo-apps/opencost/opencost.yaml
   # Headlamp
   - ../argo-apps/headlamp/headlamp.yaml
+  # Keycloak
+  - ../argo-apps/keycloak/keycloak.yaml
