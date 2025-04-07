@@ -26,6 +26,7 @@ nodeExporter:
 prometheus:
   prometheusSpec:
     retention: 7d
+    serviceMonitorSelectorNilUsesHelmValues: false
   ingress:
     enabled: true
     ingressClassName: "nginx"
