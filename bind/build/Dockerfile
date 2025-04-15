@@ -1,21 +1,21 @@
-FROM alpine:latest
+FROM alpine:latest AS base
 
-ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
 
 ARG UID=53
 ARG GID=53
 
-ARG BIND9_VERSION=9.18.34
-ARG BIND9_CHECKSUM=c3bddf093317a2cab873ff64dbed33cdaf6ee394ff7964309053d0c84d200502
+ARG BIND9_VERSION=9.18.35
+ARG BIND9_CHECKSUM=1bf332a8c056d92b87ffde518747f0b7ffd3e48be7ecaa43fa37fca131c52020
 
 RUN apk --no-cache update
 RUN apk --no-cache upgrade
 
+FROM base AS builder
+
 RUN apk --no-cache add \
 		autoconf \
 		automake \
-		bind-tools \
 		build-base \
 		fstrm \
 		fstrm-dev \
@@ -71,8 +71,30 @@ RUN cd /usr/src && \
 				--with-maxminddb \
 				--enable-dnstap && \
 	make -j && \
-	make install && \
+	make install DESTDIR=/dist  && \
 	rm -rf /usr/src
+
+FROM base
+
+RUN apk --no-cache add \
+		fstrm \
+		jemalloc \
+		json-c \
+		krb5-libs \
+		libcap2 \
+		libidn2 \
+		libmaxminddb-libs \
+		libuv \
+		libxml2 \
+		lmdb \
+		nghttp2-libs \
+		procps \
+		protobuf-c \
+		tzdata \
+		bind-tools
+
+# Copy binaries from previous stage
+COPY --from=builder /dist/ /
 
 # Create user and group
 RUN addgroup -S -g ${GID} bind && adduser -S -u ${UID} -H -h /var/cache/bind -G bind bind
@@ -95,29 +117,6 @@ RUN mkdir -p /var/log/bind && chown bind:bind /var/log/bind && chmod 755 /var/lo
 
 # Create PID directory
 RUN mkdir -p /run/named && chown bind:bind /run/named && chmod 755 /run/named
-
-# Remove development packages
-RUN apk --no-cache del \
-		autoconf \
-		automake \
-		build-base \
-		fstrm-dev \
-		gnutls-utils \
-		jemalloc-dev \
-		json-c-dev \
-		krb5-dev \
-		libcap-dev \
-		libidn2-dev \
-		libmaxminddb-dev \
-		libtool \
-		libuv-dev \
-		libxml2-dev \
-		libxslt \
-		lmdb-dev \
-		make \
-		nghttp2-dev \
-		openssl-dev \
-		protobuf-c-dev
 
 VOLUME ["/etc/bind", "/var/cache/bind", "/var/lib/bind", "/var/log"]
 
