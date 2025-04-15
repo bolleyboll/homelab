@@ -31,7 +31,7 @@ spec:
       kind: MutatingWebhookConfiguration
       name: vault-agent-injector-cfg
       jsonPointers:
-        - /webhook/clientConfig/caBundle
+        - /spec/webhook/clientConfig/caBundle
 
   syncPolicy:
     automated:
