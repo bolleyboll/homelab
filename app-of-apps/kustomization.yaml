@@ -26,3 +26,5 @@ resources:
   - ../argo-apps/headlamp/headlamp.yaml
   # Keycloak
   - ../argo-apps/keycloak/keycloak.yaml
+  # Vault
+  - ../argo-apps/vault/vault.yaml

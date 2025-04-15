@@ -1,0 +1,9 @@
+---
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    pathType: ImplementationSpecific
+    activeService: true
+    hosts:
+      - host: vault.kube
