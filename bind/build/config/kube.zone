@@ -1,9 +1,0 @@
-@     IN SOA  localhost. kubeadmin.localhost. (
-                2024061400      ; Serial
-                10800           ; Refresh after 3 hours
-                3600            ; Retry after 1 hour
-                604800          ; Expire (1 week)
-                60              ; Negative expiry time
-                )
-      IN NS           localhost.
-ns    A     192.168.2.250

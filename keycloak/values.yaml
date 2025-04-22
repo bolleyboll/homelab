@@ -3,4 +3,4 @@ ingress:
   enabled: true
   ingressClassName: "nginx"
   pathType: ImplementationSpecific
-  hostname: keycloak.kube.lan
+  hostname: keycloak.lan

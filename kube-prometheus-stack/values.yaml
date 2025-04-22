@@ -8,14 +8,14 @@ alertmanager:
     enabled: true
     ingressClassName: "nginx"
     hosts:
-      - alertmanager.kube.lan
+      - alertmanager.lan
 
 grafana:
   ingress:
     enabled: true
     ingressClassName: "nginx"
     hosts:
-      - grafana.kube.lan
+      - grafana.lan
 
 kubeProxy:
   enabled: false
@@ -31,4 +31,4 @@ prometheus:
     enabled: true
     ingressClassName: "nginx"
     hosts:
-      - prometheus.kube.lan
+      - prometheus.lan

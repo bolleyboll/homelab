@@ -23,7 +23,7 @@ controller:
       enabled: true
 
 global:
-  domain: "argocd.kube.lan"
+  domain: "argocd.lan"
 
 server:
   ingress:

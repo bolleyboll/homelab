@@ -3,7 +3,7 @@ ingress:
   enabled: true
   ingressClassName: "nginx"
   hosts:
-    - host: headlamp.kube.lan
+    - host: headlamp.lan
       paths:
         - path: /
           type: ImplementationSpecific

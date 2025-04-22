@@ -8,7 +8,7 @@ opencost:
       enabled: true
       ingressClassName: "nginx"
       hosts:
-        - host: opencost.kube.lan
+        - host: opencost.lan
           paths:
             - /
   prometheus:
