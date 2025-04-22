@@ -4,7 +4,7 @@ longhornUI:
 ingress:
   enabled: true
   ingressClassName: "nginx"
-  host: "longhorn.kube"
+  host: "longhorn.kube.lan"
 
 persistence:
   defaultClassReplicaCount: 1

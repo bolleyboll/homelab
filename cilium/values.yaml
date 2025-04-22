@@ -19,5 +19,5 @@ hubble:
       enabled: true
       className: "nginx"
       hosts:
-        - hubble.kube
+        - hubble.kube.lan
       pathType: ImplementationSpecific

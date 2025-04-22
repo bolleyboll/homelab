@@ -6,4 +6,4 @@ server:
     pathType: ImplementationSpecific
     activeService: true
     hosts:
-      - host: vault.kube
+      - host: vault.kube.lan
