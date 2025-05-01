@@ -1,7 +1,6 @@
 ---
 crds:
-  upgradeJob:
-    enabled: true
+  enabled: true
 
 alertmanager:
   ingress:
