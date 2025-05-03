@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres
+  name: postgresql
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -17,8 +17,8 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "registry-1.docker.io/bitnamicharts"
-      targetRevision: 15.3.15
-      chart: postgresql-ha
+      targetRevision: 16.6.6
+      chart: postgresql
       helm:
         releaseName: postgresql
         valueFiles:
