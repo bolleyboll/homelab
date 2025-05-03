@@ -28,3 +28,5 @@ resources:
   - ../argo-apps/keycloak/keycloak.yaml
   # Vault
   - ../argo-apps/vault/vault.yaml
+  # Postgres
+  - ../argo-apps/postgres/postgres.yaml
