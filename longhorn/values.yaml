@@ -6,6 +6,9 @@ ingress:
   ingressClassName: "nginx"
   host: "longhorn.lan"
 
+persistence:
+  defaultClassReplicaCount: 1
+
 defaultSettings:
   defaultReplicaCount: 1
   allowCollectingLonghornUsageMetrics: false
