@@ -30,3 +30,7 @@ resources:
   - ../argo-apps/vault/vault.yaml
   # PostgreSQL
   - ../argo-apps/postgres/postgres.yaml
+  # Cert-Manager
+  - ../argo-apps/cert-manager/cert-manager.yaml
+  # Kyverno
+  - ../argo-apps/kyverno/kyverno.yaml

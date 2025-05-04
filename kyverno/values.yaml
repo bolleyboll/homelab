@@ -1,0 +1,16 @@
+---
+admissionController:
+  serviceMonitor:
+    enabled: true
+
+cleanupController:
+  serviceMonitor:
+    enabled: true
+
+backgroundController:
+  serviceMonitor:
+    enabled: true
+
+reportsController:
+  serviceMonitor:
+    enabled: true
