@@ -29,4 +29,4 @@ resources:
   # Vault
   - ../argo-apps/vault/vault.yaml
   # PostgreSQL
-  - ../argo-apps/postgres/postgres.yaml
+  # - ../argo-apps/postgres/postgres.yaml
