@@ -8,6 +8,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/compare-options: ServerSideDiff=true,IncludeMutationWebhook=true
   labels:
     name: kyverno
 spec:
@@ -39,6 +40,7 @@ spec:
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
       - PruneLast=true
+      - ServerSideApply=true
     retry:
       limit: 5
       backoff:
