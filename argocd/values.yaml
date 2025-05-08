@@ -11,7 +11,7 @@ configs:
       url: "https://charts.bitnami.com/bitnami"
       name: bitnami
       type: helm
-    cm-logging-k8s-files-repo:
+    homelab-repo:
       url: "https://github.com/bolleyboll/homelab.git"
       name: homelab
       type: git
