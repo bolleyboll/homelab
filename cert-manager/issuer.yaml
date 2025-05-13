@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: example-issuer
+spec:
+  acme:
+    solvers:
+      - dns01:
+          rfc2136:
+            nameserver: 192.168.2.100
+            tsigKeyName: certmanager
+            tsigAlgorithm: HMACSHA256
+            tsigSecretSecretRef:
+              name: rfc2136-secret
+              key: certmanager
