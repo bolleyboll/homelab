@@ -1,8 +1,0 @@
-apiVersion: secrets.hashicorp.com/v1beta1
-kind: VaultConnection
-metadata:
-  name: vault-connection
-  namespace: default
-spec:
-  address: http://vault.vault.svc
-  skipTLSVerify: true
