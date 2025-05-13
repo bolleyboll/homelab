@@ -1,7 +1,7 @@
 ---
 services:
   portainer:
-    image: portainer/portainer-ce:2.27.5-alpine
+    image: portainer/portainer-ce:2.27.6-alpine
     container_name: portainer
     hostname: pi
     restart: always
@@ -24,7 +24,7 @@ services:
       - portainer_data:/data
 
   agent:
-    image: portainer/agent:2.27.5-alpine
+    image: portainer/agent:2.27.6-alpine
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
