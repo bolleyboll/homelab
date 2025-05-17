@@ -25,13 +25,13 @@ resources:
   # Headlamp
   - ../argo-apps/headlamp/headlamp.yaml
   # Keycloak
-  # - ../argo-apps/keycloak/keycloak.yaml
+  - ../argo-apps/keycloak/keycloak.yaml
   # Vault
-  # - ../argo-apps/vault/vault.yaml
+  - ../argo-apps/vault/vault.yaml
   # Vault Secrets Operator
   - ../argo-apps/vault-secrets-operator/vault-secrets-operator.yaml
   # PostgreSQL
-  # - ../argo-apps/postgres/postgres.yaml
+  - ../argo-apps/postgres/postgres.yaml
   # Cert-Manager
   - ../argo-apps/cert-manager/cert-manager.yaml
   # Kyverno
