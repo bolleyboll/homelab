@@ -11,3 +11,4 @@ ingress:
 securityContext:
   runAsNonRoot: false
   privileged: true
+  allowPrivilegeEscalation: true
