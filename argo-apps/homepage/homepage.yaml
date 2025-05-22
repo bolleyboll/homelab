@@ -15,14 +15,7 @@ spec:
   sources:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
-      ref: myRepo
-    - repoURL: "ghcr.io/m0nsterrr/helm-charts"
-      targetRevision: 3.2.0
-      chart: homepage
-      helm:
-        releaseName: homepage
-        valueFiles:
-          - $myRepo/homepage/values.yaml
+      path: homepage
 
   destination:
     server: https://kubernetes.default.svc
