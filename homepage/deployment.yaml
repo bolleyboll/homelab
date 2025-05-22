@@ -12,7 +12,8 @@ spec:
   strategy:
     type: RollingUpdate
   selector:
-    app.kubernetes.io/name: homepage
+    matchLabels:
+      app.kubernetes.io/name: homepage
   template:
     metadata:
       labels:
