@@ -9,6 +9,5 @@ ingress:
           pathType: ImplementationSpecific
 
 securityContext:
+  runAsNonRoot: false
   privileged: true
-  runAsUser: 0
-  runAsGroup: 0
