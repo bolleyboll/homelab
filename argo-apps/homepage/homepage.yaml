@@ -1,0 +1,49 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homepage
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    name: homepage
+spec:
+  project: core
+  sources:
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      ref: myRepo
+    - repoURL: "ghcr.io/m0nsterrr/helm-charts/homepage"
+      targetRevision: 3.2.0
+      chart: homepage
+      helm:
+        releaseName: homepage
+        valueFiles:
+          - $myRepo/homepage/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: homepage
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Prune=true
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  revisionHistoryLimit: 3
