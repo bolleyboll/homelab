@@ -1,8 +1,0 @@
----
-k3s_master_config_path: "/etc/rancher/k3s/config.yaml"
-k3s_cilium_version: "1.17.1"
-k3s_cilium_namespace: "kube-system"
-k3s_longhorn_version: "1.8.1"
-k3s_longhorn_namespace: "longhorn-system"
-k3s_argocd_version: "7.8.10"
-k3s_argocd_namespace: "argocd"
