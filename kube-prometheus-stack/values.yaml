@@ -26,6 +26,15 @@ prometheus:
   prometheusSpec:
     retention: 7d
     serviceMonitorSelectorNilUsesHelmValues: false
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
   ingress:
     enabled: true
     ingressClassName: "nginx"
