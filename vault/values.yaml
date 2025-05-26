@@ -7,3 +7,6 @@ server:
     activeService: true
     hosts:
       - host: vault.lan
+
+  readinessProbe:
+    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
