@@ -1,0 +1,205 @@
+---
+services:
+  qbittorrent:
+    image: ghcr.io/linuxserver/qbittorrent:5.1.0
+    container_name: qbittorrent
+    hostname: docker
+    networks:
+      - servarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - qbittorrent-config:/config
+      - qbittorrent-downloads:/downloads
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+
+  duplicati:
+    image: ghcr.io/linuxserver/duplicati:2.1.0
+    container_name: duplicati
+    hostname: docker
+    networks:
+      - servarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+      # - SETTINGS_ENCRYPTION_KEY=
+      # - CLI_ARGS= #optional
+      - DUPLICATI__WEBSERVICE_PASSWORD='password'
+    volumes:
+      - /path/to/duplicati/config:/config
+      - /path/to/backups:/backups
+      - /path/to/source:/source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
+    container_name: flaresolverr
+    hostname: docker
+    networks:
+      - servarr
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+      - TZ=Asia/Kolkata
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    hostname: docker
+    networks:
+      - servarr
+    depends_on:
+      - flaresolverr
+      - qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - prowlarr-config:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr:4.0.14
+    container_name: sonarr
+    hostname: docker
+    networks:
+      - servarr
+    depends_on:
+      - qbittorrent
+      - prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - servarr-config:/config
+      # Paths to Media
+      # - downloads:/tv
+      # - downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: ghcr.io/linuxserver/radarr:5.25.0
+    container_name: radarr
+    hostname: docker
+    networks:
+      - servarr
+    depends_on:
+      - qbittorrent
+      - prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - radarr-config:/config
+      # Paths to Media
+      # - /path/to/movies:/movies #optional
+      # - /path/to/download-client-downloads:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  bazarr:
+    image: ghcr.io/linuxserver/bazarr:1.5.2
+    container_name: bazarr
+    hostname: docker
+    networks:
+      - servarr
+    depends_on:
+      - sonarr
+      - radarr
+      - qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - bazarr-config:/config
+      # Paths to Media
+      # - /path/to/movies:/movies #optional
+      # - /path/to/tv:/tv #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
+  jellyseerr:
+    image: ghcr.io/fallenbagel/jellyseerr:2.5.2
+    container_name: jellyseerr
+    hostname: docker
+    networks:
+      - servarr
+    depends_on:
+      - radarr
+      - sonarr
+      - bazarr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Asia/Kolkata
+      - PORT=5055 #optional
+    ports:
+      - 5055:5055
+    volumes:
+      - jellyseerr-config:/app/config
+    restart: unless-stopped
+
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    hostname: docker
+    networks:
+      - servarr
+    depends_on:
+      - qbittorrent
+      - prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - readarr-config:/config
+      # Paths to Media
+      # - /path/to/books:/books #optional
+      # - /path/to/download-client-downloads:/downloads #optional
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+
+networks:
+  servarr:
+
+volumes:
+  qbittorrent-config:
+    driver: local
+  qbittorrent-downloads:
+    driver: local
+  prowlarr-config:
+    driver: local
+  servarr-config:
+    driver: local
+  radarr-config:
+    driver: local
+  bazarr-config:
+    driver: local
+  jellyseerr-config:
+    driver: local
+  readarr-config:
+    driver: local
