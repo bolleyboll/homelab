@@ -1,4 +1,3 @@
----
 providers:
   longhorn:
     url: http://longhorn.lan/

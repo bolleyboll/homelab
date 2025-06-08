@@ -44,8 +44,8 @@ spec:
           volumeMounts:
             - name: homepage-config
               mountPath: /app/config/
-            - mountPath: /app/config/logs
-              name: logs
+            - name: logs
+              mountPath: /app/config/logs
       volumes:
         - name: homepage-config
           configMap:
