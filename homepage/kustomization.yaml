@@ -11,7 +11,7 @@ resources:
   - role.yaml
 
 configMapGenerator:
-  - name: homepage-config
+  - name: homepage
     files:
       - config/bookmarks.yaml
       - config/custom.css
