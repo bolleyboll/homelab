@@ -4,3 +4,15 @@ ingress:
   ingressClassName: "nginx"
   pathType: ImplementationSpecific
   hostname: keycloak.lan
+
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: "password"
+    username: bn_keycloak
+    password: "password"
+    database: bitnami_keycloak
+    existingSecret: ""
+    secretKeys:
+      userPasswordKey: password
+  architecture: standalone
