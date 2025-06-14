@@ -3,6 +3,7 @@ services:
   qbittorrent:
     image: ghcr.io/linuxserver/qbittorrent:5.1.0
     container_name: qbittorrent
+    pull_policy: always
     hostname: docker
     networks:
       - servarr
@@ -25,27 +26,29 @@ services:
     image: ghcr.io/linuxserver/duplicati:2.1.0
     container_name: duplicati
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kolkata
-      # - SETTINGS_ENCRYPTION_KEY=
+      - SETTINGS_ENCRYPTION_KEY='password'
       # - CLI_ARGS= #optional
       - DUPLICATI__WEBSERVICE_PASSWORD='password'
     volumes:
-      - /path/to/duplicati/config:/config
-      - /path/to/backups:/backups
-      - /path/to/source:/source
+      - duplicati-config:/config
+      # - /path/to/backups:/backups
+      # - /path/to/source:/source
     ports:
       - 8200:8200
     restart: unless-stopped
 
   flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
+    image: ghcr.io/flaresolverr/flaresolverr:v3.3.25
     container_name: flaresolverr
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     environment:
@@ -56,9 +59,10 @@ services:
     restart: unless-stopped
 
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: ghcr.io/linuxserver/prowlarr:1.37.0
     container_name: prowlarr
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     depends_on:
@@ -78,6 +82,7 @@ services:
     image: ghcr.io/linuxserver/sonarr:4.0.14
     container_name: sonarr
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     depends_on:
@@ -90,8 +95,9 @@ services:
     volumes:
       - servarr-config:/config
       # Paths to Media
-      # - downloads:/tv
-      # - downloads:/downloads
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
+      - qbittorrent-downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -100,6 +106,7 @@ services:
     image: ghcr.io/linuxserver/radarr:5.25.0
     container_name: radarr
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     depends_on:
@@ -112,8 +119,8 @@ services:
     volumes:
       - radarr-config:/config
       # Paths to Media
-      # - /path/to/movies:/movies #optional
-      # - /path/to/download-client-downloads:/downloads #optional
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
+      - qbittorrent-downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -122,6 +129,7 @@ services:
     image: ghcr.io/linuxserver/bazarr:1.5.2
     container_name: bazarr
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     depends_on:
@@ -135,16 +143,18 @@ services:
     volumes:
       - bazarr-config:/config
       # Paths to Media
-      # - /path/to/movies:/movies #optional
-      # - /path/to/tv:/tv #optional
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
     ports:
       - 6767:6767
     restart: unless-stopped
 
   jellyseerr:
-    image: ghcr.io/fallenbagel/jellyseerr:2.5.2
+    image: ghcr.io/fallenbagel/jellyseerr:2.6.0
     container_name: jellyseerr
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     depends_on:
@@ -154,7 +164,7 @@ services:
     environment:
       - LOG_LEVEL=debug
       - TZ=Asia/Kolkata
-      - PORT=5055 #optional
+      - PORT=5055
     ports:
       - 5055:5055
     volumes:
@@ -165,6 +175,7 @@ services:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     hostname: docker
+    pull_policy: always
     networks:
       - servarr
     depends_on:
@@ -202,4 +213,6 @@ volumes:
   jellyseerr-config:
     driver: local
   readarr-config:
+    driver: local
+  duplicati-config:
     driver: local
