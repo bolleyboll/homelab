@@ -39,6 +39,30 @@ prometheus:
           # Set hostname as instance label
           - source_labels: [__meta_dockerswarm_node_hostname]
             target_label: instance
+      - job_name: "node-exporter"
+        dockerswarm_sd_configs:
+          - host: "tcp://192.168.2.101:2375"
+            role: nodes
+        relabel_configs:
+          # Fetch metrics on port 9100.
+          - source_labels: [__meta_dockerswarm_node_address]
+            target_label: __address__
+            replacement: $1:9100
+          # Set hostname as instance label
+          - source_labels: [__meta_dockerswarm_node_hostname]
+            target_label: instance
+      - job_name: "cadvisor"
+        dockerswarm_sd_configs:
+          - host: "tcp://192.168.2.101:2375"
+            role: nodes
+        relabel_configs:
+          # Fetch metrics on port 8080.
+          - source_labels: [__meta_dockerswarm_node_address]
+            target_label: __address__
+            replacement: $1:8080
+          # Set hostname as instance label
+          - source_labels: [__meta_dockerswarm_node_hostname]
+            target_label: instance
     storageSpec:
       volumeClaimTemplate:
         spec:
