@@ -85,7 +85,7 @@ prometheus:
               - __meta_dockerswarm_service_label_prometheus_port
             target_label: __address__
             separator: ":"
-            replacement: $1:$2
+            replacement: $1
             action: replace
           # Set hostname as instance label
           - source_labels: [__meta_dockerswarm_node_hostname]
