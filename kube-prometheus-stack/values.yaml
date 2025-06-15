@@ -80,9 +80,13 @@ prometheus:
           - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
             target_label: job
           # Fetch metrics on port 9100.
-          - source_labels: [__meta_dockerswarm_node_address, __meta_dockerswarm_service_label_prometheus_port]
+          - source_labels:
+              - __meta_dockerswarm_node_address
+              - __meta_dockerswarm_service_label_prometheus_port
             target_label: __address__
+            separator: ""
             replacement: $1:$2
+            action: replace
           # Set hostname as instance label
           - source_labels: [__meta_dockerswarm_node_hostname]
             target_label: instance
