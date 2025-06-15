@@ -63,6 +63,22 @@ prometheus:
           # Set hostname as instance label
           - source_labels: [__meta_dockerswarm_node_hostname]
             target_label: instance
+      - job_name: "swarm-jobs"
+        dockerswarm_sd_configs:
+          - host: "tcp://192.168.2.101:2375"
+            role: tasks
+        relabel_configs:
+          # Only keep containers that should be running.
+          - source_labels: [__meta_dockerswarm_task_desired_state]
+            regex: running
+            action: keep
+          # Only keep containers that have a `prometheus-job` label.
+          - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
+            regex: .+
+            action: keep
+          # Use the prometheus-job Swarm label as Prometheus job label.
+          - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
+            target_label: job
     storageSpec:
       volumeClaimTemplate:
         spec:
