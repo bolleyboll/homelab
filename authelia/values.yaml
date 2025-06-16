@@ -4,6 +4,9 @@ ingress:
   className: "nginx"
 
 configMap:
+  storage:
+    local:
+      enabled: true
   telemetry:
     metrics:
       enabled: true
