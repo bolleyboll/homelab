@@ -13,6 +13,9 @@ configMap:
   session:
     cookies:
       - domain: "authelia.lan"
+  authentication_backend:
+    file:
+      enabled: true
   telemetry:
     metrics:
       enabled: true
