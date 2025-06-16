@@ -1,7 +1,14 @@
 ---
 ingress:
-  enabled: true
-  # rulesOverride:
-  #   - rule:
-  #       - host: "authelia.lan"
+  enabled: false
+  rulesOverride:
+    - rule:
+        - host: "authelia.lan"
   className: "nginx"
+
+configMap:
+  telemetry:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
