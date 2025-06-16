@@ -10,8 +10,9 @@ configMap:
   notifier:
     filesystem:
       enabled: true
-  cookies:
-    domain: "authelia.lan"
+  session:
+    cookies:
+      domain: "authelia.lan"
   telemetry:
     metrics:
       enabled: true
