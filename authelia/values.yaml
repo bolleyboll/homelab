@@ -7,6 +7,9 @@ configMap:
   storage:
     local:
       enabled: true
+  notifier:
+    filesystem:
+      enabled: true
   telemetry:
     metrics:
       enabled: true
