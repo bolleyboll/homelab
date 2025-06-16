@@ -1,0 +1,10 @@
+---
+ingress:
+  enabled: true
+  rulesOverride:
+    - host: "init.lan"
+      http:
+        paths:
+          - path: "/"
+            pathType: ImplementationSpecific
+  className: 'nginx'

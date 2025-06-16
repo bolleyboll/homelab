@@ -1,0 +1,49 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authelia
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    name: authelia
+spec:
+  project: core
+  sources:
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      ref: myRepo
+    - repoURL: "https://charts.authelia.com"
+      targetRevision: 0.10.17
+      chart: authelia
+      helm:
+        releaseName: authelia
+        valueFiles:
+          - $myRepo/authelia/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: authelia
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Prune=true
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  revisionHistoryLimit: 3

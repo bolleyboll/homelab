@@ -25,7 +25,9 @@ resources:
   # Headlamp
   - ../argo-apps/headlamp/headlamp.yaml
   # Keycloak
-  - ../argo-apps/keycloak/keycloak.yaml
+  # - ../argo-apps/keycloak/keycloak.yaml
+  # Authelia
+  - ../argo-apps/authelia/authelia.yaml
   # Vault
   - ../argo-apps/vault/vault.yaml
   # Vault Secrets Operator
