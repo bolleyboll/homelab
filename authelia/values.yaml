@@ -1,9 +1,6 @@
 ---
 ingress:
   enabled: false
-  rulesOverride:
-    - rule:
-        - host: "authelia.lan"
   className: "nginx"
 
 configMap:
