@@ -12,7 +12,7 @@ configMap:
       enabled: true
   session:
     cookies:
-      domain: "authelia.lan"
+      - domain: "authelia.lan"
   telemetry:
     metrics:
       enabled: true
