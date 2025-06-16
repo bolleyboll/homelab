@@ -2,9 +2,6 @@
 ingress:
   enabled: true
   rulesOverride:
-    - host: "init.lan"
-      http:
-        paths:
-          - path: "/"
-            pathType: ImplementationSpecific
+    rule:
+      - host: "authelia.lan"
   className: 'nginx'
