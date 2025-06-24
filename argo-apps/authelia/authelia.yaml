@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "https://charts.authelia.com"
-      targetRevision: 0.10.17
+      targetRevision: 0.10.22
       chart: authelia
       helm:
         releaseName: authelia
