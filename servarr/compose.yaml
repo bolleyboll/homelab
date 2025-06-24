@@ -150,6 +150,24 @@ services:
       - 6767:6767
     restart: unless-stopped
 
+  profilarr:
+    image: santiagosayshey/profilarr:v1.0.1
+    container_name: profilarr
+    hostname: docker
+    pull_policy: always
+    networks:
+      - servarr
+    depends_on:
+      - radarr
+      - sonarr
+    environment:
+      - TZ=Asia/Kolkata
+    ports:
+      - 6868:6868
+    volumes:
+      - profilarr-config:/config
+    restart: unless-stopped
+
   jellyseerr:
     image: ghcr.io/fallenbagel/jellyseerr:2.6.0
     container_name: jellyseerr
@@ -211,6 +229,8 @@ volumes:
   bazarr-config:
     driver: local
   jellyseerr-config:
+    driver: local
+  profilarr-config:
     driver: local
   readarr-config:
     driver: local
