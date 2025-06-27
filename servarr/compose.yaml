@@ -30,7 +30,6 @@ services:
     networks:
       - servarr
     depends_on:
-      - flaresolverr
       - qbittorrent
     environment:
       - PUID=1000
@@ -197,6 +196,4 @@ volumes:
   profilarr-config:
     driver: local
   readarr-config:
-    driver: local
-  duplicati-config:
     driver: local
