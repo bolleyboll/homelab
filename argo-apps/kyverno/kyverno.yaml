@@ -18,7 +18,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "https://kyverno.github.io/kyverno/"
-      targetRevision: 3.4.3
+      targetRevision: 3.4.4
       chart: kyverno
       helm:
         releaseName: kyverno
