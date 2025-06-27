@@ -1,7 +1,7 @@
 ---
 services:
   qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent:5.1.0
+    image: ghcr.io/linuxserver/qbittorrent:5.1.1
     container_name: qbittorrent
     pull_policy: always
     hostname: docker
@@ -20,42 +20,6 @@ services:
       - 8080:8080
       - 6881:6881
       - 6881:6881/udp
-    restart: unless-stopped
-
-  duplicati:
-    image: ghcr.io/linuxserver/duplicati:2.1.0
-    container_name: duplicati
-    hostname: docker
-    pull_policy: always
-    networks:
-      - servarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kolkata
-      - SETTINGS_ENCRYPTION_KEY='password'
-      # - CLI_ARGS= #optional
-      - DUPLICATI__WEBSERVICE_PASSWORD='password'
-    volumes:
-      - duplicati-config:/config
-      # - /path/to/backups:/backups
-      # - /path/to/source:/source
-    ports:
-      - 8200:8200
-    restart: unless-stopped
-
-  flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:v3.3.25
-    container_name: flaresolverr
-    hostname: docker
-    pull_policy: always
-    networks:
-      - servarr
-    environment:
-      - LOG_LEVEL=${LOG_LEVEL:-info}
-      - LOG_HTML=${LOG_HTML:-false}
-      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
-      - TZ=Asia/Kolkata
     restart: unless-stopped
 
   prowlarr:
@@ -79,7 +43,7 @@ services:
     restart: unless-stopped
 
   sonarr:
-    image: ghcr.io/linuxserver/sonarr:4.0.14
+    image: ghcr.io/linuxserver/sonarr:4.0.15
     container_name: sonarr
     hostname: docker
     pull_policy: always
@@ -103,7 +67,7 @@ services:
     restart: unless-stopped
 
   radarr:
-    image: ghcr.io/linuxserver/radarr:5.25.0
+    image: ghcr.io/linuxserver/radarr:5.26.2
     container_name: radarr
     hostname: docker
     pull_policy: always
@@ -169,7 +133,7 @@ services:
     restart: unless-stopped
 
   jellyseerr:
-    image: ghcr.io/fallenbagel/jellyseerr:2.6.0
+    image: ghcr.io/fallenbagel/jellyseerr:2.7.0
     container_name: jellyseerr
     hostname: docker
     pull_policy: always
@@ -190,7 +154,7 @@ services:
     restart: unless-stopped
 
   readarr:
-    image: lscr.io/linuxserver/readarr:develop
+    image: lscr.io/linuxserver/readarr:0.4.17-develop
     container_name: readarr
     hostname: docker
     pull_policy: always
