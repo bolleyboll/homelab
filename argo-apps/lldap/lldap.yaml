@@ -16,7 +16,7 @@ spec:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
       ref: myRepo
-    - repoURL: "ghcr.io/alexmorbo/helm-charts/"
+    - repoURL: "ghcr.io/alexmorbo/helm-charts"
       targetRevision: 1.0.7
       chart: lldap
       helm:
