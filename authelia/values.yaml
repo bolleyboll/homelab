@@ -26,8 +26,7 @@ configMap:
       attributes:
         username: "uid"
         mail: "mail"
-        groups: "memberOf"
-        name: "cn"
+        name: "displayname"
   telemetry:
     metrics:
       enabled: true
