@@ -17,8 +17,8 @@ configMap:
     ldap:
       enabled: true
       address: "ldap://lldap.lldap.svc:3890"
-      base_dn: "DC=homelab"
-      user: "UID=admin,DC=homelab"
+      base_dn: "dc=homelab"
+      user: "uid=admin,ou=people,dc=homelab"
   telemetry:
     metrics:
       enabled: true
