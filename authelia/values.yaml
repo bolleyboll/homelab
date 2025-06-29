@@ -14,8 +14,10 @@ configMap:
     cookies:
       - domain: "authelia.lan"
   authentication_backend:
-    file:
+    ldap:
       enabled: true
+      address: "ldap://ldap.lldap.svc:3890"
+      user: admin
   telemetry:
     metrics:
       enabled: true
