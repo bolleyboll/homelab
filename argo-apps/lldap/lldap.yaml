@@ -16,9 +16,9 @@ spec:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
       ref: myRepo
-    - repoURL: "https://github.com/Evantage-WS/lldap-kubernetes"
-      targetRevision: 0.3.5
-      chart: lldap-chart
+    - repoURL: "ghcr.io/alexmorbo/helm-charts/"
+      targetRevision: 1.0.7
+      chart: lldap
       helm:
         releaseName: lldap
         valueFiles:
