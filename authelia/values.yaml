@@ -16,11 +16,13 @@ configMap:
   authentication_backend:
     ldap:
       enabled: true
+      tls:
+        skip_verify: true
       address: "ldap://lldap.lldap.svc:3890"
       base_dn: "dc=homelab"
-      user: "uid=admin,ou=people,dc=homelab"
+      user: "uid=authelia,ou=people,dc=homelab"
       password:
-        value: 'administrator123456'
+        value: "password"
   telemetry:
     metrics:
       enabled: true
