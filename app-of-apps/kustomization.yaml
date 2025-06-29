@@ -40,3 +40,5 @@ resources:
   # - ../argo-apps/kyverno/kyverno.yaml
   # Homepage
   - ../argo-apps/homepage/homepage.yaml
+  # LLDAP
+  - ../argo-apps/lldap/lldap.yaml
