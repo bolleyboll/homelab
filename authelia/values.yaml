@@ -16,7 +16,7 @@ configMap:
   authentication_backend:
     ldap:
       enabled: true
-      address: "ldap://ldap.lldap.svc:3890"
+      address: "ldap://lldap.lldap.svc:3890"
       user: admin
   telemetry:
     metrics:
