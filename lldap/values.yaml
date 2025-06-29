@@ -1,0 +1,9 @@
+---
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  hosts:
+    - host: ldap.lan
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
