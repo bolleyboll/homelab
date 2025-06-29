@@ -23,6 +23,11 @@ configMap:
       user: "uid=admin,ou=people,dc=homelab"
       password:
         value: "administrator123456"
+      attributes:
+        username: "uid"
+        mail: "mail"
+        groups: "memberOf"
+        name: "cn"
   telemetry:
     metrics:
       enabled: true
