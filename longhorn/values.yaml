@@ -12,3 +12,4 @@ persistence:
 defaultSettings:
   defaultReplicaCount: 1
   allowCollectingLonghornUsageMetrics: false
+  storageReservedPercentageForDefaultDisk: 10
