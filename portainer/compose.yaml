@@ -21,7 +21,7 @@ services:
         - "traefik.http.services.portainer.loadbalancer.server.port=9000"
         - "traefik.http.routers.portainer.entrypoints=web"
         - "homepage.name=Portainer"
-        - "homepage.group=Zeus"
+        - "homepage.group=My First Group"
         - "homepage.description=Docker Management"
     volumes:
       - portainer_data:/data
