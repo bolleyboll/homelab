@@ -20,6 +20,9 @@ services:
         - "traefik.http.routers.portainer.rule=Host(`portainer.lan`)"
         - "traefik.http.services.portainer.loadbalancer.server.port=9000"
         - "traefik.http.routers.portainer.entrypoints=web"
+        - "homepage.name=Portainer"
+        - "homepage.group=Zeus"
+        - "homepage.description=Docker Management"
     volumes:
       - portainer_data:/data
 
