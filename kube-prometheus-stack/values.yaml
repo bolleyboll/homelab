@@ -15,6 +15,13 @@ grafana:
     ingressClassName: "nginx"
     hosts:
       - grafana.lan
+  grafana.ini:
+    security:
+      cookie_secure: false
+    server:
+      domain: grafana.lan
+      protocol: http
+      root_url: "http://grafana.lan"
 
 kubeProxy:
   enabled: false
