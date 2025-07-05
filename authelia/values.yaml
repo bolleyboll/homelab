@@ -23,8 +23,11 @@ configMap:
       base_dn: "dc=homelab"
       # Read Only Service Account for Authelia
       user: "uid=authelia,ou=people,dc=homelab"
+      additional_users_dn: "ou=people"
       password:
         value: "password"
+    file:
+      enabled: true
   telemetry:
     metrics:
       enabled: true
