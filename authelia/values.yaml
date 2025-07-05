@@ -26,8 +26,6 @@ configMap:
       additional_users_dn: "ou=people"
       password:
         value: "password"
-    file:
-      enabled: true
   telemetry:
     metrics:
       enabled: true
