@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "registry-1.docker.io/bitnamicharts"
-      targetRevision: 8.8.6
+      targetRevision: 8.9.1
       chart: external-dns
       helm:
         releaseName: external-dns

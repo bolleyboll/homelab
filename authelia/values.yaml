@@ -21,6 +21,7 @@ configMap:
         skip_verify: true
       address: "ldap://lldap.lldap.svc:3890"
       base_dn: "dc=homelab"
+      # Read Only Service Account for Authelia
       user: "uid=authelia,ou=people,dc=homelab"
       password:
         value: "password"
