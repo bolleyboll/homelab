@@ -13,6 +13,7 @@ defaultSettings:
   defaultReplicaCount: 1
   allowCollectingLonghornUsageMetrics: false
   storageReservedPercentageForDefaultDisk: 10
+  deletingConfirmationFlag: true
 
 csi:
   attacherReplicaCount: 1
