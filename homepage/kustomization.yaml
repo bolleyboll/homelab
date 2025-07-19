@@ -22,3 +22,8 @@ resources:
   - service-account.yaml
   - secret.yaml
   - role.yaml
+
+images:
+  - name: ghcr.io/gethomepage/homepage
+    newName: ghcr.io/gethomepage/homepage
+    newTag: v1.4.0
