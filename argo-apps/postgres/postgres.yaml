@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "registry-1.docker.io/bitnamicharts"
-      targetRevision: 16.7.18
+      targetRevision: 16.7.20
       chart: postgresql
       helm:
         releaseName: postgresql
