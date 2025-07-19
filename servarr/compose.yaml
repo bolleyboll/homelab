@@ -132,7 +132,7 @@ services:
     restart: unless-stopped
 
   jellyseerr:
-    image: ghcr.io/fallenbagel/jellyseerr:2.7.0
+    image: ghcr.io/fallenbagel/jellyseerr:2.7.1
     container_name: jellyseerr
     hostname: docker
     pull_policy: always
