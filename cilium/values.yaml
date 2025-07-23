@@ -5,14 +5,43 @@ kubeProxyReplacement: true
 
 envoy:
   enabled: true
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
 
 operator:
   replicas: 1
   rollOutPods: true
+  prometheus:
+    enabled: true
+    metricsService: true
+    serviceMonitor:
+      enabled: true
+
+prometheus:
+  enabled: true
+  metricsService: true
+  serviceMonitor:
+    enabled: true
 
 hubble:
+  metrics:
+    enabled:
+      - dns:query;ignoreAAAA
+      - drop
+      - tcp
+      - flow
+      - icmp
+      - http
+    serviceMonitor:
+      enabled: true
   relay:
     enabled: true
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
   ui:
     enabled: true
     ingress:
