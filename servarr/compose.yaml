@@ -1,7 +1,7 @@
 ---
 services:
   qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent:5.1.1
+    image: ghcr.io/linuxserver/qbittorrent:5.1.2
     container_name: qbittorrent
     pull_policy: always
     hostname: docker
@@ -132,7 +132,7 @@ services:
     restart: unless-stopped
 
   jellyseerr:
-    image: ghcr.io/fallenbagel/jellyseerr:2.7.1
+    image: ghcr.io/fallenbagel/jellyseerr:2.7.2
     container_name: jellyseerr
     hostname: docker
     pull_policy: always
