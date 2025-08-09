@@ -4,5 +4,6 @@ speaker:
     mlBindPort: 7947
 
 prometheus:
+  rbacPrometheus: false
   serviceMonitor:
     enabled: true
