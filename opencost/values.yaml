@@ -33,3 +33,6 @@ opencost:
       AdditionalForwardingRuleCost: 0.0
   carbonCost:
     enabled: true
+  metrics:
+    serviceMonitor:
+      enabled: true

@@ -16,3 +16,8 @@ postgresql:
     secretKeys:
       userPasswordKey: password
   architecture: standalone
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true

@@ -2,6 +2,10 @@ controller:
   containerPort:
     http: 80
     https: 443
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
 
   ingressClass: nginx
 

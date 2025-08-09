@@ -2,3 +2,9 @@
 speaker:
   memberlist:
     mlBindPort: 7947
+
+prometheus:
+  serviceMonitor:
+    enabled: true
+  podMonitor:
+    enabled: true
