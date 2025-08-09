@@ -3,6 +3,6 @@ speaker:
   memberlist:
     mlBindPort: 7947
 
-# prometheus:
-#   serviceMonitor:
-#     enabled: true
+prometheus:
+  serviceMonitor:
+    enabled: true
