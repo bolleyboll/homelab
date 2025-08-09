@@ -24,6 +24,7 @@ prometheus:
   metricsService: true
   serviceMonitor:
     enabled: true
+    trustCRDsExist: true
 
 hubble:
   metrics:
