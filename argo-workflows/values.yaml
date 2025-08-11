@@ -1,0 +1,15 @@
+---
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - workflow.lan
+    pathType: ImplementationSpecific
+
+controller:
+  metricsConfig:
+    enabled: true
+  telemetryConfig:
+    serviceMonitor:
+      enabled: true
