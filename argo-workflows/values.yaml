@@ -6,6 +6,8 @@ server:
     hosts:
       - workflow.lan
     pathType: ImplementationSpecific
+  authModes:
+    - server
 
 controller:
   metricsConfig:
