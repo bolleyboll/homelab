@@ -43,4 +43,4 @@ resources:
   # LLDAP
   - ../argo-apps/lldap/lldap.yaml
   # Argo Workflows
-  - ../argo-apps/argo-workflows/argo-workflows.yaml
+  # - ../argo-apps/argo-workflows/argo-workflows.yaml
