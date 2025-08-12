@@ -27,7 +27,7 @@ resources:
   # Keycloak
   # - ../argo-apps/keycloak/keycloak.yaml
   # Authelia
-  - ../argo-apps/authelia/authelia.yaml
+  # - ../argo-apps/authelia/authelia.yaml
   # Vault
   - ../argo-apps/vault/vault.yaml
   # Vault Secrets Operator
