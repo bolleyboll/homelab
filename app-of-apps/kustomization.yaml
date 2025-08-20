@@ -4,6 +4,8 @@ kind: Kustomization
 
 resources:
   # NOTE: The path is relative to "app-of-apps/kustomization.yaml"
+  # App of Apps
+  - ../argo-apps/app-of-apps/app-of-apps.yaml
   # ArgoCD
   - ../argo-apps/argocd/argocd.yaml
   # Cilium
