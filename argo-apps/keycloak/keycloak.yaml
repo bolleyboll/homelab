@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "registry-1.docker.io/bitnamicharts"
-      targetRevision: 24.9.0
+      targetRevision: 25.1.1
       chart: keycloak
       helm:
         releaseName: keycloak
