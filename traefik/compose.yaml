@@ -21,7 +21,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "8082:8082"
+      - "8080:8080"
     networks:
       - homelab
     # healthcheck:
@@ -36,7 +36,7 @@ services:
           - node.role == manager
       labels:
         - "prometheus-job=traefik"
-        - "prometheus-port=8082"
+        - "prometheus-port=8080"
         - "traefik.enable=true"
         - "traefik.http.routers.traefik.service=traefik"
         - "traefik.http.routers.traefik.rule=Host(`traefik.lan`)"
