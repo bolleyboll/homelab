@@ -14,3 +14,6 @@ secret:
   lldapJwtSecret: "wobY6RK/Dc0vL21zFiIZs9iyVy0NQ3ldijYPQ4HLWTc="
   lldapUserPass: "administrator123456"
   lldapBaseDn: "dc=homelab"
+
+image:
+  tag: "2025-08-21-alpine"
