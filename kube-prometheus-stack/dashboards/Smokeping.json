@@ -32,7 +32,7 @@
 		{
 			"datasource": {
 				"type": "prometheus",
-				"uid": "PBFA97CFB590B2093"
+				"uid": "prometheus"
 			},
 			"fieldConfig": {
 				"defaults": {
@@ -90,7 +90,7 @@
 				{
 					"datasource": {
 						"type": "prometheus",
-						"uid": "PBFA97CFB590B2093"
+						"uid": "prometheus"
 					},
 					"editorMode": "code",
 					"exemplar": false,
@@ -118,7 +118,7 @@
 			"dataFormat": "tsbuckets",
 			"datasource": {
 				"type": "prometheus",
-				"uid": "PBFA97CFB590B2093"
+				"uid": "prometheus"
 			},
 			"fieldConfig": {
 				"defaults": {
@@ -194,7 +194,7 @@
 				{
 					"datasource": {
 						"type": "prometheus",
-						"uid": "PBFA97CFB590B2093"
+						"uid": "prometheus"
 					},
 					"editorMode": "code",
 					"expr": "sum(rate(smokeping_response_duration_seconds_bucket{host=~\"$target\"}[5m])) by (le)",
@@ -226,7 +226,7 @@
 		{
 			"datasource": {
 				"type": "prometheus",
-				"uid": "PBFA97CFB590B2093"
+				"uid": "prometheus"
 			},
 			"fieldConfig": {
 				"defaults": {
@@ -355,7 +355,7 @@
 				{
 					"datasource": {
 						"type": "prometheus",
-						"uid": "PBFA97CFB590B2093"
+						"uid": "prometheus"
 					},
 					"editorMode": "code",
 					"expr": "smokeping_response_duration_seconds_sum{host=~\"$target\"} / smokeping_response_duration_seconds_count{host=~\"$target\"}",
@@ -370,7 +370,7 @@
 		{
 			"datasource": {
 				"type": "prometheus",
-				"uid": "PBFA97CFB590B2093"
+				"uid": "prometheus"
 			},
 			"fieldConfig": {
 				"defaults": {
@@ -489,7 +489,7 @@
 				{
 					"datasource": {
 						"type": "prometheus",
-						"uid": "PBFA97CFB590B2093"
+						"uid": "prometheus"
 					},
 					"editorMode": "code",
 					"expr": "(smokeping_requests_total{host=~\"$target\"} - smokeping_response_duration_seconds_count{host=~\"$target\"})/smokeping_requests_total{host=~\"$target\"} ",
@@ -500,7 +500,7 @@
 				{
 					"datasource": {
 						"type": "prometheus",
-						"uid": "PBFA97CFB590B2093"
+						"uid": "prometheus"
 					},
 					"editorMode": "code",
 					"expr": "(smokeping_requests_total{host=~\"$target\"} - smokeping_response_duration_seconds_count{host=~\"$target\"})",
@@ -532,7 +532,7 @@
 				},
 				"datasource": {
 					"type": "prometheus",
-					"uid": "PBFA97CFB590B2093"
+					"uid": "prometheus"
 				},
 				"definition": "label_values(smokeping_response_duration_seconds_bucket, host)",
 				"hide": 0,

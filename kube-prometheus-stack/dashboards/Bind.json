@@ -2257,7 +2257,7 @@
 		{
 		  "current": {
 			"text": "Prometheus",
-			"value": "PBFA97CFB590B2093"
+			"value": "prometheus"
 		  },
 		  "includeAll": false,
 		  "label": "datasource",
