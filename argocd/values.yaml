@@ -7,10 +7,6 @@ configs:
   rbac:
     policy.default: "role:admin"
   repositories:
-    bitnami-helm-repo:
-      url: "https://charts.bitnami.com/bitnami"
-      name: bitnami
-      type: helm
     homelab-repo:
       url: "https://github.com/bolleyboll/homelab.git"
       name: homelab
