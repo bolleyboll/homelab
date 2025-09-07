@@ -1,24 +1,44 @@
 ---
 services:
-  redis-7:
-    image: redis:7.4.2
+  redis-8:
+    image: redis:8.2.1-alpine
     container_name: redis
     hostname: pi
     restart: always
     networks:
       - homelab
+    ports:
+      - "6379:6379"
     deploy:
       placement:
         constraints:
-          - node.role == manager
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.redis-7.service=redis-7"
-        - "traefik.http.routers.redis-7.rule=Host(`redis-7.lan`)"
-        - "traefik.http.services.redis-7.loadbalancer.server.port=6379"
-        - "traefik.http.routers.redis-7.entrypoints=web"
+          - node.role == worker
     healthcheck:
-      test: ["CMD", "redis-cli","ping"]
+      test: ["CMD", "redis-cli", "ping"]
+
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.76.0-alpine
+    container_name: redis-exporter
+    hostname: pi
+    restart: always
+    networks:
+      - homelab
+    ports:
+      - "9121:9121"
+    environment:
+      - REDIS_ADDR="redis-8:6379"
+    deploy:
+      placement:
+        constraints:
+          - node.role == worker
+      labels:
+        - "prometheus-job=redis-exporter"
+        - "prometheus-port=9121"
+        - "traefik.enable=true"
+        - "traefik.http.routers.redisexporter.service=redisexporter"
+        - "traefik.http.routers.redisexporter.rule=Host(`redis-exporter.lan`)"
+        - "traefik.http.services.redisexporter.loadbalancer.server.port=9121"
+        - "traefik.http.routers.redisexporter.entrypoints=web"
 
 networks:
   homelab:
