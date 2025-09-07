@@ -4,6 +4,7 @@ services:
     image: postgres:17.6-alpine
     container_name: postgres
     hostname: pi
+    user: postgres
     restart: always
     networks:
       - homelab
@@ -33,7 +34,7 @@ services:
     ports:
       - "9187:9187"
     environment:
-      - DATA_SOURCE_URI="postgres-17:5432/postgres?sslmode=disable"
+      - DATA_SOURCE_URI=postgres-17:5432/postgres?sslmode=disable
       - DATA_SOURCE_USER=${POSTGRES_USER}
       - DATA_SOURCE_PASS=${POSTGRES_PASSWORD}
     deploy:

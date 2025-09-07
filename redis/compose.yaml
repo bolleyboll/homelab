@@ -26,7 +26,7 @@ services:
     ports:
       - "9121:9121"
     environment:
-      - REDIS_ADDR="redis-8:6379"
+      - REDIS_ADDR=redis-8:6379
     deploy:
       placement:
         constraints:
