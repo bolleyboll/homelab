@@ -1,4 +1,0 @@
-[submodule "cilium/proxy"]
-	path = cilium/proxy
-	url = https://github.com/cilium/proxy.git
-	branch = v1.34
