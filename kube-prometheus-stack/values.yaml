@@ -22,13 +22,13 @@ grafana:
       domain: grafana.lan
       protocol: http
       root_url: "http://grafana.lan"
-  additionalDataSources:
-    - name: InfluxDB
-      type: influxdb
-      access: proxy
-      url: http://192.168.2.101:8181
-      database: candles
-      isDefault: false
+  # additionalDataSources:
+    # - name: InfluxDB
+    #   type: influxdb
+    #   access: proxy
+    #   url: http://192.168.2.101:8181
+    #   database: candles
+    #   isDefault: false
 
 kubeProxy:
   enabled: false
