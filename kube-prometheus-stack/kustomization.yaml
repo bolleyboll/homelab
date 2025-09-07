@@ -15,12 +15,6 @@ configMapGenerator:
     options:
       labels:
         grafana_dashboard: "1"
-  - name: custom-datasources
-    files:
-      - datasources/datasource.yaml
-    options:
-      labels:
-        grafana_datasource: "1"
 
 helmCharts:
   - name: kube-prometheus-stack
