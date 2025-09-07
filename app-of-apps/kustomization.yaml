@@ -32,8 +32,6 @@ resources:
   - ../argo-apps/vault/vault.yaml
   # Vault Secrets Operator
   - ../argo-apps/vault-secrets-operator/vault-secrets-operator.yaml
-  # PostgreSQL
-  - ../argo-apps/postgres/postgres.yaml
   # Cert-Manager
   - ../argo-apps/cert-manager/cert-manager.yaml
   # Kyverno
