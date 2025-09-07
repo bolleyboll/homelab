@@ -16,6 +16,7 @@ services:
       - --object-store=file
       - --data-dir=/var/lib/influxdb3
       - --without-auth
+      - --disable-telemetry-upload
     environment:
       - INFLUXDB3_DISABLE_AUTHZ=${INFLUXDB3_DISABLE_AUTHZ}
       - INFLUXDB3_BUCKET=${INFLUXDB3_BUCKET}
