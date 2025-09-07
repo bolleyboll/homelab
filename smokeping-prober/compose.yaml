@@ -14,7 +14,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == manager
+          - node.role == worker
       labels:
         - "prometheus-job=smokeping-prober"
         - "prometheus-port=9374"
