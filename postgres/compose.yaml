@@ -1,12 +1,14 @@
 ---
 services:
   postgres-17:
-    image: postgres:17.4
+    image: postgres:17.6-alpine
     container_name: postgres
     hostname: pi
     restart: always
     networks:
       - homelab
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
@@ -18,14 +20,34 @@ services:
       placement:
         constraints:
           - node.role == manager
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.postgres-17.service=postgres-17"
-        - "traefik.http.routers.postgres-17.rule=Host(`postgres-17.lan`)"
-        - "traefik.http.services.postgres-17.loadbalancer.server.port=5432"
-        - "traefik.http.routers.postgres-17.entrypoints=web"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  postgres-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
+    container_name: postgres-exporter
+    hostname: pi
+    restart: always
+    networks:
+      - homelab
+    ports:
+      - "9187:9187"
+    environment:
+      - DATA_SOURCE_URI="postgres-17:5432/postgres?sslmode=disable"
+      - DATA_SOURCE_USER=${POSTGRES_USER}
+      - DATA_SOURCE_PASS=${POSTGRES_PASSWORD}
+    deploy:
+      placement:
+        constraints:
+          - node.role == worker
+      labels:
+        - "prometheus-job=postgres-exporter"
+        - "prometheus-port=9187"
+        - "traefik.enable=true"
+        - "traefik.http.routers.postgresexporter.service=postgresexporter"
+        - "traefik.http.routers.postgresexporter.rule=Host(`postgres-exporter.lan`)"
+        - "traefik.http.services.postgresexporter.loadbalancer.server.port=9187"
+        - "traefik.http.routers.postgresexporter.entrypoints=web"
 
 networks:
   homelab:
