@@ -1,40 +1,36 @@
 ---
 services:
   influxdb-3:
-    image: influxdb:3.4.1-core
+    image: influxdb:2.7.12-alpine
     container_name: influxdb
     hostname: pi
     restart: always
     networks:
       - homelab
     ports:
-      - "8181:8181"
-    command:
-      - influxdb3
-      - serve
-      - --node-id=rpi
-      - --object-store=file
-      - --data-dir=/var/lib/influxdb3
-      - --without-auth
-      - --disable-telemetry-upload
+      - "8086:8086"
     environment:
-      - INFLUXDB3_DISABLE_AUTHZ=${INFLUXDB3_DISABLE_AUTHZ}
-      - INFLUXDB3_BUCKET=${INFLUXDB3_BUCKET}
-      - LOG_FILTER=${LOG_FILTER}
+      - DOCKER_INFLUXDB_INIT_MODE=${DOCKER_INFLUXDB_INIT_MODE}
+      - INFLUXD_LOG_LEVEL=${INFLUXD_LOG_LEVEL}
+      - DOCKER_INFLUXDB_INIT_ORG=${DOCKER_INFLUXDB_INIT_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET}
+      - DOCKER_INFLUXDB_INIT_USERNAME=${DOCKER_INFLUXDB_INIT_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${DOCKER_INFLUXDB_INIT_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
     deploy:
       placement:
         constraints:
           - node.role == manager
       labels:
         - "prometheus-job=influxdb"
-        - "prometheus-port=8181"
+        - "prometheus-port=8086"
         - "traefik.enable=true"
         - "traefik.http.routers.influxdb.service=influxdb"
         - "traefik.http.routers.influxdb.rule=Host(`influxdb.lan`)"
-        - "traefik.http.services.influxdb.loadbalancer.server.port=8181"
+        - "traefik.http.services.influxdb.loadbalancer.server.port=8086"
         - "traefik.http.routers.influxdb.entrypoints=web"
     volumes:
-      - influxdbdata:/var/lib/influxdb3
+      - influxdbdata:/var/lib/influxdb/data
 
 networks:
   homelab:
