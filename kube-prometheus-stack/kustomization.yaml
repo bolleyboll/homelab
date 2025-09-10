@@ -12,6 +12,7 @@ configMapGenerator:
       - dashboards/Node_Exporter.json
       - dashboards/Smokeping.json
       - dashboards/Traefik_Standalone.json
+      - dashboards/Stock_Analysis.json
     options:
       labels:
         grafana_dashboard: "1"
@@ -19,7 +20,7 @@ configMapGenerator:
 helmCharts:
   - name: kube-prometheus-stack
     repo: https://prometheus-community.github.io/helm-charts
-    version: 77.1.0
+    version: 77.6.0
     releaseName: "kube-prometheus-stack"
     namespace: monitoring
     valuesFile: values.yaml

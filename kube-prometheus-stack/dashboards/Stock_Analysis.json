@@ -1,0 +1,228 @@
+{
+	"annotations": {
+		"list": [
+			{
+				"builtIn": 1,
+				"datasource": {
+					"type": "grafana",
+					"uid": "-- Grafana --"
+				},
+				"enable": true,
+				"hide": true,
+				"iconColor": "rgba(0, 211, 255, 1)",
+				"name": "Annotations & Alerts",
+				"type": "dashboard"
+			}
+		]
+	},
+	"editable": true,
+	"fiscalYearStartMonth": 0,
+	"graphTooltip": 1,
+	"id": 30,
+	"links": [],
+	"panels": [
+		{
+			"datasource": {
+				"type": "influxdb",
+				"uid": "${datasource}"
+			},
+			"fieldConfig": {
+				"defaults": {
+					"color": {
+						"mode": "palette-classic"
+					},
+					"custom": {
+						"axisBorderShow": false,
+						"axisCenteredZero": false,
+						"axisColorMode": "text",
+						"axisLabel": "",
+						"axisPlacement": "auto",
+						"barAlignment": 0,
+						"barWidthFactor": 0.6,
+						"drawStyle": "line",
+						"fillOpacity": 0,
+						"gradientMode": "none",
+						"hideFrom": {
+							"legend": false,
+							"tooltip": false,
+							"viz": false
+						},
+						"insertNulls": false,
+						"lineInterpolation": "linear",
+						"lineWidth": 1,
+						"pointSize": 5,
+						"scaleDistribution": {
+							"type": "linear"
+						},
+						"showPoints": "auto",
+						"spanNulls": false,
+						"stacking": {
+							"group": "A",
+							"mode": "none"
+						},
+						"thresholdsStyle": {
+							"mode": "off"
+						}
+					},
+					"mappings": [],
+					"thresholds": {
+						"mode": "absolute",
+						"steps": [
+							{
+								"color": "green",
+								"value": 0
+							},
+							{
+								"color": "red",
+								"value": 80
+							}
+						]
+					}
+				},
+				"overrides": []
+			},
+			"gridPos": {
+				"h": 11,
+				"w": 24,
+				"x": 0,
+				"y": 0
+			},
+			"id": 1,
+			"options": {
+				"legend": {
+					"calcs": [],
+					"displayMode": "list",
+					"placement": "bottom",
+					"showLegend": true
+				},
+				"tooltip": {
+					"hideZeros": false,
+					"mode": "single",
+					"sort": "none"
+				}
+			},
+			"pluginVersion": "12.1.0",
+			"targets": [
+				{
+					"datasource": {
+						"type": "influxdb",
+						"uid": "${datasource}"
+					},
+					"query": "from(bucket: \"$bucket\")\n    |> range(start: -1h, stop: now())\n    |> filter(fn: (r) => r._measurement == \"stock_data\")\n    |> filter(fn: (r) => r.stock_symbol =~ /${stock:regex}/)\n    |> filter(fn: (r) => r._field =~ /${keys:regex}/)\n    |> aggregateWindow(every: $__interval, fn: mean, createEmpty: false)",
+					"refId": "A"
+				}
+			],
+			"title": "Stock - Price, Ask & Bid",
+			"type": "timeseries"
+		}
+	],
+	"preload": false,
+	"refresh": "",
+	"schemaVersion": 41,
+	"tags": [
+		"influxdb",
+		"stock"
+	],
+	"templating": {
+		"list": [
+			{
+				"allowCustomValue": false,
+				"current": {
+					"text": "InfluxDB",
+					"value": "cexfslaa4dgcga"
+				},
+				"label": "Datasource",
+				"name": "datasource",
+				"options": [],
+				"query": "influxdb",
+				"refresh": 1,
+				"regex": "",
+				"type": "datasource"
+			},
+			{
+				"allowCustomValue": false,
+				"current": {
+					"text": [
+						"candles"
+					],
+					"value": [
+						"candles"
+					]
+				},
+				"datasource": {
+					"type": "influxdb",
+					"uid": "${datasource}"
+				},
+				"definition": "buckets()\n|> filter(fn: (r) => r.name !~ /^_/)\n|> keep(columns: [\"name\"])",
+				"includeAll": false,
+				"label": "Bucket",
+				"multi": true,
+				"name": "bucket",
+				"options": [],
+				"query": {
+					"query": "buckets()\n|> filter(fn: (r) => r.name !~ /^_/)\n|> keep(columns: [\"name\"])"
+				},
+				"refresh": 1,
+				"regex": "",
+				"type": "query"
+			},
+			{
+				"allowCustomValue": false,
+				"current": {
+					"text": [
+						"ADANIPORTS.NS"
+					],
+					"value": [
+						"ADANIPORTS.NS"
+					]
+				},
+				"datasource": {
+					"type": "influxdb",
+					"uid": "${datasource}"
+				},
+				"definition": "from(bucket: \"candles\")\n|> range(start: -12h)\n|> filter(fn: (r) => r._measurement == \"stock_data\")\n|> keep(columns: [\"stock_symbol\"])\n|> distinct(column: \"stock_symbol\")",
+				"includeAll": false,
+				"label": "Stock",
+				"multi": true,
+				"name": "stock",
+				"options": [],
+				"query": {
+					"query": "from(bucket: \"candles\")\n|> range(start: -12h)\n|> filter(fn: (r) => r._measurement == \"stock_data\")\n|> keep(columns: [\"stock_symbol\"])\n|> distinct(column: \"stock_symbol\")"
+				},
+				"refresh": 1,
+				"regex": "",
+				"type": "query"
+			},
+			{
+				"allowCustomValue": false,
+				"current": {
+					"text": "price",
+					"value": "price"
+				},
+				"datasource": {
+					"type": "influxdb",
+					"uid": "${datasource}"
+				},
+				"definition": "from(bucket: \"candles\")\n    |> range(start: -12h)\n    |> filter(fn: (r) => r._measurement == \"stock_data\")\n    |> group(columns: [\"_field\"])\n    |> keys()\n    |> filter(fn: (r) => r._value == \"_field\")\n    |> keep(columns: [\"_field\"])\n    |> group()\n    |> distinct()",
+				"label": "Keys",
+				"name": "keys",
+				"options": [],
+				"query": {
+					"query": "from(bucket: \"candles\")\n    |> range(start: -12h)\n    |> filter(fn: (r) => r._measurement == \"stock_data\")\n    |> group(columns: [\"_field\"])\n    |> keys()\n    |> filter(fn: (r) => r._value == \"_field\")\n    |> keep(columns: [\"_field\"])\n    |> group()\n    |> distinct()"
+				},
+				"refresh": 1,
+				"regex": "",
+				"type": "query"
+			}
+		]
+	},
+	"time": {
+		"from": "now-6h",
+		"to": "now"
+	},
+	"timepicker": {},
+	"timezone": "browser",
+	"title": "Stock Analysis",
+	"uid": "10355db2-03e7-41ab-ad16-9ae6d7d0d7a2",
+	"version": 6
+}
