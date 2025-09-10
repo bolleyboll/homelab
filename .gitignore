@@ -1,8 +1,5 @@
 *.env
 alertmanager/config/*.yaml
-authelia/secrets
-authelia/config
-vault/config/vault-server.hcl
 
 orig.yaml
 .ansible/
