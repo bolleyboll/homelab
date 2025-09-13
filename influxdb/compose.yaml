@@ -30,7 +30,7 @@ services:
         - "traefik.http.services.influxdb.loadbalancer.server.port=8086"
         - "traefik.http.routers.influxdb.entrypoints=web"
     volumes:
-      - influxdbdata:/var/lib/influxdb/data
+      - influxdbdata:/var/lib/influxdb2
 
 networks:
   homelab:
