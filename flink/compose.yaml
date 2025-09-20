@@ -7,6 +7,8 @@ services:
     networks:
       - homelab
     command: jobmanager
+    ports:
+      - 9249:9249
     environment:
       - |
         FLINK_PROPERTIES=
@@ -16,7 +18,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == manager
+          - node.role == worker
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.flink.service=flink"
@@ -34,19 +36,22 @@ services:
     networks:
       - homelab
     command: taskmanager
+    ports:
+      - 9250:9250
     environment:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 5
         metrics.reporter.prom.factory.class: org.apache.flink.metrics.prometheus.PrometheusReporterFactory
+        metrics.reporter.prom.port: 9250
     deploy:
       placement:
         constraints:
-          - node.role == manager
+          - node.role == worker
       labels:
         - "prometheus-job=flink-taskmanager"
-        - "prometheus-port=9249"
+        - "prometheus-port=9250"
 
 networks:
   homelab:
