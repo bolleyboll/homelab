@@ -89,7 +89,7 @@ services:
     restart: unless-stopped
 
   bazarr:
-    image: ghcr.io/linuxserver/bazarr:1.5.2
+    image: ghcr.io/linuxserver/bazarr:1.5.3
     container_name: bazarr
     hostname: docker
     pull_policy: always
