@@ -7,19 +7,19 @@ ingress:
   host: "longhorn.lan"
 
 persistence:
-  defaultClassReplicaCount: 1
+  defaultClassReplicaCount: '1'
 
 defaultSettings:
-  defaultReplicaCount: 1
+  defaultReplicaCount: '1'
   allowCollectingLonghornUsageMetrics: false
   storageReservedPercentageForDefaultDisk: '5'
   deletingConfirmationFlag: true
 
 csi:
-  attacherReplicaCount: 3
-  provisionerReplicaCount: 3
-  resizerReplicaCount: 2
-  snapshotterReplicaCount: 2
+  attacherReplicaCount: '3'
+  provisionerReplicaCount: '3'
+  resizerReplicaCount: '2'
+  snapshotterReplicaCount: '2'
 
 metrics:
   serviceMonitor:
