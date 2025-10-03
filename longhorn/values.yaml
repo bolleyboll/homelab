@@ -12,7 +12,7 @@ persistence:
 defaultSettings:
   defaultReplicaCount: 1
   allowCollectingLonghornUsageMetrics: false
-  storageReservedPercentageForDefaultDisk: 10
+  storageReservedPercentageForDefaultDisk: '5'
   deletingConfirmationFlag: true
 
 csi:
