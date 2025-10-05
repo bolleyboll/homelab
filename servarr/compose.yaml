@@ -16,6 +16,10 @@ services:
     volumes:
       - qbittorrent-config:/config
       - qbittorrent-downloads:/downloads
+      # Paths to Media
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
     ports:
       - 8080:8080
       - 6881:6881
