@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "https://kubernetes-sigs.github.io/headlamp/"
-      targetRevision: 0.35.0
+      targetRevision: 0.36.0
       chart: headlamp
       helm:
         releaseName: headlamp
