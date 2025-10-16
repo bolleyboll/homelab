@@ -5,8 +5,8 @@ ENV LC_ALL=C.UTF-8
 ARG UID=53
 ARG GID=53
 
-ARG BIND9_VERSION=9.18.39
-ARG BIND9_CHECKSUM=725755232186f3be4a07d7e40978a3389434bef7c0cdc262cc641a364072976d
+ARG BIND9_VERSION=9.20.13
+ARG BIND9_CHECKSUM=151f9376ead317e646a5d0c9f01c060386d891118d7437a7f829bb9727c7b34c
 
 
 RUN apk --no-cache update
@@ -51,7 +51,9 @@ RUN apk --no-cache add \
 		procps \
 		protobuf-c \
 		protobuf-c-dev \
-		tzdata
+		tzdata \
+        userspace-rcu \
+        userspace-rcu-dev
 
 RUN mkdir -p /usr/src
 ADD https://downloads.isc.org/isc/bind9/${BIND9_VERSION}/bind-${BIND9_VERSION}.tar.xz /usr/src
@@ -92,6 +94,7 @@ RUN apk --no-cache add \
 		procps \
 		protobuf-c \
 		tzdata \
+		userspace-rcu \
 		bind-tools
 
 # Copy binaries from previous stage
@@ -126,4 +129,4 @@ EXPOSE 53/udp 53/tcp 953/tcp 853/tcp 443/tcp 8053/tcp
 HEALTHCHECK CMD dig +norecurse +short +retry=0 @127.0.0.1 pi5.lan || exit 1
 
 ENTRYPOINT ["/usr/sbin/named", "-u", "bind"]
-CMD ["-f", "-d", "3", "-c", "/etc/bind/named.conf", "-L", "/var/log/bind/default.log"]
+CMD ["-f", "-c", "/etc/bind/named.conf", "-L", "/var/log/bind/default.log"]
