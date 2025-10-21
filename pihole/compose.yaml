@@ -28,14 +28,6 @@ services:
         - "traefik.http.routers.pihole.rule=Host(`pihole.lan`)"
         - "traefik.http.services.pihole-http.loadbalancer.server.port=80"
         - "traefik.http.routers.pihole.entrypoints=web"
-        - "traefik.http.routers.piholedns.service=pihole-dns"
-        - "traefik.http.routers.piholedns.rule=Host(`pihole-dns.lan`)"
-        - "traefik.http.services.pihole-dns.loadbalancer.server.port=53"
-        - "traefik.http.routers.pihole-dns.entrypoints=web"
-    # volumes:
-    #   - "/home/pi/vol-mount/etc-pihole:/etc/pihole"
-    #   - "/home/pi/vol-mount/etc-dnsmasq.d:/etc/dnsmasq.d"
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
 
 networks:
   homelab:

@@ -22,10 +22,6 @@ services:
           - node.role == worker
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.bind.service=bind"
-        - "traefik.http.routers.bind.rule=Host(`dns.lan`)"
-        - "traefik.http.services.bind.loadbalancer.server.port=53"
-        - "traefik.http.routers.bind.entrypoints=web"
         - "traefik.http.routers.bind-stats.service=bind-stats"
         - "traefik.http.routers.bind-stats.rule=Host(`dns-stats.lan`)"
         - "traefik.http.services.bind-stats.loadbalancer.server.port=8053"
