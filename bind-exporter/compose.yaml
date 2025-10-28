@@ -14,7 +14,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == worker
+          - node.role == manager
       labels:
         - "prometheus-job=bind-exporter"
         - "prometheus-port=9119"
