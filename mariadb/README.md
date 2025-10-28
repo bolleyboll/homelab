@@ -15,3 +15,15 @@ Run the following command to deploy Maria DB to your swarm.
 ```bash
 export $(cat ./mariadb/env/mariadb.env) > /dev/null 2>&1; docker stack deploy -c ./mariadb/compose.yaml mariadb
 ```
+
+## Updating Maria DB
+
+Exec into the running container.
+
+```bash
+mariadb
+GRANT ALL PRIVILEGES ON *.* TO '%'@'%'
+  IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EXIT;
+```
