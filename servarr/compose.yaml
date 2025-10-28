@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:2.0.5
+    image: ghcr.io/linuxserver/prowlarr:2.1.5
     container_name: prowlarr
     hostname: docker
     pull_policy: always
@@ -199,5 +199,3 @@ volumes:
     driver: local
   profilarr-config:
     driver: local
-  # readarr-config:
-  #   driver: local
