@@ -25,29 +25,27 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
 
-  # mysql-exporter:
-  #   image: prom/mysqld-exporter:v0.18.0
-  #   container_name: mysql-exporter
-  #   hostname: pi
-  #   restart: always
-  #   networks:
-  #     - homelab
-  #   ports:
-  #     - "9104:9104"
-  #   environment:
-  #     - MYSQL_ADDR=mariadb-12:3306
-  #   deploy:
-  #     placement:
-  #       constraints:
-  #         - node.role == worker
-  #     labels:
-  #       - "prometheus-job=mysql-exporter"
-  #       - "prometheus-port=9104"
-  #       - "traefik.enable=true"
-  #       - "traefik.http.routers.mysqlexporter.service=mysqlexporter"
-  #       - "traefik.http.routers.mysqlexporter.rule=Host(`mysql-exporter.lan`)"
-  #       - "traefik.http.services.mysqlexporter.loadbalancer.server.port=9104"
-  #       - "traefik.http.routers.mysqlexporter.entrypoints=web"
+  mysql-exporter:
+    image: prom/mysqld-exporter:v0.18.0
+    container_name: mysql-exporter
+    hostname: pi
+    restart: always
+    networks:
+      - homelab
+    ports:
+      - "9104:9104"
+    command:
+      - '--web.listen-address=0.0.0.0:9104'
+      - '--config.my-cnf=/etc/mysqld_exporter/mysqld_exporter.cnf'
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "prometheus-job=mysql-exporter"
+        - "prometheus-port=9104"
+    volumes:
+      - ./config/:/etc/mysqld_exporter/
 
 networks:
   homelab:
