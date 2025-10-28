@@ -1,7 +1,7 @@
 ---
 services:
-  mariadb-11:
-    image: mariadb:11.7.2
+  mariadb-12:
+    image: mariadb:12.0.2
     container_name: mariadb
     hostname: pi
     restart: always
@@ -21,14 +21,32 @@ services:
       placement:
         constraints:
           - node.role == manager
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.mariadb-11.service=mariadb-11"
-        - "traefik.http.routers.mariadb-11.rule=Host(`mariadb-11.lan`)"
-        - "traefik.http.services.mariadb-11.loadbalancer.server.port=3306"
-        - "traefik.http.routers.mariadb-11.entrypoints=web"
     volumes:
       - mariadb:/var/lib/mysql
+
+  # mysql-exporter:
+  #   image: prom/mysqld-exporter:v0.18.0
+  #   container_name: mysql-exporter
+  #   hostname: pi
+  #   restart: always
+  #   networks:
+  #     - homelab
+  #   ports:
+  #     - "9104:9104"
+  #   environment:
+  #     - MYSQL_ADDR=mariadb-12:3306
+  #   deploy:
+  #     placement:
+  #       constraints:
+  #         - node.role == worker
+  #     labels:
+  #       - "prometheus-job=mysql-exporter"
+  #       - "prometheus-port=9104"
+  #       - "traefik.enable=true"
+  #       - "traefik.http.routers.mysqlexporter.service=mysqlexporter"
+  #       - "traefik.http.routers.mysqlexporter.rule=Host(`mysql-exporter.lan`)"
+  #       - "traefik.http.services.mysqlexporter.loadbalancer.server.port=9104"
+  #       - "traefik.http.routers.mysqlexporter.entrypoints=web"
 
 networks:
   homelab:
