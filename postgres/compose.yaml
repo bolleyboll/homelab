@@ -44,11 +44,6 @@ services:
       labels:
         - "prometheus-job=postgres-exporter"
         - "prometheus-port=9187"
-        - "traefik.enable=true"
-        - "traefik.http.routers.postgresexporter.service=postgresexporter"
-        - "traefik.http.routers.postgresexporter.rule=Host(`postgres-exporter.lan`)"
-        - "traefik.http.services.postgresexporter.loadbalancer.server.port=9187"
-        - "traefik.http.routers.postgresexporter.entrypoints=web"
 
 networks:
   homelab:
