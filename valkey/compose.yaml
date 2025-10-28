@@ -34,11 +34,6 @@ services:
       labels:
         - "prometheus-job=valkey-exporter"
         - "prometheus-port=9121"
-        - "traefik.enable=true"
-        - "traefik.http.routers.redisexporter.service=redisexporter"
-        - "traefik.http.routers.redisexporter.rule=Host(`redis-exporter.lan`)"
-        - "traefik.http.services.redisexporter.loadbalancer.server.port=9121"
-        - "traefik.http.routers.redisexporter.entrypoints=web"
 
 networks:
   homelab:
