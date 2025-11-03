@@ -7,6 +7,8 @@ services:
     restart: always
     networks:
       - homelab
+    ports:
+      - "3306:3306"
     environment:
       - MARIADB_AUTO_UPGRADE=1
       - MARIADB_MYSQL_LOCALHOST_USER=1
