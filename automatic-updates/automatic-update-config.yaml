@@ -12,7 +12,6 @@ spec:
   planSpec:
     commands:
       - k0supdate: # optional
-          version: v1.34.1+k0s.1
           targets:
             controllers:
               discovery:
