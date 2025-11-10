@@ -10,18 +10,19 @@ spec:
     type: cron
     cron: "*/5 * * * *"
   planSpec:
-      commands:
-        - k0supdate: # optional
-            forceupdate: true # optional
-            targets:
-              controllers:
-                discovery:
-                  static:
-                    nodes:
-                      - rpi5
-              workers:
-                limits:
-                  concurrent: 5
-                discovery:
-                  selector:
-                    labels: kubernetes.io/os=linux
+    commands:
+      - k0supdate: # optional
+          forceupdate: true # optional
+          targets:
+            controllers:
+              discovery:
+                static:
+                  nodes:
+                    - rpi5
+            workers:
+              limits:
+                concurrent: 5
+              discovery:
+                static:
+                  nodes:
+                    - rpi5

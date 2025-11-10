@@ -22,5 +22,6 @@ spec:
             limits:
               concurrent: 5
             discovery:
-              selector:
-                labels: kubernetes.io/os=linux
+              static:
+                nodes:
+                  - rpi5
