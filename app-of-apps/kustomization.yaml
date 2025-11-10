@@ -40,3 +40,5 @@ resources:
   - ../argo-apps/homepage/homepage.yaml
   # LLDAP
   - ../argo-apps/lldap/lldap.yaml
+  # Automatic Updates
+  - ../argo-apps/automatic-updates/automatic-updates.yaml

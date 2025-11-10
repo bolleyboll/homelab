@@ -1,0 +1,27 @@
+apiVersion: autopilot.k0sproject.io/v1beta2
+kind: UpdateConfig
+metadata:
+  name: automatic-update-config
+  namespace: default
+spec:
+  channel: edge_release
+  updateServer: https://updates.k0sproject.io/
+  upgradeStrategy:
+    type: cron
+    cron: "*/5 * * * *"
+  planSpec:
+      commands:
+        - k0supdate: # optional
+            forceupdate: true # optional
+            targets:
+              controllers:
+                discovery:
+                  static:
+                    nodes:
+                      - rpi5
+              workers:
+                limits:
+                  concurrent: 5
+                discovery:
+                  selector:
+                    labels: kubernetes.io/os=linux
