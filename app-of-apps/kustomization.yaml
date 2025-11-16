@@ -34,8 +34,6 @@ resources:
   - ../argo-apps/vault-secrets-operator/vault-secrets-operator.yaml
   # Cert-Manager
   - ../argo-apps/cert-manager/cert-manager.yaml
-  # Kyverno
-  # - ../argo-apps/kyverno/kyverno.yaml
   # Homepage
   - ../argo-apps/homepage/homepage.yaml
   # LLDAP
