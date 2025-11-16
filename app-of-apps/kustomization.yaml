@@ -35,7 +35,7 @@ resources:
   # Cert-Manager
   - ../argo-apps/cert-manager/cert-manager.yaml
   # Kyverno
-  - ../argo-apps/kyverno/kyverno.yaml
+  # - ../argo-apps/kyverno/kyverno.yaml
   # Homepage
   - ../argo-apps/homepage/homepage.yaml
   # LLDAP
