@@ -18,6 +18,7 @@ services:
       labels:
         - "prometheus-job=smokeping-prober"
         - "prometheus-port=9374"
+        - "traefik.enable=false"
     volumes:
       - ./config/:/etc/smokeping-prober/
 

@@ -23,6 +23,7 @@ services:
       labels:
         - "prometheus-job=cadvisor"
         - "prometheus-port=8080"
+        - "traefik.enable=false"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw

@@ -13,6 +13,8 @@ services:
       placement:
         constraints:
           - node.role == worker
+      labels:
+        - "traefik.enable=false"
     healthcheck:
       test: ["CMD", "valkey-cli", "ping"]
 
@@ -34,6 +36,7 @@ services:
       labels:
         - "prometheus-job=valkey-exporter"
         - "prometheus-port=9121"
+        - "traefik.enable=false"
 
 networks:
   homelab:

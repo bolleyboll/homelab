@@ -21,6 +21,8 @@ services:
       placement:
         constraints:
           - node.role == manager
+      labels:
+        - "traefik.enable=false"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -44,6 +46,7 @@ services:
       labels:
         - "prometheus-job=postgres-exporter"
         - "prometheus-port=9187"
+        - "traefik.enable=false"
 
 networks:
   homelab:

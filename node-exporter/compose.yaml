@@ -29,6 +29,7 @@ services:
       labels:
         - "prometheus-job=node-exporter"
         - "prometheus-port=9100"
+        - "traefik.enable=false"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro

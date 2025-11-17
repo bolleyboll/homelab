@@ -24,6 +24,8 @@ services:
       placement:
         constraints:
           - node.role == manager
+      labels:
+        - "traefik.enable=false"
     volumes:
       - mariadb:/var/lib/mysql
 
@@ -46,6 +48,7 @@ services:
       labels:
         - "prometheus-job=mysql-exporter"
         - "prometheus-port=9104"
+        - "traefik.enable=false"
     volumes:
       - ./config/:/etc/mysqld_exporter/
 
