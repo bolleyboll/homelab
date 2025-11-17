@@ -1,0 +1,31 @@
+---
+services:
+  fastenhealth:
+    image: ghcr.io/fastenhealth/fasten-onprem:main
+    container_name: fastenhealth
+    hostname: pi
+    restart: always
+    networks:
+      - homelab
+    environment:
+      - HOSTNAME=${HOSTNAME}
+      - PORT=${PORT}
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.fastenhealth.service=fastenhealth"
+        - "traefik.http.routers.fastenhealth.rule=Host(`health.lan`)"
+        - "traefik.http.services.fastenhealth.loadbalancer.server.port=9090"
+        - "traefik.http.routers.fastenhealth.entrypoints=web"
+    volumes:
+      - fastenhealthdbdata:/opt/fasten/db
+
+networks:
+  homelab:
+    external: true
+
+volumes:
+  fastenhealthdbdata:
