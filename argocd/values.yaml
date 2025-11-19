@@ -11,6 +11,8 @@ configs:
       url: "https://github.com/bolleyboll/homelab.git"
       name: homelab
       type: git
+  secret:
+    argocdServerAdminPassword: "$2a$10$Ldk5mGRowat3Z2uOuGyWZuNNMJvMZf1NwyNPNryg.7fBlxx6kBkFy"
 
 controller:
   metrics:

@@ -22,6 +22,8 @@ grafana:
       domain: grafana.lan
       protocol: http
       root_url: "http://grafana.lan"
+  adminUser: bolleyboll
+  adminPassword: prom-operator
   # additionalDataSources:
     # - name: InfluxDB
     #   type: influxdb
