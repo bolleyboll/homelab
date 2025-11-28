@@ -16,4 +16,4 @@ secret:
   lldapBaseDn: "dc=homelab"
 
 image:
-  tag: "2025-11-09-alpine"
+  tag: "2025-11-20-alpine"
