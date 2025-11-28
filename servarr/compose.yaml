@@ -1,7 +1,7 @@
 ---
 services:
   qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent:5.1.2
+    image: ghcr.io/linuxserver/qbittorrent:5.1.4
     container_name: qbittorrent
     pull_policy: always
     hostname: docker
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:2.1.5
+    image: ghcr.io/linuxserver/prowlarr:2.3.0
     container_name: prowlarr
     hostname: docker
     pull_policy: always
@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
 
   radarr:
-    image: ghcr.io/linuxserver/radarr:5.28.0
+    image: ghcr.io/linuxserver/radarr:6.0.4
     container_name: radarr
     hostname: docker
     pull_policy: always
