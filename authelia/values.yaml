@@ -1,4 +1,7 @@
 ---
+image:
+  tag: '4.39.15'
+
 ingress:
   enabled: true
   className: "nginx"

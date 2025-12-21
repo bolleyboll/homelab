@@ -1,5 +1,15 @@
 ---
+injector:
+  image:
+    tag: "1.7.2"
+
+  agentImage:
+    tag: "1.21.1"
+
 server:
+  image:
+    tag: "1.21.1"
+
   ingress:
     enabled: true
     ingressClassName: "nginx"

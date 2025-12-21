@@ -1,4 +1,7 @@
 ---
+image:
+  tag: "2025-12-12-alpine"
+
 ingress:
   enabled: true
   ingressClassName: "nginx"
@@ -14,6 +17,3 @@ secret:
   lldapJwtSecret: "wobY6RK/Dc0vL21zFiIZs9iyVy0NQ3ldijYPQ4HLWTc="
   lldapUserPass: "administrator123456"
   lldapBaseDn: "dc=homelab"
-
-image:
-  tag: "2025-11-20-alpine"
