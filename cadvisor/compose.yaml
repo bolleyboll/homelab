@@ -1,7 +1,7 @@
 ---
 services:
   cadvisor:
-    image: ghcr.io/google/cadvisor:v0.53.0
+    image: ghcr.io/google/cadvisor:v0.55.1
     container_name: cadvisor
     hostname: pi
     restart: always
