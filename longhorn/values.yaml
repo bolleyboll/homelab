@@ -6,7 +6,7 @@ ingress:
   ingressClassName: "nginx"
   host: "longhorn.lan"
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
   tls: true
   tlsSecret: longhorn-tls
 
