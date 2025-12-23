@@ -1,9 +1,13 @@
 apiVersion: cert-manager.io/v1
-kind: Issuer
+kind: ClusterIssuer
 metadata:
-  name: example-issuer
+  name: letsencrypt-issuer
 spec:
   acme:
+    email: amngupta@protonmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-issuer-account-key
     solvers:
       - dns01:
           rfc2136:
@@ -12,4 +16,4 @@ spec:
             tsigAlgorithm: HMACSHA256
             tsigSecretSecretRef:
               name: rfc2136-secret
-              key: certmanager
+              key: token
