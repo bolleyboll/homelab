@@ -5,9 +5,8 @@ image:
 ingress:
   enabled: true
   className: "nginx"
-  # annotations:
-  #   cert-manager.io/cluster-issuer: "selfsigned-issuer"
-  certManager: true
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
   tls:
     enabled: true
 
