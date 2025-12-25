@@ -10,6 +10,11 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
+  tls:
+    - hosts:
+        - ldap.lan
 
 secret:
   create: true

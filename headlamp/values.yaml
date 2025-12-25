@@ -7,3 +7,9 @@ ingress:
       paths:
         - path: /
           type: ImplementationSpecific
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
+  tls:
+    - secretName: headlamp-tls
+      hosts:
+        - headlamp.lan

@@ -3,6 +3,8 @@ plugins:
   enabled: true
 
 opencost:
+  mcp:
+    enabled: false
   ui:
     ingress:
       enabled: true
@@ -11,6 +13,12 @@ opencost:
         - host: opencost.lan
           paths:
             - /
+      annotations:
+        cert-manager.io/cluster-issuer: "selfsigned-issuer"
+      tls:
+        - hosts:
+            - opencost.lan
+          secretName: opencost-tls
   prometheus:
     internal:
       enabled: true

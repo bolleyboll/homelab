@@ -7,6 +7,7 @@ metadata:
   labels:
     app.kubernetes.io/name: homepage
   annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
     gethomepage.dev/description: Dynamically Detected Homepage
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Cluster Management
@@ -25,3 +26,7 @@ spec:
                 name: homepage
                 port:
                   number: 3000
+  tls:
+    - hosts:
+        - init.lan
+      secretName: homepage-tls

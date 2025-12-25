@@ -1,6 +1,6 @@
 ---
 image:
-  tag: '4.39.15'
+  tag: "4.39.15"
 
 ingress:
   enabled: true

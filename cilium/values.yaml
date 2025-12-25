@@ -51,3 +51,9 @@ hubble:
       hosts:
         - hubble.lan
       pathType: ImplementationSpecific
+      annotations:
+        cert-manager.io/cluster-issuer: "selfsigned-issuer"
+      tls:
+        - secretName: hubble-tls
+          hosts:
+            - hubble.lan

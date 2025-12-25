@@ -8,6 +8,12 @@ alertmanager:
     ingressClassName: "nginx"
     hosts:
       - alertmanager.lan
+    annotations:
+      cert-manager.io/cluster-issuer: "selfsigned-issuer"
+    tls:
+      - hosts:
+          - alertmanager.lan
+        secretName: alertmanager-tls
 
 grafana:
   ingress:
@@ -15,6 +21,12 @@ grafana:
     ingressClassName: "nginx"
     hosts:
       - grafana.lan
+    annotations:
+      cert-manager.io/cluster-issuer: "selfsigned-issuer"
+    tls:
+      - hosts:
+          - grafana.lan
+        secretName: grafana-tls
   grafana.ini:
     security:
       cookie_secure: false
@@ -25,12 +37,12 @@ grafana:
   adminUser: bolleyboll
   adminPassword: prom-operator
   # additionalDataSources:
-    # - name: InfluxDB
-    #   type: influxdb
-    #   access: proxy
-    #   url: http://192.168.2.101:8181
-    #   database: candles
-    #   isDefault: false
+  # - name: InfluxDB
+  #   type: influxdb
+  #   access: proxy
+  #   url: http://192.168.2.101:8181
+  #   database: candles
+  #   isDefault: false
 
 kubeProxy:
   enabled: false
@@ -96,3 +108,9 @@ prometheus:
     ingressClassName: "nginx"
     hosts:
       - prometheus.lan
+    annotations:
+      cert-manager.io/cluster-issuer: "selfsigned-issuer"
+    tls:
+      - hosts:
+          - prometheus.lan
+        secretName: prometheus-tls
