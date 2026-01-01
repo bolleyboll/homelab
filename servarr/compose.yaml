@@ -156,6 +156,54 @@ services:
       - jellyseerr-config:/app/config
     restart: unless-stopped
 
+  tautulli:
+    image: ghcr.io/tautulli/tautulli:v2.16.0
+    container_name: tautulli
+    hostname: docker
+    pull_policy: always
+    networks:
+      - servarr
+    depends_on:
+      - jellyseerr
+    environment:
+      - TZ=Asia/Kolkata
+    ports:
+      - 8181:8181
+    volumes:
+      - tautulli-config:/config
+
+  # imagemaid:
+  #   image: kometateam/imagemaid:v1.1.1
+  #   container_name: imagemaid
+  #   hostname: docker
+  #   pull_policy: always
+  #   networks:
+  #     - servarr
+  #   depends_on:
+  #     - radarr
+  #   environment:
+  #     - TZ=Asia/Kolkata
+  #     - IGNORE_RUNNING=True
+  #     - PLEX_PATH=/plex
+  #     - MODE=report
+  #     # - MODE=remove
+  #   volumes:
+  #     - imagemaid-config:/config
+  #     - "/var/lib/plex/Plex Media Server:/plex"
+  #   restart: unless-stopped
+
+  plexautolanguages:
+    image: ghcr.io/journeydocker/plex-auto-languages:1.4.0
+    container_name: plexautolanguages
+    hostname: docker
+    pull_policy: always
+    networks:
+      - servarr
+    depends_on:
+      - jellyseerr
+    env_file:
+      - ./env/plexautolanguages.env
+
   # readarr:
   #   image: linuxserver/readarr:0.4.19-nightly
   #   container_name: readarr
@@ -198,4 +246,8 @@ volumes:
   jellyseerr-config:
     driver: local
   profilarr-config:
+    driver: local
+  tautulli-config:
+    driver: local
+  imagemaid-config:
     driver: local
