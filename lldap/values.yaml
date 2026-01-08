@@ -1,6 +1,6 @@
 ---
 image:
-  tag: "2025-01-06-alpine"
+  tag: "2026-01-06-alpine"
 
 ingress:
   enabled: true
