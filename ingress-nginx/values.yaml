@@ -6,6 +6,16 @@ controller:
     enabled: true
     serviceMonitor:
       enabled: true
+  config:
+    disable-access-log: true
+    large-client-header-buffers: "4 32k"
+    proxy-body-size: "0"
+    proxy-next-upstream: "off"
+    proxy-read-timeout: "3600"
+    proxy-send-timeout: "3600"
+    use-proxy-protocol: "false"
+    proxy-request-buffering: "off"
+    use-gzip: true
 
   ingressClass: nginx
 
