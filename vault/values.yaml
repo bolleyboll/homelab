@@ -4,11 +4,11 @@ injector:
     tag: "1.7.2"
 
   agentImage:
-    tag: "1.21.1"
+    tag: "1.21.2"
 
 server:
   image:
-    tag: "1.21.1"
+    tag: "1.21.2"
 
   ingress:
     enabled: true

@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "ghcr.io/alexmorbo/helm-charts"
-      targetRevision: 1.0.7
+      targetRevision: 1.0.8
       chart: lldap
       helm:
         releaseName: lldap
