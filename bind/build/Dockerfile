@@ -5,9 +5,8 @@ ENV LC_ALL=C.UTF-8
 ARG UID=53
 ARG GID=53
 
-ARG BIND9_VERSION=9.20.17
-ARG BIND9_CHECKSUM=5cc89a09da0917eb1ddf640cc07c172ff44fa9bbf3a34ada4b6a2f7ee70ff1c8
-
+ARG BIND9_VERSION=9.21.17
+ARG BIND9_CHECKSUM=3cefdbc795f6347aff11af478dded6f036ff7b3a00f9ca3c9d0e80f0deeb0d05
 
 RUN apk --no-cache update
 RUN apk --no-cache upgrade
@@ -15,8 +14,6 @@ RUN apk --no-cache upgrade
 FROM base AS builder
 
 RUN apk --no-cache add \
-		autoconf \
-		automake \
 		build-base \
 		fstrm \
 		fstrm-dev \
@@ -32,7 +29,6 @@ RUN apk --no-cache add \
 		libidn2-dev \
 		libmaxminddb-dev \
 		libmaxminddb-libs \
-		libtool \
 		libuv \
 		libuv-dbg \
 		libuv-dev \
@@ -42,18 +38,20 @@ RUN apk --no-cache add \
 		libxslt \
 		lmdb \
 		lmdb-dev \
-		make \
+		meson \
 		musl-dbg \
+		ninja \
 		nghttp2-dev \
 		nghttp2-libs \
 		openssl-dbg \
 		openssl-dev \
+		perl \
 		procps \
 		protobuf-c \
 		protobuf-c-dev \
 		tzdata \
-        userspace-rcu \
-        userspace-rcu-dev
+		userspace-rcu \
+		userspace-rcu-dev
 
 RUN mkdir -p /usr/src
 ADD https://downloads.isc.org/isc/bind9/${BIND9_VERSION}/bind-${BIND9_VERSION}.tar.xz /usr/src
@@ -61,20 +59,19 @@ RUN cd /usr/src && \
 	( echo "${BIND9_CHECKSUM}  bind-${BIND9_VERSION}.tar.xz" | sha256sum -c - ) && \
 	tar -xJf bind-${BIND9_VERSION}.tar.xz && \
 	cd /usr/src/bind-${BIND9_VERSION} && \
-	./configure --prefix /usr \
+	meson setup --prefix=/usr \
 				--sysconfdir=/etc/bind \
 				--localstatedir=/ \
-				--enable-shared \
-				--disable-static \
-				--with-gssapi \
-				--with-libidn2 \
-				--with-json-c \
-				--with-lmdb=/usr \
-				--with-gnu-ld \
-				--with-maxminddb \
-				--enable-dnstap && \
-	make -j && \
-	make install DESTDIR=/dist  && \
+				--default-library=shared \
+				-Dgssapi=enabled \
+				-Didn=enabled \
+				-Dstats-json=enabled \
+				-Dlmdb=enabled \
+				-Dgeoip=enabled \
+				-Ddnstap=enabled \
+				build && \
+	meson compile -j -1 -C build && \
+	meson install -C build --destdir=/dist && \
 	rm -rf /usr/src
 
 FROM base
