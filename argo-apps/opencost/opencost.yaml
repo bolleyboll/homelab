@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "https://opencost.github.io/opencost-helm-chart/"
-      targetRevision: 2.5.5
+      targetRevision: 2.5.8
       chart: opencost
       helm:
         releaseName: opencost

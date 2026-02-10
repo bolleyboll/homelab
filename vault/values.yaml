@@ -1,14 +1,13 @@
 ---
 injector:
-  image:
-    tag: "1.7.2"
+  enabled: false
 
   agentImage:
-    tag: "1.21.2"
+    tag: "1.21.3"
 
 server:
   image:
-    tag: "1.21.2"
+    tag: "1.21.3"
 
   ingress:
     enabled: true
