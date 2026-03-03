@@ -93,7 +93,7 @@ services:
     restart: unless-stopped
 
   bazarr:
-    image: ghcr.io/linuxserver/bazarr:1.5.5
+    image: ghcr.io/linuxserver/bazarr:1.5.6
     container_name: bazarr
     hostname: docker
     pull_policy: always
@@ -135,9 +135,9 @@ services:
       - profilarr-config:/config
     restart: unless-stopped
 
-  jellyseerr:
-    image: ghcr.io/fallenbagel/jellyseerr:2.7.3
-    container_name: jellyseerr
+  seerr:
+    image: ghcr.io/seerr-team/seerr:v3.1.0
+    container_name: seerr
     hostname: docker
     pull_policy: always
     networks:
@@ -153,7 +153,7 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - jellyseerr-config:/app/config
+      - seerr-config:/app/config
     restart: unless-stopped
 
   tautulli:
@@ -164,7 +164,7 @@ services:
     networks:
       - servarr
     depends_on:
-      - jellyseerr
+      - seerr
     environment:
       - TZ=Asia/Kolkata
     ports:
@@ -200,7 +200,7 @@ services:
     networks:
       - servarr
     depends_on:
-      - jellyseerr
+      - seerr
     env_file:
       - ./env/plexautolanguages.env
 
@@ -243,7 +243,7 @@ volumes:
     driver: local
   bazarr-config:
     driver: local
-  jellyseerr-config:
+  seerr-config:
     driver: local
   profilarr-config:
     driver: local
