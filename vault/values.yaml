@@ -2,12 +2,9 @@
 injector:
   enabled: false
 
-  agentImage:
-    tag: "1.21.3"
-
 server:
   image:
-    tag: "1.21.3"
+    tag: "1.21.4"
 
   ingress:
     enabled: true
