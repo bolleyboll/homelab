@@ -3,7 +3,6 @@ crds:
   enabled: true
 
 alertmanager:
-  fullnameOverride: alertmanager
   ingress:
     enabled: true
     ingressClassName: "nginx"
@@ -53,7 +52,6 @@ nodeExporter:
   enabled: false
 
 prometheus:
-  fullnameOverride: prometheus
   prometheusSpec:
     retention: 7d
     serviceMonitorSelectorNilUsesHelmValues: false
@@ -117,3 +115,6 @@ prometheus:
       - hosts:
           - prometheus.lan
         secretName: prometheus-tls
+
+prometheusOperator:
+  fullnameOverride: prometheus
