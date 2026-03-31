@@ -117,4 +117,4 @@ prometheus:
         secretName: prometheus-tls
 
 prometheusOperator:
-  fullnameOverride: prometheus
+  fullnameOverride: prometheus-operator
