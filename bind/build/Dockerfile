@@ -66,7 +66,6 @@ RUN cd /usr/src && \
 				-Dgssapi=enabled \
 				-Didn=enabled \
 				-Dstats-json=enabled \
-				-Dlmdb=enabled \
 				-Dgeoip=enabled \
 				-Ddnstap=enabled \
 				build && \
