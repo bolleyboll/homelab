@@ -17,6 +17,9 @@ server:
           - openbao.lan
         secretName: openbao-tls
 
+  readinessProbe:
+    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+
 serverTelemetry:
   serviceMonitor:
     enabled: true
