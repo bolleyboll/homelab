@@ -73,7 +73,7 @@ RUN cd /usr/src && \
 	meson install -C build --destdir=/dist && \
 	rm -rf /usr/src
 
-FROM base as final
+FROM base AS final
 
 RUN apk --no-cache add \
 		fstrm \
