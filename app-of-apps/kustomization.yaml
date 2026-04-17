@@ -24,19 +24,13 @@ resources:
   - ../argo-apps/opencost/opencost.yaml
   # Headlamp
   - ../argo-apps/headlamp/headlamp.yaml
-  # Keycloak
-  # - ../argo-apps/keycloak/keycloak.yaml
-  # Authelia
-  - ../argo-apps/authelia/authelia.yaml
-  # Vault
-  - ../argo-apps/vault/vault.yaml
-  # Vault Secrets Operator
-  - ../argo-apps/vault-secrets-operator/vault-secrets-operator.yaml
   # Cert-Manager
   - ../argo-apps/cert-manager/cert-manager.yaml
   # Homepage
   - ../argo-apps/homepage/homepage.yaml
   # LLDAP
   - ../argo-apps/lldap/lldap.yaml
-  # Automatic Updates
-  - ../argo-apps/automatic-updates/automatic-updates.yaml
+  # OpenBAO
+  - ../argo-apps/openbao/openbao.yaml
+  # External Secrets
+  - ../argo-apps/external-secrets/external-secrets.yaml

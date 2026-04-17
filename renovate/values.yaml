@@ -1,0 +1,12 @@
+---
+cronjob:
+  schedule: '*/30 * * * *'
+  timeZone: 'Asia/Kolkata'
+
+renovate:
+  persistence:
+    cache:
+      enabled: true
+      storageClass: "longhorn"
+      # -- Storage size of the cache PVC
+      storageSize: "512Mi"

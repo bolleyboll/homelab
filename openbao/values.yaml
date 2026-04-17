@@ -3,25 +3,19 @@ injector:
   enabled: false
 
 server:
-  image:
-    tag: "1.21.4"
-
   ingress:
     enabled: true
     ingressClassName: "nginx"
     pathType: ImplementationSpecific
     activeService: true
     hosts:
-      - host: vault.lan
+      - host: openbao.lan
     annotations:
       cert-manager.io/cluster-issuer: "selfsigned-issuer"
     tls:
       - hosts:
-          - vault.lan
-        secretName: vault-tls
-
-  readinessProbe:
-    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+          - openbao.lan
+        secretName: openbao-tls
 
 serverTelemetry:
   serviceMonitor:

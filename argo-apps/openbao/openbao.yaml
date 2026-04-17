@@ -2,31 +2,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: authelia
+  name: vault
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "3"
   labels:
-    name: authelia
+    name: vault
 spec:
   project: core
   sources:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
       ref: myRepo
-    - repoURL: "https://charts.authelia.com"
-      targetRevision: 0.10.49
-      chart: authelia
+    - repoURL: "https://openbao.github.io/openbao-helm"
+      targetRevision: 0.27.1
+      chart: openbao
       helm:
-        releaseName: authelia
+        releaseName: openbao
         valueFiles:
-          - $myRepo/authelia/values.yaml
+          - $myRepo/openbao/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: authelia
+    namespace: openbao
 
   syncPolicy:
     automated:

@@ -1,7 +1,7 @@
 ---
 services:
   romm:
-    image: ghcr.io/rommapp/romm:4.4.0
+    image: ghcr.io/rommapp/romm:4.8.1
     container_name: romm
     hostname: pi
     networks:

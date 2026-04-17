@@ -21,7 +21,7 @@ configMapGenerator:
 helmCharts:
   - name: kube-prometheus-stack
     repo: https://prometheus-community.github.io/helm-charts
-    version: 82.4.3
+    version: 83.5.1
     releaseName: "kube-prometheus-stack"
     namespace: monitoring
     valuesFile: values.yaml
