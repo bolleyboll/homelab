@@ -120,4 +120,8 @@ prometheus:
         secretName: prometheus-tls
 
 prometheusOperator:
+  enabled: false
   fullnameOverride: prometheus-operator
+
+kubeStateMetrics:
+  enabled: false
