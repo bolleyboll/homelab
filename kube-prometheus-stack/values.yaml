@@ -39,6 +39,13 @@ grafana:
       root_url: "http://grafana.lan"
   adminUser: bolleyboll
   adminPassword: prom-operator
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: "longhorn"
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
   # additionalDataSources:
   # - name: InfluxDB
   #   type: influxdb
