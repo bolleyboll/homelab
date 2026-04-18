@@ -17,7 +17,7 @@ alertmanager:
         secretName: alertmanager-tls
 
 grafana:
-  enabled: false
+  enabled: true
   fullnameOverride: grafana
   ingress:
     enabled: true
