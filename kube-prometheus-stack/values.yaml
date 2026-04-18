@@ -3,6 +3,7 @@ crds:
   enabled: true
 
 alertmanager:
+  enabled: false
   ingress:
     enabled: true
     ingressClassName: "nginx"
@@ -16,6 +17,7 @@ alertmanager:
         secretName: alertmanager-tls
 
 grafana:
+  enabled: false
   fullnameOverride: grafana
   ingress:
     enabled: true
@@ -52,6 +54,7 @@ nodeExporter:
   enabled: false
 
 prometheus:
+  enabled: false
   prometheusSpec:
     retention: 7d
     serviceMonitorSelectorNilUsesHelmValues: false
