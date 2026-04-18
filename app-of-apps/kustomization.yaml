@@ -19,7 +19,7 @@ resources:
   # MetalLB
   - ../argo-apps/metallb/metallb.yaml
   # Kube Prometheus Stack
-  - ../argo-apps/kube-prometheus-stack/kube-prometheus-stack.yaml
+  # - ../argo-apps/kube-prometheus-stack/kube-prometheus-stack.yaml
   # OpenCost
   - ../argo-apps/opencost/opencost.yaml
   # Headlamp
