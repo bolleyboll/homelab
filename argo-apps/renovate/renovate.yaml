@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "oci://ghcr.io/renovatebot/charts/renovate"
-      targetRevision: 2.5.14
+      targetRevision: 46.118.0
       chart: renovate
       helm:
         releaseName: renovate
