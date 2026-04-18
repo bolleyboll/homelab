@@ -54,7 +54,7 @@ nodeExporter:
   enabled: false
 
 prometheus:
-  enabled: false
+  enabled: true
   prometheusSpec:
     retention: 7d
     serviceMonitorSelectorNilUsesHelmValues: false
@@ -120,7 +120,7 @@ prometheus:
         secretName: prometheus-tls
 
 prometheusOperator:
-  enabled: false
+  enabled: true
   fullnameOverride: prometheus-operator
 
 kubeStateMetrics:
