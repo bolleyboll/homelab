@@ -34,3 +34,5 @@ resources:
   - ../argo-apps/openbao/openbao.yaml
   # External Secrets
   - ../argo-apps/external-secrets/external-secrets.yaml
+  # Renovate
+  - ../argo-apps/renovate/renovate.yaml
