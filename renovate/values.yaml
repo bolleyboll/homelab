@@ -10,3 +10,7 @@ renovate:
       storageClass: "longhorn"
       # -- Storage size of the cache PVC
       storageSize: "512Mi"
+  config: |
+    {
+      
+    }
