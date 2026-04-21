@@ -22,10 +22,10 @@ spec:
     namespace: monitoring
 
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: false
+    # automated:
+    #   prune: true
+    #   selfHeal: true
+    #   allowEmpty: false
     syncOptions:
       - Prune=true
       - Validate=true
