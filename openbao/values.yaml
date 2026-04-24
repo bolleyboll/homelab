@@ -16,7 +16,11 @@ server:
       - hosts:
           - openbao.lan
         secretName: openbao-tls
-
+  dataStorage:
+    enabled: true
+    size: 10Gi
+    storageClass: openebs
+    accessMode: ReadWriteOnce
   readinessProbe:
     path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
 
