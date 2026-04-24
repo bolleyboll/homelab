@@ -12,8 +12,6 @@ resources:
   - ../argo-apps/cilium/cilium.yaml
   # External DNS
   - ../argo-apps/external-dns/external-dns.yaml
-  # Longhorn
-  - ../argo-apps/longhorn/longhorn.yaml
   # Nginx Ingress
   - ../argo-apps/ingress-nginx/ingress-nginx.yaml
   # MetalLB
