@@ -26,5 +26,4 @@ secret:
 persistence:
   enabled: true
   size: 100Mi
-  volumeName: "lldap-data"
   storageClass: "openebs"
