@@ -1,0 +1,49 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openebs
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  labels:
+    name: openebs
+spec:
+  project: core
+  sources:
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      ref: myRepo
+    - repoURL: "https://openebs.github.io/dynamic-localpv-provisioner"
+      targetRevision: 4.4.0
+      chart: localpv-provisioner
+      helm:
+        releaseName: openebs
+        valueFiles:
+          - $myRepo/openebs/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openebs-system
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Prune=true
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  revisionHistoryLimit: 3
