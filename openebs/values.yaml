@@ -1,5 +1,9 @@
 localpv:
-  name: "openebs-localpv"
+  basePath: "/var/openebs/localpv"
+
+hostpathClass:
+  name: openebs
+  isDefaultClass: true
 
 analytics:
   enabled: false

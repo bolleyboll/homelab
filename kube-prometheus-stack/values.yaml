@@ -108,7 +108,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: longhorn
+          storageClassName: openebs
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
