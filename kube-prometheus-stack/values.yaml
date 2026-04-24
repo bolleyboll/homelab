@@ -42,7 +42,7 @@ grafana:
   persistence:
     enabled: true
     type: pvc
-    storageClassName: "longhorn"
+    storageClassName: "openebs"
     accessModes:
       - ReadWriteOnce
     size: 5Gi

@@ -7,7 +7,7 @@ renovate:
   persistence:
     cache:
       enabled: true
-      storageClass: "longhorn"
+      storageClass: "openebs"
       # -- Storage size of the cache PVC
       storageSize: "512Mi"
   config: |
