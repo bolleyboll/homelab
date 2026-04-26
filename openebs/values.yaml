@@ -4,6 +4,8 @@ localpv:
 hostpathClass:
   name: openebs
   isDefaultClass: true
+  ext4Quota:
+    enabled: true
 
 analytics:
   enabled: false
