@@ -1,11 +1,20 @@
 lvm-localpv:
+  localpv:
+    basePath: "/var/openebs/localpv"
+
+  hostpathClass:
+    name: openebs
+    isDefaultClass: true
+    ext4Quota:
+      enabled: false
+
   analytics:
     enabled: false
 
 engines:
   local:
     lvm:
-      enabled: true
+      enabled: false
     zfs:
       enabled: false
     rawfile:
