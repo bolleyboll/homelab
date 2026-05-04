@@ -1,11 +1,31 @@
-localpv:
-  basePath: "/var/openebs/localpv"
+localpv-provisioner:
+  localpv:
+    basePath: "/var/openebs/localpv"
 
-hostpathClass:
-  name: openebs
-  isDefaultClass: true
-  ext4Quota:
-    enabled: true
+  hostpathClass:
+    name: openebs
+    isDefaultClass: true
+    ext4Quota:
+      enabled: true
 
-analytics:
+  analytics:
+    enabled: false
+
+engines:
+  local:
+    lvm:
+      enabled: false
+    zfs:
+      enabled: false
+    rawfile:
+      # Disabled by default since rawfile is not marked as stable yet.
+      enabled: false
+  replicated:
+    mayastor:
+      enabled: false
+
+loki:
+  enabled: false
+
+alloy:
   enabled: false

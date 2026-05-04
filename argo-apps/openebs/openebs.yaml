@@ -16,9 +16,9 @@ spec:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
       ref: myRepo
-    - repoURL: "https://openebs.github.io/dynamic-localpv-provisioner"
+    - repoURL: "https://openebs.github.io/openebs"
       targetRevision: 4.4.0
-      chart: localpv-provisioner
+      chart: openebs
       helm:
         releaseName: openebs
         valueFiles:
