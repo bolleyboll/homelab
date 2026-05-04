@@ -1,13 +1,4 @@
-localpv-provisioner:
-  localpv:
-    basePath: "/var/openebs/localpv"
-
-  hostpathClass:
-    name: openebs
-    isDefaultClass: true
-    ext4Quota:
-      enabled: true
-
+lvm-localpv:
   analytics:
     enabled: false
 
