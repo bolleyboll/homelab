@@ -19,7 +19,7 @@ server:
   dataStorage:
     enabled: true
     size: 10Gi
-    storageClass: openebs
+    storageClass: openebs-hostpath
     accessMode: ReadWriteOnce
   readinessProbe:
     path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"

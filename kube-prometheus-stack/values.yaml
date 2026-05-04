@@ -42,7 +42,7 @@ grafana:
   persistence:
     enabled: true
     type: pvc
-    storageClassName: "openebs"
+    storageClassName: "openebs-hostpath"
     accessModes:
       - ReadWriteOnce
     size: 5Gi
@@ -108,7 +108,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: openebs
+          storageClassName: openebs-hostpath
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
