@@ -8,11 +8,10 @@ prometheus:
     enabled: true
 
 extraObjects:
-  - apiVersion: cert-manager.io/v1
+  - |
+    apiVersion: cert-manager.io/v1
     kind: ClusterIssuer
     metadata:
       name: selfsigned-issuer
     spec:
-      selfSigned:
-        duration: 2160h # 90d
-        renewBefore: 360h # 15d
+      selfSigned: {}
