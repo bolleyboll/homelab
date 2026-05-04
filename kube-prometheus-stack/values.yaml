@@ -63,7 +63,7 @@ nodeExporter:
 prometheus:
   enabled: true
   prometheusSpec:
-    retention: 7d
+    retention: 2w
     serviceMonitorSelectorNilUsesHelmValues: false
     additionalScrapeConfigs:
       - job_name: "dockerswarm"
