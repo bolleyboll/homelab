@@ -13,4 +13,4 @@ extraObjects:
     metadata:
       name: selfsigned-issuer
     spec:
-      selfSigned: {}
+      selfSigned:
