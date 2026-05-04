@@ -9,7 +9,7 @@ lvm-localpv:
       enabled: false
 
   analytics:
-    enabled: false
+    enabled: true
 
 engines:
   local:
