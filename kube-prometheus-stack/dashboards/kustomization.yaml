@@ -1,0 +1,19 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+configMapGenerator:
+  - name: custom-dashboards
+    files:
+      - Bind.json
+      - cAdvisor_Docker-Insights.json
+      - cAdvisor.json
+      - Docker_Prometheus_Monitoring.json
+      - Node_Exporter.json
+      - Smokeping.json
+      - Traefik_Standalone.json
+      - Stock_Analysis.json
+      - MySQL.json
+    options:
+      labels:
+        grafana_dashboard: "1"

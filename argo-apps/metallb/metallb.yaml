@@ -12,10 +12,20 @@ metadata:
     name: metallb
 spec:
   project: core
-  source:
-    repoURL: "https://github.com/bolleyboll/homelab.git"
-    targetRevision: HEAD
-    path: metallb
+  sources:
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      ref: myRepo
+    - repoURL: "https://metallb.github.io/metallb"
+      targetRevision: 0.15.3
+      chart: metallb
+      helm:
+        releaseName: metallb
+        valueFiles:
+          - $myRepo/metallb/values.yaml
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      path: metallb/advertisement
 
   destination:
     server: https://kubernetes.default.svc
