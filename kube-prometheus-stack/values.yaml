@@ -39,6 +39,8 @@ grafana:
       root_url: "http://grafana.lan"
   adminUser: bolleyboll
   adminPassword: prom-operator
+  initChownData:
+    enabled: false
   persistence:
     enabled: true
     type: pvc
