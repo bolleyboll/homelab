@@ -17,7 +17,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: "https://prometheus-community.github.io/helm-charts"
-      targetRevision: 84.5.0
+      targetRevision: 85.1.3
       chart: kube-prometheus-stack
       helm:
         releaseName: kube-prometheus-stack

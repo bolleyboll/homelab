@@ -1,7 +1,7 @@
 ---
 services:
   gitea:
-    image: gitea/gitea:1.25.4
+    image: gitea/gitea:1.26.1
     container_name: gitea
     hostname: pi
     restart: unless-stopped
@@ -39,7 +39,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
   gitea-runner:
-    image: gitea/act_runner:0.3.0
+    image: gitea/act_runner:0.6.1
     container_name: gitea-runner
     hostname: pi
     restart: unless-stopped
