@@ -24,7 +24,7 @@ services:
       labels:
         - "traefik.enable=false"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
 
   postgres-exporter:
     image: quay.io/prometheuscommunity/postgres-exporter:v0.19.1
