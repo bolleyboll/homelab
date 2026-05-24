@@ -3,7 +3,9 @@ crds:
   enabled: true
 
 alertmanager:
-  enabled: false
+  enabled: true
+  alertmanagerSpec:
+    logLevel: warn
   ingress:
     enabled: true
     ingressClassName: "nginx"
@@ -67,6 +69,8 @@ prometheus:
   prometheusSpec:
     retention: 2w
     serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    logLevel: warn
     additionalScrapeConfigs:
       - job_name: "dockerswarm"
         dockerswarm_sd_configs:
@@ -131,6 +135,4 @@ prometheus:
 prometheusOperator:
   enabled: true
   fullnameOverride: prometheus-operator
-
-kubeStateMetrics:
-  enabled: false
+  logLevel: warn
