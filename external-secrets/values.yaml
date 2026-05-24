@@ -2,5 +2,13 @@
 log:
   level: warn
 
+webhook:
+  log:
+    level: warn
+
+certController:
+  log:
+    level: warn
+
 serviceMonitor:
   enabled: true
