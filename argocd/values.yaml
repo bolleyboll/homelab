@@ -17,7 +17,8 @@ configs:
 
 global:
   domain: "argocd.lan"
-  level: warn
+  logging:
+    level: warn
 
 controller:
   metrics:
