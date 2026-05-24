@@ -33,6 +33,10 @@ dex:
       enabled: true
 
 redis:
+  extraArgs:
+    - "--loglevel warning"
+  exporter:
+    enabled: true
   metrics:
     enabled: true
     serviceMonitor:
