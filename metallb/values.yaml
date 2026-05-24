@@ -1,5 +1,9 @@
 ---
+controller:
+  logLevel: warn
+
 speaker:
+  logLevel: warn
   memberlist:
     mlBindPort: 7947
 
