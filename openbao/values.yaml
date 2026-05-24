@@ -3,6 +3,7 @@ injector:
   enabled: false
 
 server:
+  logLevel: "warn"
   ingress:
     enabled: true
     ingressClassName: "nginx"
