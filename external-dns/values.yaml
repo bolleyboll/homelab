@@ -1,5 +1,5 @@
 ---
-logLevel: info
+logLevel: warning
 
 deploymentStrategy:
   type: RollingUpdate
