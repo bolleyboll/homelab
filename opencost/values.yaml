@@ -1,4 +1,6 @@
 ---
+loglevel: warn
+
 plugins:
   enabled: true
 
