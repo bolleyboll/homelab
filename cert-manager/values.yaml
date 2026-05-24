@@ -1,6 +1,6 @@
 ---
 global:
-  logLevel: 1
+  logLevel: 0
 
 crds:
   enabled: true
