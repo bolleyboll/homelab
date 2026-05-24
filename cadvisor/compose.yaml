@@ -6,7 +6,7 @@ services:
     hostname: pi
     restart: always
     command:
-      - "-v=2"
+      - "-v=0"
     healthcheck:
       test:
         [
