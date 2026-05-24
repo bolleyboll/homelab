@@ -15,6 +15,10 @@ configs:
     argocdServerAdminPassword: "$2a$10$Ldk5mGRowat3Z2uOuGyWZuNNMJvMZf1NwyNPNryg.7fBlxx6kBkFy"
     argocdServerAdminPasswordMtime: "2025-11-19T00:00:00Z"
 
+global:
+  domain: "argocd.lan"
+  level: warn
+
 controller:
   metrics:
     enabled: true
@@ -50,9 +54,6 @@ notifications:
     enabled: true
     serviceMonitor:
       enabled: true
-
-global:
-  domain: "argocd.lan"
 
 server:
   ingress:
