@@ -57,3 +57,6 @@ hubble:
         - secretName: hubble-tls
           hosts:
             - hubble.lan
+
+logOptions:
+  level: warn
