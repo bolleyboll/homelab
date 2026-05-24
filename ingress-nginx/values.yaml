@@ -8,6 +8,7 @@ controller:
       enabled: true
   config:
     disable-access-log: true
+    error-log-level: warn
     large-client-header-buffers: "4 32k"
     proxy-body-size: "0"
     proxy-next-upstream: "off"
