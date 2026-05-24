@@ -13,3 +13,7 @@ ingress:
     - secretName: headlamp-tls
       hosts:
         - headlamp.lan
+
+env:
+  - name: HEADLAMP_CONFIG_LOG_LEVEL
+    value: "warn"
