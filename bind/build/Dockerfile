@@ -5,8 +5,8 @@ ENV LC_ALL=C.UTF-8
 ARG UID=53
 ARG GID=53
 
-ARG BIND9_VERSION=9.21.21
-ARG BIND9_CHECKSUM=44ebfae8b82b494f5cc4781b044fbd4c867b64dc22ae9c62c9197aab16389112
+ARG BIND9_VERSION=9.21.22
+ARG BIND9_CHECKSUM=305dd3fa3f86fccc4a15b4a9423132ce1f394a89949f6577b4d0e2b3fbd52f3b
 
 RUN apk --no-cache update
 RUN apk --no-cache upgrade
@@ -14,44 +14,44 @@ RUN apk --no-cache upgrade
 FROM base AS builder
 
 RUN apk --no-cache add \
-		build-base \
-		fstrm \
-		fstrm-dev \
-		jemalloc \
-		jemalloc-dev \
-		json-c \
-		json-c-dev \
-		krb5-dev \
-		krb5-libs \
-		libcap-dev \
-		libcap2 \
-		libidn2 \
-		libidn2-dev \
-		libmaxminddb-dev \
-		libmaxminddb-libs \
-		libuv \
-		libuv-dbg \
-		libuv-dev \
-		libxml2 \
-		libxml2-dbg \
-		libxml2-dev \
-		libxslt \
-		lmdb \
-		lmdb-dev \
-		meson \
-		musl-dbg \
-		ninja \
-		nghttp2-dev \
-		nghttp2-libs \
-		openssl-dbg \
-		openssl-dev \
-		perl \
-		procps \
-		protobuf-c \
-		protobuf-c-dev \
-		tzdata \
-		userspace-rcu \
-		userspace-rcu-dev
+	build-base \
+	fstrm \
+	fstrm-dev \
+	jemalloc \
+	jemalloc-dev \
+	json-c \
+	json-c-dev \
+	krb5-dev \
+	krb5-libs \
+	libcap-dev \
+	libcap2 \
+	libidn2 \
+	libidn2-dev \
+	libmaxminddb-dev \
+	libmaxminddb-libs \
+	libuv \
+	libuv-dbg \
+	libuv-dev \
+	libxml2 \
+	libxml2-dbg \
+	libxml2-dev \
+	libxslt \
+	lmdb \
+	lmdb-dev \
+	meson \
+	musl-dbg \
+	ninja \
+	nghttp2-dev \
+	nghttp2-libs \
+	openssl-dbg \
+	openssl-dev \
+	perl \
+	procps \
+	protobuf-c \
+	protobuf-c-dev \
+	tzdata \
+	userspace-rcu \
+	userspace-rcu-dev
 
 RUN mkdir -p /usr/src
 ADD https://downloads.isc.org/isc/bind9/${BIND9_VERSION}/bind-${BIND9_VERSION}.tar.xz /usr/src
@@ -60,15 +60,15 @@ RUN cd /usr/src && \
 	tar -xJf bind-${BIND9_VERSION}.tar.xz && \
 	cd /usr/src/bind-${BIND9_VERSION} && \
 	meson setup --prefix=/usr \
-				--sysconfdir=/etc/bind \
-				--localstatedir=/ \
-				--default-library=shared \
-				-Dgssapi=enabled \
-				-Didn=enabled \
-				-Dstats-json=enabled \
-				-Dgeoip=enabled \
-				-Ddnstap=enabled \
-				build && \
+	--sysconfdir=/etc/bind \
+	--localstatedir=/ \
+	--default-library=shared \
+	-Dgssapi=enabled \
+	-Didn=enabled \
+	-Dstats-json=enabled \
+	-Dgeoip=enabled \
+	-Ddnstap=enabled \
+	build && \
 	meson compile -j -1 -C build && \
 	meson install -C build --destdir=/dist && \
 	rm -rf /usr/src
@@ -76,22 +76,22 @@ RUN cd /usr/src && \
 FROM base AS final
 
 RUN apk --no-cache add \
-		fstrm \
-		jemalloc \
-		json-c \
-		krb5-libs \
-		libcap2 \
-		libidn2 \
-		libmaxminddb-libs \
-		libuv \
-		libxml2 \
-		lmdb \
-		nghttp2-libs \
-		procps \
-		protobuf-c \
-		tzdata \
-		userspace-rcu \
-		bind-tools
+	fstrm \
+	jemalloc \
+	json-c \
+	krb5-libs \
+	libcap2 \
+	libidn2 \
+	libmaxminddb-libs \
+	libuv \
+	libxml2 \
+	lmdb \
+	nghttp2-libs \
+	procps \
+	protobuf-c \
+	tzdata \
+	userspace-rcu \
+	bind-tools
 
 # Copy binaries from previous stage
 COPY --from=builder /dist/ /
