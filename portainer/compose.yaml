@@ -5,7 +5,10 @@ services:
     container_name: portainer
     hostname: pi
     restart: always
-    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    command:
+      - "-H tcp://tasks.agent:9001"
+      - "--tlsskipverify"
+      - "--log-level=WARN"
     networks:
       - homelab
     deploy:
@@ -28,6 +31,8 @@ services:
 
   agent:
     image: portainer/agent:2.39.2-alpine
+    command:
+      - "--log-level=WARN"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
