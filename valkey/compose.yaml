@@ -1,10 +1,12 @@
 ---
 services:
   valkey-9:
-    image: valkey/valkey:9.0.4-alpine
+    image: valkey/valkey:9.1.0-alpine
     container_name: valkey
     hostname: pi
     restart: always
+    command:
+      - "--loglevel=warn"
     networks:
       - homelab
     ports:
@@ -19,7 +21,7 @@ services:
       test: ["CMD", "valkey-cli", "ping"]
 
   redis-exporter:
-    image: oliver006/redis_exporter:v1.83.0-alpine
+    image: oliver006/redis_exporter:v1.84.0-alpine
     container_name: redis-exporter
     hostname: pi
     restart: always
@@ -29,6 +31,7 @@ services:
       - "9121:9121"
     environment:
       - REDIS_ADDR=valkey-9:6379
+      - REDIS_EXPORTER_LOG_LEVEL=warn
     deploy:
       placement:
         constraints:
