@@ -4,7 +4,7 @@ services:
     container_name: traefik
     hostname: pi
     command:
-      - "--log.level=INFO"
+      - "--log.level=WARN"
       - "--accesslog=true"
       - "--api.insecure=true"
       - "--providers.swarm=true"
