@@ -1,7 +1,7 @@
 ---
 services:
   qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent:5.1.4
+    image: ghcr.io/linuxserver/qbittorrent:5.2.0
     container_name: qbittorrent
     pull_policy: always
     hostname: docker
@@ -60,7 +60,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kolkata
     volumes:
-      - servarr-config:/config
+      - sonarr-config:/config
       # Paths to Media
       - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
       - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
@@ -156,6 +156,27 @@ services:
       - seerr-config:/app/config
     restart: unless-stopped
 
+  jellyfin:
+    image: jellyfin/jellyfin:10.11.10
+    container_name: jellyfin
+    hostname: docker
+    pull_policy: always
+    ports:
+      - 8096:8096/tcp
+      - 7359:7359/udp
+    # Optional - alternative address used for autodiscovery
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://example.com
+      - TZ=Asia/Kolkata
+    volumes:
+      - jellyfin-config:/config
+      - jellyfin-cache:/cache
+      # Paths to Media
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
+      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
+    restart: unless-stopped
+
   # readarr:
   #   image: linuxserver/readarr:0.4.19-nightly
   #   container_name: readarr
@@ -189,7 +210,7 @@ volumes:
     driver: local
   prowlarr-config:
     driver: local
-  servarr-config:
+  sonarr-config:
     driver: local
   radarr-config:
     driver: local
@@ -199,7 +220,7 @@ volumes:
     driver: local
   profilarr-config:
     driver: local
-  tautulli-config:
+  jellyfin-config:
     driver: local
-  imagemaid-config:
+  jellyfin-cache:
     driver: local
