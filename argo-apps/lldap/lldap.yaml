@@ -23,6 +23,9 @@ spec:
         releaseName: lldap
         valueFiles:
           - $myRepo/lldap/values.yaml
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      path: lldap/extra
 
   destination:
     server: https://kubernetes.default.svc

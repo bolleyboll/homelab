@@ -5,16 +5,16 @@ image:
 ingress:
   enabled: true
   ingressClassName: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
   hosts:
-    - host: ldap.lan
+    - host: lldap.lan
       paths:
         - path: /
           pathType: ImplementationSpecific
-  annotations:
-    cert-manager.io/cluster-issuer: "selfsigned-issuer"
   tls:
     - hosts:
-        - ldap.lan
+        - lldap.lan
 
 secret:
   create: true
