@@ -6,7 +6,7 @@ services:
     hostname: pi
     restart: always
     command:
-      - "--loglevel=warn"
+      - "--loglevel warning"
     networks:
       - homelab
     ports:
