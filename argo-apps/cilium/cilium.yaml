@@ -38,7 +38,6 @@ spec:
       - Validate=true
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
-      - ServerSideApply=true
       - PruneLast=true
     retry:
       limit: 5

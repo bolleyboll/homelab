@@ -16,6 +16,9 @@ spec:
     - repoURL: "https://github.com/kubernetes-sigs/gateway-api.git"
       targetRevision: v1.5.1
       path: config/crd/standard
+    - repoURL: "https://github.com/kubernetes-sigs/gateway-api.git"
+      targetRevision: v1.5.1
+      path: config/crd/experimental
   destination:
     server: https://kubernetes.default.svc
     namespace: gateway-system
