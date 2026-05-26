@@ -61,6 +61,5 @@ hubble:
 logOptions:
   level: warn
 
-ingressController:
+gatewayAPI:
   enabled: true
-  loadbalancerMode: shared

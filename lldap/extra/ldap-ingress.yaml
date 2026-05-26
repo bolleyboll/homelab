@@ -1,23 +1,25 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: selfsigned-issuer
   name: ldap
 spec:
-  ingressClassName: nginx
+  gatewayClassName: cilium
+  listeners:
+    - name: ldap-tcp
+      port: 443
+      protocol: TCP
+      hostname: ldap.lan
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: TCPRoute
+metadata:
+  name: ldap
+spec:
+  parentRefs:
+    - name: ldap
   rules:
-    - host: ldap.lan
-      http:
-        paths:
-          - backend:
-              service:
-                name: lldap
-                port:
-                  name: ldap
-            path: /
-            pathType: ImplementationSpecific
-  tls:
-    - hosts:
-        - ldap.lan
-      secretName: ldap-tls
+    - backendRefs:
+        - name: lldap
+          port: 389
