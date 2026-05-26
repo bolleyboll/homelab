@@ -10,7 +10,6 @@ spec:
     - name: ldap-tcp
       port: 443
       protocol: TCP
-      hostname: ldap.lan
 ---
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TCPRoute
