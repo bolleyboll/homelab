@@ -13,7 +13,7 @@ spec:
       hostname: ldap.lan
 ---
 apiVersion: gateway.networking.k8s.io/v1alpha2
-kind: TCPRoutes
+kind: TCPRoute
 metadata:
   name: ldap
 spec:
