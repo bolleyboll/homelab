@@ -19,4 +19,4 @@ spec:
   rules:
     - backendRefs:
         - name: lldap
-          port: 389
+          port: 3890
