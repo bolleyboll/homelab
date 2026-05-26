@@ -60,3 +60,7 @@ hubble:
 
 logOptions:
   level: warn
+
+ingressController:
+  enabled: true
+  loadbalancerMode: shared
