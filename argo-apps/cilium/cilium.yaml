@@ -16,6 +16,8 @@ spec:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
       ref: myRepo
+    - repoURL: "https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.1/standard-install.yaml"
+      targetRevision: HEAD
     - repoURL: "https://helm.cilium.io"
       targetRevision: 1.19.4
       chart: cilium
@@ -38,6 +40,7 @@ spec:
       - Validate=true
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
+      - ServerSideApply=true
       - PruneLast=true
     retry:
       limit: 5
