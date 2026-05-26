@@ -2,32 +2,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cilium
+  name: gateway-api
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "-1"
   labels:
-    name: cilium
+    name: gateway-api
 spec:
   project: core
   sources:
-    - repoURL: "https://github.com/bolleyboll/homelab.git"
-      targetRevision: HEAD
-      ref: myRepo
-    - repoURL: "https://helm.cilium.io"
-      targetRevision: 1.19.4
-      chart: cilium
-      helm:
-        releaseName: cilium
-        valueFiles:
-          - $myRepo/cilium/values.yaml
-
+    - repoURL: "https://github.com/kubernetes-sigs/gateway-api.git"
+      targetRevision: v1.5.1
+      path: config/crd/standard
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
-
+    namespace: gateway-system
   syncPolicy:
     automated:
       prune: true
@@ -46,5 +37,3 @@ spec:
         duration: 5s
         factor: 2
         maxDuration: 3m
-
-  revisionHistoryLimit: 3
