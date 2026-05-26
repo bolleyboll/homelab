@@ -1,0 +1,24 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-issuer
+  name: ldap
+spec:
+  gatewayClassName: cilium
+  listeners:
+    - name: ldap-tcp
+      port: 443
+      protocol: tcp
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: ldap
+spec:
+  parentRefs:
+    - name: ldap
+  rules:
+    - backendRefs:
+        - name: lldap
+          port: 389
