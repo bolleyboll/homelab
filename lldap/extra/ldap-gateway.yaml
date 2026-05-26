@@ -19,5 +19,4 @@ spec:
   rules:
     - backendRefs:
         - name: lldap
-          port:
-            name: ldap
+          port: 3890
