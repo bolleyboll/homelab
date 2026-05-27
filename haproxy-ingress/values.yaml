@@ -4,3 +4,6 @@ controller:
     enabled: false
   service:
     type: LoadBalancer
+    extraPorts:
+    - port: 3890
+      targetPort: 3890

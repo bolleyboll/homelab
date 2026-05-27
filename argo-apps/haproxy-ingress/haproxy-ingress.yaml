@@ -23,6 +23,9 @@ spec:
         releaseName: haproxy-ingress
         valueFiles:
           - $myRepo/haproxy-ingress/values.yaml
+    - repoURL: "https://github.com/bolleyboll/homelab.git"
+      targetRevision: HEAD
+      path: haproxy-ingress/extra
 
   destination:
     server: https://kubernetes.default.svc

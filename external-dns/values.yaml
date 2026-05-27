@@ -10,6 +10,11 @@ serviceMonitor:
 sources:
   - service
   - ingress
+  - gateway
+  - httproutes
+  - tlsroutes
+  - tcproutes
+  - udproutes
 
 policy: upsert-only
 
