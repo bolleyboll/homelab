@@ -16,6 +16,8 @@ resources:
   - ../argo-apps/external-dns/external-dns.yaml
   # Nginx Ingress
   - ../argo-apps/ingress-nginx/ingress-nginx.yaml
+  # HAProxy Ingress
+  - ../argo-apps/ingress-haproxy/ingress-haproxy.yaml
   # MetalLB
   - ../argo-apps/metallb/metallb.yaml
   # Kube Prometheus Stack

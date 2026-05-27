@@ -1,0 +1,4 @@
+---
+controller:
+  serviceMonitor:
+    enabled: false
