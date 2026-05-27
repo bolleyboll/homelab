@@ -2,3 +2,7 @@
 controller:
   serviceMonitor:
     enabled: false
+  logging:
+    level: warn
+  service:
+    type: LoadBalancer
