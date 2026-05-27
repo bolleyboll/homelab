@@ -16,11 +16,11 @@ spec:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
       ref: myRepo
-    - repoURL: "https://haproxytech.github.io/helm-charts"
-      targetRevision: 1.52.0
-      chart: kubernetes-ingress
+    - repoURL: "https://haproxy-ingress.github.io/charts"
+      targetRevision: 0.16.1
+      chart: haproxy-ingress
       helm:
-        releaseName: ingress-haproxy
+        releaseName: haproxy-ingress
         valueFiles:
           - $myRepo/ingress-haproxy/values.yaml
 
