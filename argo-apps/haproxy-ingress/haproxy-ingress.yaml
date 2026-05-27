@@ -2,14 +2,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-haproxy
+  name: haproxy-ingress
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "1"
   labels:
-    name: ingress-haproxy
+    name: haproxy-ingress
 spec:
   project: core
   sources:
@@ -22,11 +22,11 @@ spec:
       helm:
         releaseName: haproxy-ingress
         valueFiles:
-          - $myRepo/ingress-haproxy/values.yaml
+          - $myRepo/haproxy-ingress/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: ingress-haproxy
+    namespace: haproxy-ingress
 
   syncPolicy:
     automated:
