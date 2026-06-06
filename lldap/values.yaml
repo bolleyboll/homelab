@@ -23,6 +23,9 @@ secret:
   lldapUserPass: "administrator123456"
   lldapBaseDn: "dc=homelab"
 
+service:
+  type: LoadBalancer
+
 persistence:
   enabled: true
   size: 100Mi
