@@ -57,12 +57,12 @@ spec:
               value: "demand"
             - name: LDAP_REPLICATION
               value: "false"
-            - name: LDAP_REPLICATION_CONFIG_SYNCPROV
-              value: 'binddn="cn=admin,cn=config" bindmethod=simple credentials=$LDAP_CONFIG_PASSWORD searchbase="cn=config" type=refreshAndPersist retry="60 +" timeout=1 starttls=critical'
-            - name: LDAP_REPLICATION_DB_SYNCPROV
-              value: 'binddn="cn=admin,$LDAP_BASE_DN" bindmethod=simple credentials=$LDAP_ADMIN_PASSWORD searchbase="$LDAP_BASE_DN" type=refreshAndPersist interval=00:00:00:10 retry="60 +" timeout=1 starttls=critical'
-            - name: LDAP_REPLICATION_HOSTS
-              value: "#PYTHON2BASH:['ldap://ldap-one-service', 'ldap://ldap-two-service']"
+            # - name: LDAP_REPLICATION_CONFIG_SYNCPROV
+            #   value: 'binddn="cn=admin,cn=config" bindmethod=simple credentials=$LDAP_CONFIG_PASSWORD searchbase="cn=config" type=refreshAndPersist retry="60 +" timeout=1 starttls=critical'
+            # - name: LDAP_REPLICATION_DB_SYNCPROV
+            #   value: 'binddn="cn=admin,$LDAP_BASE_DN" bindmethod=simple credentials=$LDAP_ADMIN_PASSWORD searchbase="$LDAP_BASE_DN" type=refreshAndPersist interval=00:00:00:10 retry="60 +" timeout=1 starttls=critical'
+            # - name: LDAP_REPLICATION_HOSTS
+            #   value: "#PYTHON2BASH:['ldap://ldap-one-service', 'ldap://ldap-two-service']"
             - name: KEEP_EXISTING_CONFIG
               value: "false"
             - name: LDAP_REMOVE_CONFIG_AFTER_SETUP
@@ -72,6 +72,8 @@ spec:
           ports:
             - containerPort: 389
               name: openldap
+            - containerPort: 636
+              name: openldap-secure
           resources:
             limits:
               memory: "512Mi"
