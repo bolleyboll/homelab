@@ -19,8 +19,6 @@ spec:
         - name: ldap
           image: osixia/openldap:latest
           env:
-            - name: CONTAINER_LOG_LEVEL
-              value: "1"
             - name: LDAP_LOG_LEVEL
               value: "256"
             - name: LDAP_ORGANISATION
