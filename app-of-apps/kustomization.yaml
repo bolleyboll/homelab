@@ -28,8 +28,8 @@ resources:
   - ../argo-apps/cert-manager/cert-manager.yaml
   # Homepage
   - ../argo-apps/homepage/homepage.yaml
-  # LLDAP
-  - ../argo-apps/lldap/lldap.yaml
+  # OpenLDAP
+  - ../argo-apps/openldap/openldap.yaml
   # OpenBAO
   - ../argo-apps/openbao/openbao.yaml
   # External Secrets
