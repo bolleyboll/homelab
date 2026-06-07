@@ -1,0 +1,53 @@
+---
+global:
+  storageClass: "openebs-hostpath"
+
+openldap:
+  enabled: true
+
+  # LDAP Configuration (REQUIRED - no defaults)
+  config:
+    organisation: "HomeLab" # e.g., "My Company"
+    domain: "ldap.lan" # e.g., "mycompany.com"
+    adminPassword: "administrator123456" # Admin password
+    configPassword: "" # Config password (optional, defaults to adminPassword)
+
+  service:
+    type: LoadBalancer
+
+  bootstrap:
+    # Enable bootstrap with LDIF files
+    enabled: true
+    # Create default OUs (users, groups)
+    createDefaultOUs: true
+
+phpldapadmin:
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      cert-manager.io/cluster-issuer: "selfsigned-issuer"
+    hosts:
+      - host: ldap.lan
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - ldap.lan
+        secretName: phpldapadmin-tls
+
+keycloak:
+  enabled: false
+
+ldapFederation:
+  enabled: false
+
+googleSync:
+  enabled: false
+
+metrics:
+  serviceMonitor:
+    enabled: true
+  openldapExporter:
+    enabled: true

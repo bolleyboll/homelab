@@ -15,7 +15,14 @@ spec:
   sources:
     - repoURL: "https://github.com/bolleyboll/homelab.git"
       targetRevision: HEAD
-      path: openldap
+      ref: myRepo
+    - repoURL: "https://start-codex.github.io/ldap-stack-helm-chart/"
+      targetRevision: 1.4.2
+      chart: ldap-stack
+      helm:
+        releaseName: openldap
+        valueFiles:
+          - $myRepo/openldap/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
