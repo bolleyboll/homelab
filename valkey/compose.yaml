@@ -21,7 +21,7 @@ services:
       test: ["CMD", "valkey-cli", "ping"]
 
   redis-exporter:
-    image: oliver006/redis_exporter:v1.84.0-alpine
+    image: oliver006/redis_exporter:v1.86.0-alpine
     container_name: redis-exporter
     hostname: pi
     restart: always

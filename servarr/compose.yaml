@@ -1,7 +1,7 @@
 ---
 services:
   qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent:5.2.0
+    image: ghcr.io/linuxserver/qbittorrent:5.2.1
     container_name: qbittorrent
     pull_policy: always
     hostname: docker
@@ -17,9 +17,9 @@ services:
       - qbittorrent-config:/config
       - qbittorrent-downloads:/downloads
       # Paths to Media
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
+      - "/Users/guptaa.int/Downloads/Entertainment/Anime/:/anime"
+      - "/Users/guptaa.int/Downloads/Entertainment/Movies/:/movies"
+      - "/Users/guptaa.int/Downloads/Entertainment/TV Shows/:/tv"
     ports:
       - 8080:8080
       - 6881:6881
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:2.3.5
+    image: ghcr.io/linuxserver/prowlarr:2.4.0
     container_name: prowlarr
     hostname: docker
     pull_policy: always
@@ -62,15 +62,15 @@ services:
     volumes:
       - sonarr-config:/config
       # Paths to Media
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
+      - "/Users/guptaa.int/Downloads/Entertainment/TV Shows/:/tv"
+      - "/Users/guptaa.int/Downloads/Entertainment/Anime/:/anime"
       - qbittorrent-downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
 
   radarr:
-    image: ghcr.io/linuxserver/radarr:6.1.1
+    image: ghcr.io/linuxserver/radarr:6.2.1
     container_name: radarr
     hostname: docker
     pull_policy: always
@@ -86,7 +86,7 @@ services:
     volumes:
       - radarr-config:/config
       # Paths to Media
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
+      - "/Users/guptaa.int/Downloads/Entertainment/Movies/:/movies"
       - qbittorrent-downloads:/downloads
     ports:
       - 7878:7878
@@ -110,9 +110,9 @@ services:
     volumes:
       - bazarr-config:/config
       # Paths to Media
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
+      - "/Users/guptaa.int/Downloads/Entertainment/Anime/:/anime"
+      - "/Users/guptaa.int/Downloads/Entertainment/Movies/:/movies"
+      - "/Users/guptaa.int/Downloads/Entertainment/TV Shows/:/tv"
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -136,7 +136,7 @@ services:
     restart: unless-stopped
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:v3.2.0
+    image: ghcr.io/seerr-team/seerr:v3.3.0
     container_name: seerr
     hostname: docker
     pull_policy: always
@@ -157,10 +157,12 @@ services:
     restart: unless-stopped
 
   jellyfin:
-    image: jellyfin/jellyfin:10.11.10
+    image: jellyfin/jellyfin:10.11.11
     container_name: jellyfin
     hostname: docker
     pull_policy: always
+    networks:
+      - servarr
     ports:
       - 8096:8096/tcp
       - 7359:7359/udp
@@ -172,9 +174,9 @@ services:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
       # Paths to Media
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Anime/:/anime"
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/Movies/:/movies"
-      - "/run/media/bolleyboll/Aman_HDD/Entertainment/TV Shows/:/tv"
+      - "/Users/guptaa.int/Downloads/Entertainment/Anime/:/anime"
+      - "/Users/guptaa.int/Downloads/Entertainment/Movies/:/movies"
+      - "/Users/guptaa.int/Downloads/Entertainment/TV Shows/:/tv"
     restart: unless-stopped
 
   # readarr:
